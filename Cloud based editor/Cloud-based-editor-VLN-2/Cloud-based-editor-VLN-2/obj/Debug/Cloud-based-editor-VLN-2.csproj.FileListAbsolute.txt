@@ -77,6 +77,5 @@ C:\Users\Daníel\OneDrive\Vorönn 2017\Verklegt námskeið II\Cloud based editor
 C:\Users\Daníel\OneDrive\Vorönn 2017\Verklegt námskeið II\Cloud based editor\Cloud-based-editor-VLN-2\Cloud-based-editor-VLN-2\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Daníel\OneDrive\Vorönn 2017\Verklegt námskeið II\Cloud based editor\Cloud-based-editor-VLN-2\Cloud-based-editor-VLN-2\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Daníel\OneDrive\Vorönn 2017\Verklegt námskeið II\Cloud based editor\Cloud-based-editor-VLN-2\Cloud-based-editor-VLN-2\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Daníel\OneDrive\Vorönn 2017\Verklegt námskeið II\Cloud based editor\Cloud-based-editor-VLN-2\Cloud-based-editor-VLN-2\obj\Debug\Cloud-based-editor-VLN-2.csprojResolveAssemblyReference.cache
 C:\Users\Daníel\OneDrive\Vorönn 2017\Verklegt námskeið II\Cloud based editor\Cloud-based-editor-VLN-2\Cloud-based-editor-VLN-2\obj\Debug\Cloud-based-editor-VLN-2.dll
 C:\Users\Daníel\OneDrive\Vorönn 2017\Verklegt námskeið II\Cloud based editor\Cloud-based-editor-VLN-2\Cloud-based-editor-VLN-2\obj\Debug\Cloud-based-editor-VLN-2.pdb

@@ -7,14 +7,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cloud_based_editor_VLN_2;
 using Cloud_based_editor_VLN_2.Controllers;
 
-namespace Cloud_based_editor_VLN_2.Tests.Controllers
-{
+namespace Cloud_based_editor_VLN_2.Tests.Controllers {
     [TestClass]
-    public class HomeControllerTest
-    {
+    public class HomeControllerTest {
         [TestMethod]
-        public void Index()
-        {
+        public void Index() {
             // Arrange
             HomeController controller = new HomeController();
 
@@ -26,8 +23,7 @@ namespace Cloud_based_editor_VLN_2.Tests.Controllers
         }
 
         [TestMethod]
-        public void About()
-        {
+        public void About() {
             // Arrange
             HomeController controller = new HomeController();
 
@@ -39,8 +35,7 @@ namespace Cloud_based_editor_VLN_2.Tests.Controllers
         }
 
         [TestMethod]
-        public void Contact()
-        {
+        public void Contact() {
             // Arrange
             HomeController controller = new HomeController();
 

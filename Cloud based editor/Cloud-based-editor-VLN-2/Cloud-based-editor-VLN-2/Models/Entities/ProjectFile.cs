@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Cloud_based_editor_VLN_2.Models.Entities {
     public class ProjectFile {
-        public int FileID { get; set; }
+        public int ProjectFileID { get; set; }
 
         public string Name { get; set; }
 

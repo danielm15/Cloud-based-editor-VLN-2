@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Cloud_based_editor_VLN_2.Models.Entities;
 
 namespace Cloud_based_editor_VLN_2.Models {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
@@ -16,6 +17,14 @@ namespace Cloud_based_editor_VLN_2.Models {
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser> {
+        public DbSet<User> AppUsers { get; set; }
+
+        public DbSet<ProjectList> ProjectLists { get; set; }
+
+        public DbSet<Project> Projects { get; set; }
+
+        public DbSet<ProjectFile> ProjectFiles { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false) {
         }

@@ -5,7 +5,8 @@ namespace Cloud_based_editor_VLN_2.Models {
 
     public class ExternalLoginConfirmationViewModel {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "UserName")]
+        public string UsernName { get; set; }
         public string Email { get; set; }
     }
 
@@ -43,9 +44,9 @@ namespace Cloud_based_editor_VLN_2.Models {
 
     public class LoginViewModel {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "UserName")]
+        [RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -57,6 +58,11 @@ namespace Cloud_based_editor_VLN_2.Models {
     }
 
     public class RegisterViewModel {
+        [Required]
+        [Display(Name = "UserName")]
+        [RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

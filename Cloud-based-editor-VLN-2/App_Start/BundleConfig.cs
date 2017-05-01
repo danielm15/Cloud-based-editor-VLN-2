@@ -25,7 +25,7 @@ namespace Cloud_based_editor_VLN_2
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
-                     "~/Content/Site.css", "~/Content/CustomStyles.css"));
+                     "~/Content/Site.css", "~/Content/CustomStyles.css", "~/Content/globalsubsites.css"));
         }
     }
 }

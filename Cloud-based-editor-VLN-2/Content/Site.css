@@ -29,7 +29,7 @@ textarea {
     margin-top: 5%;
     border: 2px solid lightgray;
     background-image: url('Img/FileView.png');
-    background-position-y:center;s
+    background-position-y:center;
 }
 
 .fill {
@@ -37,12 +37,23 @@ textarea {
 }
 
 #prevImage {
+    float:left;
     margin-top: 250px;
-    margin-left: -30px
+    margin-left: -30px;
 }
 
 #nextImage {
     margin-top: 250px;
     margin-right: -30px;
-    float:right
+    float:right;
+}
+
+.row {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.row p {
+    margin-top: 30px;
+ 
 }

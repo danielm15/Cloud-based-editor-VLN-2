@@ -11,14 +11,12 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return View();
         }
 
-        public ActionResult About() {
-            ViewBag.Message = "Your application description page.";
+        public ActionResult About() { 
 
             return View();
         }
 
-        public ActionResult Contact() {
-            ViewBag.Message = "Your contact page.";
+        public ActionResult Support() { 
 
             return View();
         }

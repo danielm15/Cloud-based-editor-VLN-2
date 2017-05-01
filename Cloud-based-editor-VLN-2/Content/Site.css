@@ -24,10 +24,12 @@ textarea {
 }
 
 .imageDiv {
-    height: 500px;
+    height: 600px;
     width: 100%;
     margin-top: 5%;
     border: 2px solid lightgray;
+    background-image: url('Img/FileView.png');
+    background-position-y:center;s
 }
 
 .fill {
@@ -35,10 +37,12 @@ textarea {
 }
 
 #prevImage {
-    float: right;
-    margin-top: 160%;
+    margin-top: 250px;
+    margin-left: -30px
 }
 
 #nextImage {
-    margin-top: 160%;
+    margin-top: 250px;
+    margin-right: -30px;
+    float:right
 }

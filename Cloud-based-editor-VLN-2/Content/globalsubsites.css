@@ -3,12 +3,16 @@
     padding-bottom: 20px;
 }
 
-.p {
-    color: green;
+h2 {
+    padding-top: 20px;
 }
 
 p {
-    color: blue;
+    font-size: 16px;
 }
 
+#imgrow img {
+    padding-left: 40px;
+    padding-bottom: 20px;
+}
 

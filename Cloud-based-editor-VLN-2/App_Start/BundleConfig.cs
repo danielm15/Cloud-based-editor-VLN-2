@@ -24,8 +24,8 @@ namespace Cloud_based_editor_VLN_2
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.min.css",
+                     "~/Content/Site.css", "~/Content/font-awesome.css", "~/Content/magnific-popup.css", "~/Content/owl.carousel.css", "~/Content/responsive.css", "~/Content/style.css"));
         }
     }
 }

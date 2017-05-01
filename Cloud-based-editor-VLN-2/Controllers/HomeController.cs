@@ -17,7 +17,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return View();
         }
 
-        public ActionResult Contact() {
+        public ActionResult Support() {
             ViewBag.Message = "Your contact page.";
 
             return View();

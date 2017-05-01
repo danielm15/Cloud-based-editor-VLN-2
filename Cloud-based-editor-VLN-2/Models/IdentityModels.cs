@@ -17,9 +17,9 @@ namespace Cloud_based_editor_VLN_2.Models {
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser> {
-        public DbSet<User> AppUsers { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
 
-        public DbSet<ProjectList> ProjectLists { get; set; }
+        public DbSet<ProjectList> ProjectList { get; set; }
 
         public DbSet<Project> Projects { get; set; }
 
@@ -31,6 +31,11 @@ namespace Cloud_based_editor_VLN_2.Models {
 
         public static ApplicationDbContext Create() {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+            Database.SetInitializer<ApplicationDbContext>(null);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

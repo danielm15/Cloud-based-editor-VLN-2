@@ -19,7 +19,7 @@ namespace Cloud_based_editor_VLN_2.Models {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser> {
         public DbSet<AppUser> AppUsers { get; set; }
 
-        public DbSet<UserProjects> ProjectList { get; set; }
+        public DbSet<UserProjects> UserProjects { get; set; }
 
         public DbSet<Project> Projects { get; set; }
 

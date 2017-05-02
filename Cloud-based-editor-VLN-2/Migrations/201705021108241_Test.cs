@@ -38,8 +38,8 @@ namespace Cloud_based_editor_VLN_2.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         OwnerID = c.Int(nullable: false),
                         Name = c.String(),
-                        DateCreated = c.DateTime(nullable: false),
-                        StartUpFileID = c.Int(nullable: false),
+                        DateCreated = c.DateTime(nullable: true),
+                        StartUpFileID = c.Int(nullable: true),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.AppUsers", t => t.OwnerID, cascadeDelete: false)

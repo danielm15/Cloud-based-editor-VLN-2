@@ -227,6 +227,9 @@
   <ItemGroup>
     <Content Include="Content\CustomStyles.css" />
     <Content Include="Content\globalsubsites.css" />
+    <Content Include="Content\Img\1.png" />
+    <Content Include="Content\Img\2.png" />
+    <Content Include="Content\Img\3.png" />
     <Content Include="Content\Img\FileView.png" />
     <Content Include="Content\Img\dropDownArrow.png" />
     <Content Include="Content\Img\logo2.png" />
@@ -250,6 +253,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\IndexSliderScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

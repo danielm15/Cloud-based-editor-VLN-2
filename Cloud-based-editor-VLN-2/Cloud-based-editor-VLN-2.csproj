@@ -226,6 +226,7 @@
   <ItemGroup>
     <Content Include="Content\CustomStyles.css" />
     <Content Include="Content\globalsubsites.css" />
+    <Content Include="Content\Img\cloud-icon.png" />
     <Content Include="Content\Img\FileView.png" />
     <Content Include="Content\Img\logo2.png" />
     <Content Include="Content\Img\logoBanner.png" />

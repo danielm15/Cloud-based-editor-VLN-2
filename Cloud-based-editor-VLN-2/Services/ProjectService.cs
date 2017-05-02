@@ -5,11 +5,12 @@ using System.Linq;
 using System.Web;
 
 namespace Cloud_based_editor_VLN_2.Services {
-    public class ProjectService {
+    public class ProjectService : BaseService {
 
         // Fetch all projects owned by a particular User
         public List<ProjectViewModel> GetProjectsByUserID(int UserID) {
-            // TODO
+            /*var projects = (from up in _db.UserProjects
+                            )*/
             return null;
         }
 

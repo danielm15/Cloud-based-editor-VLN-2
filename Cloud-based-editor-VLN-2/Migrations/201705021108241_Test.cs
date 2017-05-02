@@ -28,7 +28,7 @@ namespace Cloud_based_editor_VLN_2.Migrations
                         ProjectID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Projects", t => t.ProjectID, cascadeDelete: true)
+                .ForeignKey("dbo.Projects", t => t.ProjectID, cascadeDelete: false)
                 .Index(t => t.ProjectID);
             
             CreateTable(
@@ -38,8 +38,8 @@ namespace Cloud_based_editor_VLN_2.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         OwnerID = c.Int(nullable: false),
                         Name = c.String(),
-                        DateCreated = c.DateTime(nullable: false),
-                        StartUpFileID = c.Int(nullable: false),
+                        DateCreated = c.DateTime(nullable: true),
+                        StartUpFileID = c.Int(nullable: true),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.AppUsers", t => t.OwnerID, cascadeDelete: false)
@@ -56,7 +56,7 @@ namespace Cloud_based_editor_VLN_2.Migrations
                         ProjectID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.AppUsers", t => t.AppUserID, cascadeDelete: true)
+                .ForeignKey("dbo.AppUsers", t => t.AppUserID, cascadeDelete: false)
                 .ForeignKey("dbo.Projects", t => t.ProjectID, cascadeDelete: false)
                 .Index(t => t.AppUserID)
                 .Index(t => t.ProjectID);

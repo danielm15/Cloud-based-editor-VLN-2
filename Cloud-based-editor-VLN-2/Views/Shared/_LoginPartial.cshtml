@@ -9,11 +9,13 @@
     <ul class="nav navbar-nav navbar-right">
         <li>
             <div class="userDropdown" >
-                <div onclick="userDropDownFunc()" class="dropdownBtn">
-                     @User.Identity.GetUserName() 
-                    <img src="~/Content/Img/userIcon.png" id="userIcon" />
-                    <img src="~/Content/Img/dropDownArrow.png" id="dropDownIcon" />
-                </div>
+                <button type="button" class="dropdownBtnDiv">
+                    <div class="dropdownBtn" onclick="userDropDownFunc()">
+                        @User.Identity.GetUserName()
+                        <img src="~/Content/Img/userIcon.png" id="userIcon" class="dropdownBtn" />
+                        <img src="~/Content/Img/dropDownArrow.png" id="dropDownIcon" class="dropdownBtn" />
+                    </div>
+                </button>
                 <div id="dropdownId" class="dropdownLinks">
                     <a href="@Url.Action("Index", "Manage")">Manage account</a>
                     <a href="@Url.Action("Support", "Home")">Support</a>

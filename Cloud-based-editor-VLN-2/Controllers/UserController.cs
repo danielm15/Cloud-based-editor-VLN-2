@@ -18,10 +18,8 @@ namespace Cloud_based_editor_VLN_2.Controllers
 
         // GET: ProjectsOverview
         public ActionResult Index() {
-            /*_currentUserEmail = User.Identity.GetUserName();
-            _currentUserID = _service.getUserID(_currentUserEmail);*/
-
-
+            _currentUserEmail = User.Identity.GetUserName();
+            _currentUserID = _service.getUserID(_currentUserEmail);
 
             return View();
         }

@@ -219,6 +219,7 @@
     <Compile Include="Models\ViewModels\ProjectViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AppUserService.cs" />
+    <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\DocumentService.cs" />
     <Compile Include="Services\ProjectService.cs" />
     <Compile Include="Startup.cs" />
@@ -227,6 +228,7 @@
     <Content Include="Content\CustomStyles.css" />
     <Content Include="Content\globalsubsites.css" />
     <Content Include="Content\Img\FileView.png" />
+    <Content Include="Content\Img\dropDownArrow.png" />
     <Content Include="Content\Img\logo2.png" />
     <Content Include="Content\Img\logoBanner.png" />
     <Content Include="Content\bootstrap.css" />

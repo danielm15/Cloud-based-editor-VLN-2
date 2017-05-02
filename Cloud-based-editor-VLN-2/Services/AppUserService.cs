@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace Cloud_based_editor_VLN_2.Services {
-    public class AppUserService {
+    public class AppUserService : BaseService{
             public int getUserID(string userEmail) {
                 ApplicationDbContext db = new ApplicationDbContext();
                 var userID = (from users in db.AppUsers

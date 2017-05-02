@@ -14,7 +14,7 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
 
         public string Name { get; set; }
 
-        public DateTime DateCreated { get; set; }
+        public String DateCreated { get; set; }
 
         public int? StartUpFileID { get; set; }
 

@@ -9,12 +9,14 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Cloud_based_editor_VLN_2.Models;
+using Cloud_based_editor_VLN_2.Services;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
     [Authorize]
     public class AccountController : Controller {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private AppUserService _service = new AppUserService();
 
         public AccountController() {
         }
@@ -134,12 +136,10 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
                 if (result.Succeeded) {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    /*Models.Entities.AppUser newUser = new Models.Entities.AppUser();
+                    Models.Entities.AppUser newUser = new Models.Entities.AppUser();
                     newUser.Email = model.Email;
                     newUser.UserName = model.UserName;
-                    ApplicationDbContext db = new ApplicationDbContext();
-                    db.AppUsers.Add(newUser);
-                    db.SaveChanges();*/
+                    _service.addUser(newUser);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link

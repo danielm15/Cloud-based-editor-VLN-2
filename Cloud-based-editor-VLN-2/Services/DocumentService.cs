@@ -5,15 +5,16 @@ using System.Linq;
 using System.Web;
 
 namespace Cloud_based_editor_VLN_2.Services {
-    public class DocumentService {
+    public class DocumentService : BaseService{
 
-        // Fetch all files in a single project
+        // Fetch all files from a single project
         public List<DocumentViewModel> GetDocumentsByProjectID(int ProjectID) {
             // TODO
             return null;
         }
 
-        public DocumentViewModel GetDocumentByID(int ProjectFileID) {
+        // Fetch a single document by it's ID
+        public DocumentViewModel GetDocumentByID(int DocumentID) {
             // TODO
             return null;
         }

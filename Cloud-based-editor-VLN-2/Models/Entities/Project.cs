@@ -13,7 +13,7 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
         public DateTime DateCreated { get; set; }
         public int StartUpFileID { get; set; }
 
-        public virtual List<ProjectFile> ProjectFiles { get; set; }
+        public virtual List<Document> ProjectFiles { get; set; }
         
     }
 }

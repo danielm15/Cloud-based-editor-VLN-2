@@ -117,3 +117,10 @@ textarea {
 #logOff {
     border-top: 1px solid lightgray;
 }
+
+#editor {
+    position: absolute;
+    width: 500px;
+    height: 400px;
+    border-radius: 12px;
+}

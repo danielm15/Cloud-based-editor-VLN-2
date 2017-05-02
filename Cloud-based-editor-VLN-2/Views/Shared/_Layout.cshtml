@@ -30,6 +30,7 @@
                     <li>@Html.ActionLink("Support", "Support", "Home")</li>
                     @if (Request.IsAuthenticated) {
                         <li>@Html.ActionLink("Projects", "Index", "User")</li>
+                        <li>@Html.ActionLink("Editor", "Index", "Editor")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -46,6 +47,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~")
     @RenderSection("scripts", required: false)
 </body>
 </html>

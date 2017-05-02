@@ -16,17 +16,16 @@ namespace Cloud_based_editor_VLN_2.Migrations
                         Email = c.String(),
                     })
                 .PrimaryKey(t => t.ID);
-            
+
             CreateTable(
                 "dbo.Documents",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Type = c.String(),
-                        DateCreated = c.DateTime(nullable: false),
-                        ProjectID = c.Int(nullable: false),
-                    })
+                c => new {
+                    ID = c.Int(nullable: false, identity: true),
+                    Name = c.String(),
+                    Type = c.String(),
+                    DateCreated = c.DateTime(nullable: true),
+                    ProjectID = c.Int(nullable: false),
+                })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Projects", t => t.ProjectID, cascadeDelete: false)
                 .Index(t => t.ProjectID);
@@ -38,12 +37,12 @@ namespace Cloud_based_editor_VLN_2.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         OwnerID = c.Int(nullable: false),
                         Name = c.String(),
-                        DateCreated = c.DateTime(nullable: false),
-                        StartUpFileID = c.Int(nullable: false),
+                        DateCreated = c.DateTime(nullable: true),
+                        StartUpFileID = c.Int(nullable: true),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.AppUsers", t => t.OwnerID, cascadeDelete: false)
-                .ForeignKey("dbo.Documents", t => t.StartUpFileID, cascadeDelete: false)
+                .ForeignKey("dbo.Documents", t => t.StartUpFileID)
                 .Index(t => t.OwnerID)
                 .Index(t => t.StartUpFileID);
             

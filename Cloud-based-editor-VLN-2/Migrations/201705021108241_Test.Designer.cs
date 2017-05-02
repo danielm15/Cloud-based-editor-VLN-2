@@ -7,13 +7,13 @@ namespace Cloud_based_editor_VLN_2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class Test : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Test));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705011414127_InitialCreate"; }
+            get { return "201705021108241_Test"; }
         }
         
         string IMigrationMetadata.Source

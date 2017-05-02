@@ -9,7 +9,7 @@ namespace Cloud_based_editor_VLN_2.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "Cloud_based_editor_VLN_2.Models.ApplicationDbContext";
         }
 

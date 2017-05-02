@@ -6,21 +6,21 @@ using System.Linq;
 using System.Web;
 
 namespace Cloud_based_editor_VLN_2.Models.Entities {
-    public class Document {
+    public class UserProjects {
         [Key]
         public int ID { get; set; }
 
-        public string Name { get; set; }
-
-        public string Type { get; set; }
-
-        public DateTime DateCreated { get; set; }
+        public int AppUserID { get; set; }
 
         public int ProjectID { get; set; }
+
+        //public virtual List<Project> Projects { get; set; }
+
+        [ForeignKey("AppUserID")]
+        public virtual AppUser AppUser { get; set; }
 
         [ForeignKey("ProjectID")]
         public virtual Project Project { get; set; }
 
-        //public virtual List<User> Collaborators { get; set; }
     }
 }

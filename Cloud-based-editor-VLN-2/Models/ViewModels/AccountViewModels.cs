@@ -6,7 +6,7 @@ namespace Cloud_based_editor_VLN_2.Models {
     public class ExternalLoginConfirmationViewModel {
         [Required]
         [Display(Name = "UserName")]
-        public string UsernName { get; set; }
+        public string UserName { get; set; }
         public string Email { get; set; }
     }
 

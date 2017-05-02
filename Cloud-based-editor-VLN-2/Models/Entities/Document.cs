@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 
 namespace Cloud_based_editor_VLN_2.Models.Entities {
-    public class ProjectFile {
+    public class Document {
         [Key]
         public int ID { get; set; }
         public string Name { get; set; }

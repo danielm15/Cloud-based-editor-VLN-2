@@ -23,7 +23,7 @@ namespace Cloud_based_editor_VLN_2.Models {
 
         public DbSet<Project> Projects { get; set; }
 
-        public DbSet<ProjectFile> ProjectFiles { get; set; }
+        public DbSet<Document> Documents { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false) {

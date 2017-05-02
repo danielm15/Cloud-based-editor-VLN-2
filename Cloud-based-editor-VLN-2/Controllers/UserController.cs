@@ -14,7 +14,7 @@ namespace Cloud_based_editor_VLN_2.Controllers
     {
         private string _currentUserEmail;
         private int _currentUserID;
-        private UserService _service = new UserService();
+        private AppUserService _service = new AppUserService();
 
         // GET: ProjectsOverview
         public ActionResult Index() {

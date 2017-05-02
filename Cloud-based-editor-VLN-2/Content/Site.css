@@ -66,14 +66,13 @@ textarea {
 
 #dropDownIcon {
     width: 30px;
-    margin-left: -6px; 
 }
 
-.dropdownBtn:hover, .dropdownBtn:focus {
+.dropdownBtnDiv:hover, .dropdownBtn:focus {
     background-color: #EEE;
 }
 
-.dropdownBtn {
+.dropdownBtnDiv {
     border: none;
     background-color: white;
 }

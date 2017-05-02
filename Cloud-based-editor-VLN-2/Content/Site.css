@@ -60,18 +60,31 @@ textarea {
 
 #userIcon {
     width: 16px;
-    margin-left: 10px;
+    margin-left: 5px;
     margin-bottom: 5px;
 }
 
-.dropdownBtn:hover, .dropdownBtn:focus {
-    background-color: #808080;
+#dropDownIcon {
+    width: 30px;
+}
+
+.dropdownBtnDiv:hover, .dropdownBtn:focus {
+    background-color: #EEE;
+}
+
+.dropdownBtnDiv {
+    border: none;
+    background-color: white;
 }
 
 .userDropdown {
     float:right;
     position: relative;
     display: inline-block;
+    border: none;
+    background-color: white;
+    padding-top: 20.5px;
+    padding-bottom: 20.5px;
 }
 
 .dropdownLinks {
@@ -98,4 +111,8 @@ textarea {
 
 .show {
     display:block;
+}
+
+#logOff {
+    border-top: 1px solid lightgray;
 }

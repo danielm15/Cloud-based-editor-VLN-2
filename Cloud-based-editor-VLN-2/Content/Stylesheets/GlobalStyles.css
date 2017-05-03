@@ -1,0 +1,103 @@
+﻿/*////////// Global tags //////////*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+h2 {
+    padding-top: 20px;
+}
+
+p {
+    font-size: 16px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*////////// ID Selectors //////////*/
+
+#logoNavBar {
+    margin-top: 16px;
+    width: 200px;
+}
+
+#userIcon {
+    width: 16px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+#dropDownIcon {
+    width: 30px;
+}
+
+#logOff {
+    border-top: 1px solid lightgray;
+}
+
+/*////////// Class Selectors //////////*/
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    min-height: 100%;
+    position: relative;
+}
+
+.dropdownBtnDiv:hover, .dropdownBtn:focus {
+    background-color: #EEE;
+}
+
+.dropdownBtnDiv {
+    border: none;
+    background-color: white;
+}
+
+.userDropdown {
+    float:right;
+    position: relative;
+    display: inline-block;
+    border: none;
+    background-color: white;
+    padding-top: 20.5px;
+    padding-bottom: 20.5px;
+}
+
+.dropdownLinks {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+.dropdownLinks a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdownLinks a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}

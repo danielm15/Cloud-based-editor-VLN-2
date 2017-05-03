@@ -6,12 +6,13 @@
     <link rel="icon" type="image/png" href="~/Content/Img/cloud-icon.png" />
     <title>Code Cloud</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Stylesheets/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/customscript")
 </head>
-<body>
+<body id="bodyId">
     <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
+        <div class="container" id="containerHeaderId">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -30,7 +31,6 @@
                         <li>@Html.ActionLink("Support", "Support", "Home")</li>
                     }
                     @if (Request.IsAuthenticated) {
-                        <li>@Html.ActionLink("Editor", "Index", "Editor")</li>
                         <li>@Html.ActionLink("Projects", "Index", "Project")</li>
                     }
                 </ul>
@@ -38,11 +38,11 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content" id="containerBodyId">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Code Cloud</p>
+            <p id="footerID">&copy; @DateTime.Now.Year - Code Cloud</p>
         </footer>
     </div>
 

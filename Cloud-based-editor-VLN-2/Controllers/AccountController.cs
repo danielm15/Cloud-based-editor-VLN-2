@@ -16,7 +16,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
     public class AccountController : Controller {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private AppUserService _service;
+        private AppUserService _service = new AppUserService();
 
         public AccountController() {
         }

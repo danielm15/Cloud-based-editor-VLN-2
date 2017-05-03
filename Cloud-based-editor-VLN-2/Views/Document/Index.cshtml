@@ -1,0 +1,21 @@
+﻿@model Cloud_based_editor_VLN_2.Models.ViewModels.DocumentViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Project Files</h2>
+
+<div class="row">
+    @foreach (Cloud_based_editor_VLN_2.Models.Entities.Document item in Model.Documents) {
+        <div class="col-md-4">
+            <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
+            <p>@Html.DisplayFor(modelItem => item.Type)</p>
+            @*<p>@Html.DisplayFor(modelItem => item.Description, new { })</p>
+                <p>Price: @Html.DisplayFor(modelItem => item.Price)</p>
+                <p>Quantity: @Html.DisplayFor(modelItem => item.Quantity)</p>*@
+            <p>@Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @type = "button", @class = "btn btn-default" })</p>
+        </div>
+    }
+</div>
+

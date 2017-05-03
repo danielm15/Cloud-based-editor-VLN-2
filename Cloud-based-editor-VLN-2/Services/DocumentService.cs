@@ -12,6 +12,7 @@ namespace Cloud_based_editor_VLN_2.Services {
         public List<Document> GetDocumentsByProjectID(int ProjectID) {
             var documents = (from doc in _db.Documents
                              join pro in _db.Projects on doc.ProjectID equals pro.ID
+                             where doc.ProjectID == ProjectID
                              select doc).ToList();
             return documents;
         }

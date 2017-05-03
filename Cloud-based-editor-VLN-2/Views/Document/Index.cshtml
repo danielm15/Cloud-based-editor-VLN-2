@@ -15,7 +15,7 @@
                         <p>
                             @Html.DisplayFor(modelItem => item.Name)
                             @Html.DisplayFor(modelItem => item.Type)
-                            @Html.ActionLink("Editor", "Index", "Editor", new { id = item.ID }, new { @type = "button", @class = "btn btn-primary" })
+                            @Html.ActionLink("Editor", "Index", "Editor", new { projectID = item.ID, documentID = item.ProjectID }, new { @type = "button", @class = "btn btn-primary" })
                         </p>
                     </div>
                 </a>

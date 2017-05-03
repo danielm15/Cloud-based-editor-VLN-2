@@ -18,8 +18,7 @@ namespace Cloud_based_editor_VLN_2.Services {
         }
 
         // Fetch a single document by its ID
-        public DocumentViewModel GetDocumentByID(int DocumentID) {
-            // TODO
+        public DocumentViewModel GetDocumentByID(int DocumentID, int ProjectID) {
             return null;
         }
 

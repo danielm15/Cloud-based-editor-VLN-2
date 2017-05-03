@@ -7,8 +7,8 @@
     bodyMargin();
 </script>
 
-<nav class="projectNav">
-    <a href="#" class="navToggle"></a>
+<nav class="projectNav" id="sideNav">
+    <div href="#" class="navToggle"> <div class="verticalText" onclick="showNavBar();">Navigation</div> </div>
     <ul>
         <li><a href="#">Link1</a></li>
         <li><a href="#">Link2</a></li>
@@ -16,10 +16,10 @@
         <li><a href="#">Link4</a></li>
     </ul>
 </nav>
-<h2>Editor</h2>
-
-
-<div id="editor">Editor</div>
+<div class="editorContent" id="editorContentId">
+    <h2>Editor</h2>
+    <div id="editor">Editor</div>
+</div>
 
 <script>
     var editor = ace.edit("editor");

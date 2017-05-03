@@ -1,8 +1,9 @@
 ﻿#editor {
     position: absolute;
-    width: 500px;
-    height: 400px;
+    margin: 10px;
+    width: 90%;
     border-radius: 12px;
+
 }
 
 .addToBody {
@@ -19,12 +20,12 @@
     top: 0;
     bottom: 0;
     width: 200px;
-    background-color: black;
+    background-color: lightgray;
     transform: translate3d(-200px, 0, 0);
     transition: transform 0.4s ease;
 }
 
-.active-nav nav {
+.activeNav {
     transform: translate3d(0, 0, 0);
 }
 
@@ -47,8 +48,9 @@
     left:200px;
     top: 73px;
     width: 40px;
-    height: 40px;
-    background-color: #666;
+    height: 100%;
+    background-color: white;
+    border-right: 1px solid darkgray;
 }
 
 .changeWidth {
@@ -56,3 +58,25 @@
     padding-left: 0px;
     padding-right: 0px;
 }
+
+.editorContent {
+    height: 100%;
+    padding-left: 100px;
+    transition: margin-left 0.4s ease;
+}
+
+.hideFooter {
+    display: none;
+    background-color:green;
+}
+
+.verticalText {
+    transform: rotate(-90deg);
+    color: darkgray;
+    margin-top: 65px;
+    padding-left: 10px;
+    border-left: 1px solid darkgray;
+    cursor: default;
+}
+
+

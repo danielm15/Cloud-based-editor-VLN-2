@@ -228,7 +228,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\editor.css" />
     <Content Include="Content\Img\1.png" />
     <Content Include="Content\Img\2.png" />
     <Content Include="Content\Img\3.png" />
@@ -314,6 +313,9 @@
     <Content Include="Views\Editor\Index.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Document\Index.cshtml" />
+    <Content Include="Views\Project\AddProject.cshtml" />
+    <Content Include="Views\Shared\CreateNewDocument.cshtml" />
+    <Content Include="Views\Document\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -19,9 +19,31 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             _currentUserEmail = User.Identity.GetUserName();
             _currentUserID = _service.getUserID(_currentUserEmail);
             ProjectViewModel model = new ProjectViewModel();
+            model.CurrUserID = _currentUserID;
             model.Projects = _service.GetProjectsByUserID(_currentUserID);
 
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult AddProject(int? ownerID) {
+            Project newP = new Project();
+            newP.OwnerID = (ownerID ?? default(int));
+            return View(newP);             
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult AddProject(Project item) {
+
+            if (ModelState.IsValid) {
+                item.DateCreated = DateTime.Now;
+                _service.AddProject(item);
+                
+                return RedirectToAction("Index");
+            }
+
+            return View(item);
         }
     }
 }

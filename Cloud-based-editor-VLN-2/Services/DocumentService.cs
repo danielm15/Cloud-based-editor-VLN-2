@@ -13,10 +13,20 @@ namespace Cloud_based_editor_VLN_2.Services {
             return null;
         }
 
-        // Fetch a single document by it's ID
+        // Fetch a single document by its ID
         public DocumentViewModel GetDocumentByID(int DocumentID) {
             // TODO
             return null;
+        }
+
+        public bool AddDocument() {
+            // TODO
+            return true;
+        }
+
+        public bool DeleteDocument() {
+            // TODO
+            return true;
         }
     }
 }

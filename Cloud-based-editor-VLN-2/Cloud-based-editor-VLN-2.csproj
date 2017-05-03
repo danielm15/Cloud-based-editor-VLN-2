@@ -309,6 +309,8 @@
     <Content Include="Views\Editor\Index.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Document\Index.cshtml" />
+    <Content Include="Views\Shared\CreateNewDocument.cshtml" />
+    <Content Include="Views\Document\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

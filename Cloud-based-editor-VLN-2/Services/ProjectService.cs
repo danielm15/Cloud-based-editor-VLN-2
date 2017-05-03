@@ -24,5 +24,15 @@ namespace Cloud_based_editor_VLN_2.Services {
                            select p).SingleOrDefault();
             return project;
         }
-    }
+
+        public bool AddProject() {
+            // TODO
+            return true;
+        }
+
+        public bool DeleteProject() {
+            // TODO
+            return true;
+        }
+     }
 }

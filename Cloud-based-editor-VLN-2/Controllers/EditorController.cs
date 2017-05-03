@@ -23,6 +23,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 DocumentViewModel model = new DocumentViewModel();
                 model.CurrProjectID = projectByID;
                 model.Documents = _service.GetDocumentsByProjectID(projectByID);
+                model.Doc = _service.GetDocumentByID(documentByID);
                 return View(model);
                 
             }

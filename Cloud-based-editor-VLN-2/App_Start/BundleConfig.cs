@@ -24,11 +24,11 @@ namespace Cloud_based_editor_VLN_2
                       "~/Scripts/respond.js"));
             bundles.Add(new ScriptBundle("~/bundles/customscript").Include(
                       "~/Scripts/dropDownScript.js", "~/Scripts/src-noconflict/ace.js",
-                      "~/Scripts/IndexSliderScript.js"));
+                      "~/Scripts/IndexSliderScript.js", "~/Scripts/editorLook.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
-                     "~/Content/Site.css", "~/Content/CustomStyles.css", "~/Content/globalsubsites.css"));
+                     "~/Content/Site.css", "~/Content/CustomStyles.css", "~/Content/globalsubsites.css", "~/Content/editor.css"));
         }
     }
 }

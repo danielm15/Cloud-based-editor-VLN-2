@@ -43,7 +43,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 newDocument.DateCreated = DateTime.Now;
                 _service.AddDocument(newDocument);
 
-                return RedirectToAction("Index", newDocument.ProjectID);
+                return RedirectToAction("Index", new { projectID = newDocument.ProjectID });
             }
 
             return View(newDocument);

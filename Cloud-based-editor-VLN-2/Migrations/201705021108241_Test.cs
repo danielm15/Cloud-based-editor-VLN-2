@@ -40,7 +40,7 @@ namespace Cloud_based_editor_VLN_2.Migrations {
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Projects", t => t.ProjectID, cascadeDelete: false)
                 .Index(t => t.ProjectID);
-
+            
             CreateTable(
                 "dbo.UserProjects",
                 c => new {

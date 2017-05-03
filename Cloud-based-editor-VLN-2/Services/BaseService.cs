@@ -11,7 +11,7 @@ namespace Cloud_based_editor_VLN_2.Services {
         public int getUserID(string userName) {
             var userID = (from users in _db.AppUsers
                           where users.UserName == userName
-                          select users.ID).Single();
+                          select users.ID).SingleOrDefault();
 
             return userID;
         }

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="~/Content/Img/cloud-icon.png" />
     <title>Code Cloud</title>
-    @Styles.Render("~/Content/.css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/customscript")
@@ -31,6 +30,7 @@
                         <li>@Html.ActionLink("Support", "Support", "Home")</li>
                     }
                     @if (Request.IsAuthenticated) {
+                        <li>@Html.ActionLink("Editor", "Index", "Editor")</li>
                         <li>@Html.ActionLink("Projects", "Index", "Project")</li>
                     }
                 </ul>

@@ -8,10 +8,8 @@ using System.Web.Mvc;
 using Cloud_based_editor_VLN_2.Models.Entities;
 using Cloud_based_editor_VLN_2.Models.ViewModels;
 
-namespace Cloud_based_editor_VLN_2.Controllers
-{
-    public class ProjectController : Controller
-    {
+namespace Cloud_based_editor_VLN_2.Controllers {
+    public class ProjectController : Controller {
         private string _currentUserEmail;
         private int _currentUserID;
         private ProjectService _service = new ProjectService();

@@ -16,15 +16,15 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
 
         public String DateCreated { get; set; }
 
-        public int? StartUpFileID { get; set; }
+        //public int? StartUpFileID { get; set; }
 
         public virtual List<Document> Documents { get; set; }
 
         [ForeignKey("OwnerID")]
         public virtual AppUser AppUser { get; set; }
 
-        [ForeignKey("StartUpFileID")]
-        public virtual Document Document { get; set; }
+        //[ForeignKey("StartUpFileID")]
+        //public virtual Document Document { get; set; }
         
     }
 }

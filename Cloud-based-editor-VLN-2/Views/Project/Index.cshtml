@@ -13,7 +13,8 @@
             @*<p>@Html.DisplayFor(modelItem => item.Description, new { })</p>
             <p>Price: @Html.DisplayFor(modelItem => item.Price)</p>
             <p>Quantity: @Html.DisplayFor(modelItem => item.Quantity)</p>*@
-            <p>@Html.ActionLink("Open", "Open", new { id = item.ID }, new { @type = "button", @class = "btn btn-default" })</p>
+            <p>Id: @Html.DisplayFor(modelItem => item.ID)</p>
+            <p>@Html.ActionLink("Open", "Index", "Document", new { projectID = item.ID }, new { @type = "button", @class = "btn btn-default" })</p>
         </div>
     }
 </div>

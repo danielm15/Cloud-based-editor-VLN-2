@@ -13,7 +13,7 @@ namespace Cloud_based_editor_VLN_2.Services {
             var projects = (from p in _db.Projects
                             join up in _db.UserProjects on p.ID equals up.ProjectID
                             join au in _db.AppUsers on up.AppUserID equals au.ID
-                            //where UserID == up.AppUserID
+                            where UserID == up.AppUserID
                             select p).ToList();
             return projects;
         }

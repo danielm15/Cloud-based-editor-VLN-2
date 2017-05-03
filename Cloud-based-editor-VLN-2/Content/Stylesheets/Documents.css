@@ -3,3 +3,7 @@
 /*////////// ID Selectors //////////*/
 
 /*////////// Class Selectors //////////*/
+
+.documentList, .documentListItem {
+    border: 2px solid gray;
+}

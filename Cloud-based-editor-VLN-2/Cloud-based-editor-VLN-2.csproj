@@ -228,6 +228,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\editor.css" />
     <Content Include="Content\Img\1.png" />
     <Content Include="Content\Img\2.png" />
     <Content Include="Content\Img\3.png" />
@@ -261,6 +262,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\editorLook.js" />
     <Content Include="Scripts\IndexSliderScript.js" />
     <Content Include="Scripts\dropDownScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

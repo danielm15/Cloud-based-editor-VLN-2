@@ -55,7 +55,6 @@ textarea {
 
 .row p {
     margin-top: 30px;
- 
 }
 
 #userIcon {
@@ -125,7 +124,10 @@ textarea {
     margin: 5%;
 }
 
-* {box-sizing:border-box}
+* {
+    box-sizing: border-box;
+}
+
 .imageDiv img {
     height: 400px;
     width: 100%;

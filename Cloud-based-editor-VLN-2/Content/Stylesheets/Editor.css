@@ -1,0 +1,14 @@
+﻿/*////////// Global tags //////////*/
+
+/*////////// ID Selectors //////////*/
+
+#editorID {
+    position: relative;
+    width: 1000px;
+    height: 600px;
+    border-radius: 12px;
+    margin: 5%;
+    min-height: 100%;
+}
+
+/*////////// Class Selectors //////////*/

@@ -228,8 +228,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\CustomStyles.css" />
-    <Content Include="Content\globalsubsites.css" />
+    <Content Include="Content\editor.css" />
     <Content Include="Content\Img\1.png" />
     <Content Include="Content\Img\2.png" />
     <Content Include="Content\Img\3.png" />
@@ -242,11 +241,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\Img\userIcon.png" />
+    <Content Include="Content\Stylesheets\GlobalStyles.css" />
+    <Content Include="Content\Stylesheets\Documents.css" />
+    <Content Include="Content\Stylesheets\Editor.css" />
+    <Content Include="Content\Stylesheets\HomePage.css" />
+    <Content Include="Content\Stylesheets\Projects.css" />
+    <Content Include="Content\Stylesheets\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -258,6 +262,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\editorLook.js" />
     <Content Include="Scripts\IndexSliderScript.js" />
     <Content Include="Scripts\dropDownScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

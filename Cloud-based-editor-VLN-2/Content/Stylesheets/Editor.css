@@ -39,16 +39,19 @@
 
 .projectNav ul {
     list-style: none;
-    margin-top: 100px;
+    margin-top: 50px;
+    padding: 20px;
 }
 
 .projectNav ul li a {
     text-decoration: none;
     display: block;
-    text-align: center;
-    color: red;
-    padding: 10px 0;
+    text-align: left;
+    color: black;
+    margin: 20px 0;
+    border-bottom: 1px solid darkgray;  
 }
+
 
 .navToggle {
     display: block;
@@ -81,9 +84,12 @@
 .verticalText {
     transform: rotate(-90deg);
     color: darkgray;
-    margin-top: 65px;
     padding-left: 10px;
+    padding-top: 8px;
     border-left: 1px solid darkgray;
     cursor: default;
+    margin-left: -45px;
+    width: 130px;
+    height: 40px;
 }
 

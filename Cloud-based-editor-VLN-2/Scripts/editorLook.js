@@ -2,6 +2,7 @@
     document.getElementById("bodyId").classList.toggle("addToBody");
     document.getElementById("containerBodyId").classList.toggle("changeWidth");
     document.getElementById("containerHeaderId").classList.toggle("changeWidth");
+    document.getElementById("containerBodyId").style.paddingLeft = "0";
     
 }
 

@@ -22,9 +22,12 @@ namespace Cloud_based_editor_VLN_2.Services {
             return null;
         }
 
-        public bool AddDocument() {
-            // TODO
-            return true;
+        public bool AddDocument(Document newDocument) {
+            _db.Documents.Add(newDocument);
+            if(_db.SaveChanges() == 1) {
+                return true;
+            }
+            return false;
         }
 
         public bool DeleteDocument() {

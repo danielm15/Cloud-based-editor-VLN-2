@@ -9,26 +9,33 @@ namespace Cloud_based_editor_VLN_2
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                    "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                    "~/Scripts/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                    "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                    "~/Scripts/bootstrap.js",
+                    "~/Scripts/respond.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/customscript").Include(
-                      "~/Scripts/dropDownScript.js", "~/Scripts/src-noconflict/ace.js",
-                      "~/Scripts/IndexSliderScript.js", "~/Scripts/editorLook.js"));
+                    "~/Scripts/dropDownScript.js", "~/Scripts/src-noconflict/ace.js",
+                    "~/Scripts/IndexSliderScript.js", "~/Scripts/editorLook.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.min.css",
-                     "~/Content/Site.css", "~/Content/CustomStyles.css", "~/Content/globalsubsites.css", "~/Content/editor.css"));
+                    "~/Content/bootstrap.min.css", "~/Content/editor.css"
+                    ));
+
+            bundles.Add(new StyleBundle("~/Content/Stylesheets/css").Include(
+                    "~/Content/Stylesheets/Site.css", "~/Content/Stylesheets/Documents.css",
+                    "~/Content/Stylesheets/Editor.css", "~/Content/Stylesheets/GlobalStyles.css",
+                    "~/Content/Stylesheets/HomePage.css", "~/Content/Stylesheets/Projects.css"
+                    ));
         }
     }
 }

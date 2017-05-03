@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "AceConnection";
+}
+$(document).ready(function() {
+        $("#btnSave").on("click", function () {
+                $.ajax({
+                    url: '@Url.Action("YourAction", "YourController")',
+                    type: 'POST',
+                    data: { id: @Model.ID,
+                    html: ace.edit("editor").getValue() },
+                    cache: false,
+                    success: function (response) {
+                    alert("Changes saved.");
+                    }
+                    });
+                    });
+                    });
+

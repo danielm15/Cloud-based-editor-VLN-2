@@ -6,6 +6,7 @@
     <link rel="icon" type="image/png" href="~/Content/Img/cloud-icon.png" />
     <title>Code Cloud</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Stylesheets/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/customscript")
 </head>
@@ -30,7 +31,6 @@
                         <li>@Html.ActionLink("Support", "Support", "Home")</li>
                     }
                     @if (Request.IsAuthenticated) {
-                        <li>@Html.ActionLink("Editor", "Index", "Editor")</li>
                         <li>@Html.ActionLink("Projects", "Index", "Project")</li>
                     }
                 </ul>
@@ -50,7 +50,6 @@
             </footer>
         </div>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

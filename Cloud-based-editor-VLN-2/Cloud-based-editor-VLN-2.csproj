@@ -228,9 +228,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\CustomStyles.css" />
-    <Content Include="Content\editor.css" />
-    <Content Include="Content\globalsubsites.css" />
     <Content Include="Content\Img\1.png" />
     <Content Include="Content\Img\2.png" />
     <Content Include="Content\Img\3.png" />
@@ -243,11 +240,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\Img\userIcon.png" />
+    <Content Include="Content\Stylesheets\GlobalStyles.css" />
+    <Content Include="Content\Stylesheets\Documents.css" />
+    <Content Include="Content\Stylesheets\Editor.css" />
+    <Content Include="Content\Stylesheets\HomePage.css" />
+    <Content Include="Content\Stylesheets\Projects.css" />
+    <Content Include="Content\Stylesheets\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -311,6 +313,9 @@
     <Content Include="Views\Editor\Index.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Document\Index.cshtml" />
+    <Content Include="Views\Project\AddProject.cshtml" />
+    <Content Include="Views\Shared\CreateNewDocument.cshtml" />
+    <Content Include="Views\Document\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

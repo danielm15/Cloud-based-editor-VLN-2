@@ -5,7 +5,7 @@
 }
 
 <h2>Project Files</h2>
-
+<p>@Html.ActionLink("Create new file", "Create", new { projectID = Model.CurrProjectID }, new { @type = "button", @class = "btn btn-default" })</p>
 <div class="row">
     @foreach (Cloud_based_editor_VLN_2.Models.Entities.Document item in Model.Documents) {
         <div class="col-md-4">
@@ -14,7 +14,7 @@
             @*<p>@Html.DisplayFor(modelItem => item.Description, new { })</p>
                 <p>Price: @Html.DisplayFor(modelItem => item.Price)</p>
                 <p>Quantity: @Html.DisplayFor(modelItem => item.Quantity)</p>*@
-            <p>@Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @type = "button", @class = "btn btn-default" })</p>
+            <p>@Html.ActionLink("Editor", "Index", "Editor", new { id = item.ID }, new { @type = "button", @class = "btn btn-primary" })</p>
         </div>
     }
 </div>

@@ -3,3 +3,15 @@
 /*////////// ID Selectors //////////*/
 
 /*////////// Class Selectors //////////*/
+.row  div a{   
+    text-decoration: none;
+}
+
+.panel-footer {
+    height: 30%;
+    background-color:white;
+}
+
+.panel-heading {
+    background-color:gainsboro;
+}

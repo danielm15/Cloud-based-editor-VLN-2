@@ -40,12 +40,16 @@
     </div>
     <div class="container body-content" id="containerBodyId">
         @RenderBody()
-        <hr />
-        <footer>
-            <p id="footerID">&copy; @DateTime.Now.Year - Code Cloud</p>
-        </footer>
+        <div class="footer" id="footerId">
+            <script type="text/javascript">
+                hideFooter();
+            </script>
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Code Cloud</p>
+            </footer>
+        </div>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

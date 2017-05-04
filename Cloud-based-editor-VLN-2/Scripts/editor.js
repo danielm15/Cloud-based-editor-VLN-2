@@ -1,16 +1,23 @@
-﻿//$(document).ready(function {
-//    $("#saveFileBtn").on("click", function () {
-//        $.ajax({
-//            url: '@Url.Action("SaveFile", "Editor")',
-//            type: 'POST',
-//            data: { updateDocumentID: "1", documentContent: "ABC" },
-//            cache: false,
-//            success: function (response) {
-//                alert("Changes Saved.");
-//            }
-//        });
-//    });
-//});
+﻿(function ($) {
+    $(document).ready(function () {
+    $("#saveFileBtn").on("click", function () {
+      
+        var updateDocumentID = document.getElementById("activeDocID").value
+        var editor = ace.edit("editorID");
+        var contentData = editor.getValue();
+
+        $.ajax({
+            type: "POST",
+            url: "/Editor/SaveFile",
+            data: {updateDocumentID, contentData: contentData},
+            success: function (response) {
+                alert("changes saved.");
+            }
+        });
+    });
+    });
+
+})(jQuery);
 
 function bodyMargin() {
     document.getElementById("bodyId").classList.toggle("addToBody");
@@ -45,7 +52,7 @@ function showHeader(id) {
     }
     document.getElementById(id).classList.toggle("selectedNav");
 
-    var id = "doc" + id.substring(3, 4);
+    var id = "doc" + id.substring(3);
     var classElements = document.getElementsByClassName("hideHeader");
     
     for (var i = 0; i < classElements.length; i++) {
@@ -53,13 +60,9 @@ function showHeader(id) {
         element.classList.remove("showHeader");
     }
     document.getElementById(id).classList.toggle("showHeader");
+
+    var id = id.substring(3);
+
+    document.getElementById("activeDocID").value = id;
 }
-
-(function ($) {
-    'use strict';
-
-    $(function () {
-    });
-
-})(jQuery);
 

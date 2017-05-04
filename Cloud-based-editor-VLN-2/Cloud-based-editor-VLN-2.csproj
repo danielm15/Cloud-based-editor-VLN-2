@@ -253,7 +253,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Ionic.Zip.Reduced.dll" />
     <Content Include="Content\Img\1.png" />
     <Content Include="Content\Img\2.png" />
     <Content Include="Content\Img\3.png" />
@@ -271,6 +270,7 @@
     <Content Include="Content\Stylesheets\Editor.css" />
     <Content Include="Content\Stylesheets\HomePage.css" />
     <Content Include="Content\Stylesheets\Projects.css" />
+    <Content Include="ExternalLibrary\Ionic.Zip.Reduced.dll" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -348,6 +348,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bin\" />
     <Folder Include="Databases\" />
     <Folder Include="Views\ProjectsOverview\" />
   </ItemGroup>

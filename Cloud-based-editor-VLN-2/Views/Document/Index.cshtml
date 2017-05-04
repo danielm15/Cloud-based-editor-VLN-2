@@ -11,7 +11,7 @@
     <li>
         <div class="row">
             <div class="col-md-4">File Name</div>
-            <div class="col-md-4">Created By</div>
+            <div class="col-md-3">Created By</div>
             <div class="col-md-2">Date Created</div>
             <div class="col-md-1">Type</div>
             <div class="col-md-1">Options</div>
@@ -24,7 +24,7 @@
                 <div class="col-md-4">
                     @Html.DisplayFor(modelItem => item.Name)
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     @Html.DisplayFor(modelItem => item.CreatedBy)
                 </div>
                 <div class="col-md-2">
@@ -35,6 +35,9 @@
                 </div>
                 <div class="col-md-1">
                     @Html.ActionLink("Editor", "Index", "Editor", new { projectID = item.ProjectID, documentID = item.ID}, new { @type = "button", @class = "btn btn-primary editButton" })
+                </div>
+                <div class="col-md-1">
+                    @Html.ActionLink("Download", "DownloadFile", new { documentID = item.ID }, new { @type = "button", @class = "btn btn-primary editButton" })
                 </div>
             </div>
         </li>

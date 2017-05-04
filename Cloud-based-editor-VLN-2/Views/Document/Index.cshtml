@@ -10,21 +10,53 @@
 <ul style="list-style: none">
     <li>
         <div class="row">
-            <div class="col-md-4">File Name</div>
+            <div class="col-md-3">File Name</div>
             <div class="col-md-3">Created By</div>
             <div class="col-md-2">Date Created</div>
             <div class="col-md-1">Type</div>
-            <div class="col-md-1">Options</div>
         </div>
     </li>
     @foreach (Cloud_based_editor_VLN_2.Models.Entities.Document item in Model.Documents) {
         <li>
-            <div class="row documentListItem">
-                <a href="@Url.Action("Index", "Editor" , new { projectID = item.ID, documentID = item.ProjectID })" class="clickableDiv" />
-                <div class="col-md-4">
-                    @Html.DisplayFor(modelItem => item.Name)
+            <div>
+                <div class="row documentListItem">
+                    <a href="@Url.Action("Index", "Editor", new { projectID = item.ID, documentID = item.ProjectID })" class="clickableDiv">
+                        <div class="col-md-3">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DisplayFor(modelItem => item.CreatedBy)
+                        </div>
+                        <div class="col-md-2">
+                            @Html.DisplayFor(modelItem => item.DateCreated)
+                        </div>
+                        <div class="col-md-1">
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </div>
+                    </a>
+
+                    <div class="col-md-3">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                Options
+                                <span class="caret"></span>
+                            </button>
+
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Rename", "Rename", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
+                                <li>@Html.ActionLink("Download", "DownloadFile", new { documentID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
+                                <li>@Html.ActionLink("Delete", "Delete", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-3">
+            </div>
+        </li>
+    }
+</ul>
+                    @*
+                <div class="col-md-4">
+>>>>>>> 845a163c7b9d6fa67f780f2d07b9994663b2e584
                     @Html.DisplayFor(modelItem => item.CreatedBy)
                 </div>
                 <div class="col-md-2">
@@ -35,6 +67,7 @@
                 </div>
                 <div class="col-md-1">
                     @Html.ActionLink("Editor", "Index", "Editor", new { projectID = item.ProjectID, documentID = item.ID}, new { @type = "button", @class = "btn btn-primary editButton" })
+>>>>>>> d5d2597712b9c9e05e7712cc7a7070c807aac9a1
                 </div>
                 <div class="col-md-1">
                     @Html.ActionLink("Download", "DownloadFile", new { documentID = item.ID }, new { @type = "button", @class = "btn btn-primary editButton" })
@@ -43,4 +76,4 @@
         </li>
     }
 </ul>
-
+*@

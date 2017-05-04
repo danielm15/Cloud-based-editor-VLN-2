@@ -13,28 +13,37 @@
             <div class="col-md-4">File Name</div>
             <div class="col-md-4">Created By</div>
             <div class="col-md-2">Date Created</div>
-            <div class="col-md-1">Type</div>
-            <div class="col-md-1">Options</div>
+            <div class="col-md-2">Type</div>
         </div>
     </li>
     @foreach (Cloud_based_editor_VLN_2.Models.Entities.Document item in Model.Documents) {
         <li>
-            <div class="row documentListItem">
-                <a href="@Url.Action("Index", "Editor" , new { projectID = item.ID, documentID = item.ProjectID })" class="clickableDiv" />
-                <div class="col-md-4">
-                    @Html.DisplayFor(modelItem => item.Name)
+            <div>
+                <div class="row documentListItem">
+                    <a href="@Url.Action("Index", "Editor" , new { projectID = item.ID, documentID = item.ProjectID })" class="clickableDiv" />
+                    <div class="col-md-4">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </div>
+                    <div class="col-md-4">
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    @Html.DisplayFor(modelItem => item.CreatedBy)
-                </div>
-                <div class="col-md-2">
-                    @Html.DisplayFor(modelItem => item.DateCreated)
-                </div>
-                <div class="col-md-1">
-                    @Html.DisplayFor(modelItem => item.Type)
-                </div>
-                <div class="col-md-1">
-                    @Html.ActionLink("Editor", "Index", "Editor", new { projectID = item.ID, documentID = item.ProjectID }, new { @type = "button", @class = "btn btn-primary editButton" })
+                <div class="btn-default optionsButton">
+                    <div class="btn dropdown-toggle DropDownButton" data-toggle="dropdown">
+                        Options
+                        <span class="caret"></span>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Rename", "Rename", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
+                        <li>@Html.ActionLink("Download", "Download", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
+                        <li>@Html.ActionLink("Delete", "Delete", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
+                    </ul>
                 </div>
             </div>
         </li>

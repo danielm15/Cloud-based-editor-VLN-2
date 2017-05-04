@@ -20,6 +20,10 @@
     border: 1px solid gray;
 }
 
+.optionsButton {
+    float: right;
+}
+
 .editButton {
     float: right;
     padding: 0% 10% 0% 10%;

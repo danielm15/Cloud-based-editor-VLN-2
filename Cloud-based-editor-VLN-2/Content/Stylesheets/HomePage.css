@@ -19,15 +19,21 @@
     float:right;
 }
 
+#LoginTopDiv {
+
+    margin-right: 400px;
+
+}
+
+#LoginBottomDiv {
+
+    margin-right: 330px;
+}
+
 /*////////// Class Selectors //////////*/
 
 .row {
-    margin-top: 30px;
     text-align: center;
-}
-
-.row p {
-    margin-top: 30px;
 }
 
 .imageDiv img {

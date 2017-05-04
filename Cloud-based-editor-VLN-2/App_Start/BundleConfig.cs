@@ -9,7 +9,7 @@ namespace Cloud_based_editor_VLN_2
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                    "~/Scripts/jquery-{version}.js"));
+                    "~/Scripts/jquery-{version}.js", "~/Scripts/jquery.signalR-2.2.1.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                     "~/Scripts/jquery.validate*"));
@@ -25,8 +25,8 @@ namespace Cloud_based_editor_VLN_2
 
             bundles.Add(new ScriptBundle("~/bundles/customscript").Include(
                     "~/Scripts/dropDownScript.js", "~/Scripts/src-noconflict/ace.js",
-                    "~/Scripts/IndexSliderScript.js", "~/Scripts/editorLook.js",
-                    "~/Scripts/documentList.js"));
+                    "~/Scripts/IndexSliderScript.js", "~/Scripts/editor.js",
+                    "~/Scripts/documentList.js", "~/signalr/hubs"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                     "~/Content/bootstrap.min.css", "~/Content/editor.css"

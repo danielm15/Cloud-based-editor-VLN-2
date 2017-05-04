@@ -9,12 +9,23 @@
 }
 
 .documentListItem {
-    margin-top: 2px;
+    margin-top: 0.25%;
     border: 1px solid lightgray;
+    border-radius: 6px;
+    padding-left: 5px;
+}
+
+.documentListItem:hover {
+    background-color: lightgray;
+    border: 1px solid gray;
 }
 
 .editButton {
     float: right;
+    padding: 0% 10% 0% 10%;
+    margin: 3.5% -20% 0% 0%;
+    border-radius: 4px;
+    font-size: 80%;
 }
 
 .clickableDiv {

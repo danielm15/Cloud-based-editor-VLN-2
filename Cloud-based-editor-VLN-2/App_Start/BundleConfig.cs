@@ -25,7 +25,8 @@ namespace Cloud_based_editor_VLN_2
 
             bundles.Add(new ScriptBundle("~/bundles/customscript").Include(
                     "~/Scripts/dropDownScript.js", "~/Scripts/src-noconflict/ace.js",
-                    "~/Scripts/IndexSliderScript.js", "~/Scripts/editorLook.js"));
+                    "~/Scripts/IndexSliderScript.js", "~/Scripts/editorLook.js",
+                    "~/Scripts/documentList.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                     "~/Content/bootstrap.min.css", "~/Content/editor.css"

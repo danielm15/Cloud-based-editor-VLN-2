@@ -6,21 +6,19 @@
 
 <h2>Project Files</h2>
 <p>@Html.ActionLink("Create new file", "Create", new { projectID = Model.CurrProjectID }, new { @type = "button", @class = "btn btn-default" })</p>
-<div class="documentList">
-    <ul style="list-style: none">
-        @foreach (Cloud_based_editor_VLN_2.Models.Entities.Document item in Model.Documents) {
-            <li>
-                <a href="@Url.Action("Index", "Editor")">
-                    <div class="documentListItem">
-                        <p>
-                            @Html.DisplayFor(modelItem => item.Name)
-                            @Html.DisplayFor(modelItem => item.Type)
-                            @Html.ActionLink("Editor", "Index", "Editor", new { id = item.ID }, new { @type = "button", @class = "btn btn-primary" })
-                        </p>
-                    </div>
-                </a>
-            </li>
-        }
-    </ul>
-</div>
+    
+<ul style="list-style: none">
+    @foreach (Cloud_based_editor_VLN_2.Models.Entities.Document item in Model.Documents) {
+        <li>
+            <div class="documentListItem">
+                <a href="@Url.Action("Index", "Editor" , new { projectID = item.ID, documentID = item.ProjectID })" />
+                <div>
+                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.Type)
+                    @Html.ActionLink("Editor", "Index", "Editor", new { projectID = item.ID, documentID = item.ProjectID }, new { @type = "button", @class = "btn btn-primary editButton" })
+                </div>
+            </div>
+        </li>
+    }
+</ul>
 

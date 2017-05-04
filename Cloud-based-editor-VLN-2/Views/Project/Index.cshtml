@@ -37,8 +37,8 @@
                             </div>
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Rename", "Rename", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
-                                <li>@Html.ActionLink("Download", "Download", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
-                                <li>@Html.ActionLink("Delete", "Delete", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
+                                <li>@Html.ActionLink("Download", "DownloadZip", "Document", new { projectID = item.ID, userID = item.ID, projectName = item.Name }, new { @type = "a", @tabindex = "-1" })</li>
+                                <li>@Html.ActionLink("Delete", "Delete", "Document", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
                             </ul>
                         </div>
                     </div>

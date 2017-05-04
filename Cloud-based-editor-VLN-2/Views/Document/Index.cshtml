@@ -34,7 +34,7 @@
                     @Html.DisplayFor(modelItem => item.Type)
                 </div>
                 <div class="col-md-1">
-                    @Html.ActionLink("Editor", "Index", "Editor", new { projectID = item.ID, documentID = item.ProjectID }, new { @type = "button", @class = "btn btn-primary editButton" })
+                    @Html.ActionLink("Editor", "Index", "Editor", new { projectID = item.ProjectID, documentID = item.ID}, new { @type = "button", @class = "btn btn-primary editButton" })
                 </div>
             </div>
         </li>

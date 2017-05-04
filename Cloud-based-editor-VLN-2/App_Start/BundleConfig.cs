@@ -37,6 +37,7 @@ namespace Cloud_based_editor_VLN_2
                     "~/Content/Stylesheets/Editor.css", "~/Content/Stylesheets/GlobalStyles.css",
                     "~/Content/Stylesheets/HomePage.css", "~/Content/Stylesheets/Projects.css"
                     ));
+       
         }
     }
 }

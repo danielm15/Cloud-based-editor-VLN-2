@@ -282,6 +282,7 @@
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\documentList.js" />
+    <Content Include="Scripts\editorJquery.js" />
     <Content Include="Scripts\editor.js" />
     <Content Include="Scripts\IndexSliderScript.js" />
     <Content Include="Scripts\dropDownScript.js" />

@@ -30,5 +30,19 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
             return HttpNotFound();
         }
+
+      
+ 
+    
+        [HttpPost]
+        public ActionResult SaveFile(int updateDocumentID, string contentData) {
+
+            Document updatedocument = _service.GetDocumentByID(updateDocumentID);
+            updatedocument.Content = contentData;
+            _service.UpdateDocument(updatedocument);
+            Console.WriteLine("komst i data");
+            return Json(new {  success = true});
+       
+        }
     }
 }

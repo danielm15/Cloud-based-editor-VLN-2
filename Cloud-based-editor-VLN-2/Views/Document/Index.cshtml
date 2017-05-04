@@ -20,7 +20,7 @@
         <li>
             <div>
                 <div class="row documentListItem">
-                    <a href="@Url.Action("Index", "Editor" , new { projectID = item.ID, documentID = item.ProjectID })" class="clickableDiv" />
+                    <a href="@Url.Action("Index", "Editor", new { projectID = item.ID, documentID = item.ProjectID })" class="clickableDiv" />
                     <div class="col-md-4">
                         @Html.DisplayFor(modelItem => item.Name)
                     </div>
@@ -34,6 +34,7 @@
                         @Html.DisplayFor(modelItem => item.Type)
                     </div>
                 </div>
+                </div>
                 <div class="btn-default optionsButton">
                     <div class="btn dropdown-toggle DropDownButton" data-toggle="dropdown">
                         Options
@@ -44,9 +45,26 @@
                         <li>@Html.ActionLink("Download", "Download", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
                         <li>@Html.ActionLink("Delete", "Delete", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
                     </ul>
+                    </div>
+                    </li>
+    }
+    </ul>
+                    @*
+                <div class="col-md-4">
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </div>
+                <div class="col-md-2">
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </div>
+                <div class="col-md-1">
+                    @Html.DisplayFor(modelItem => item.Type)
+                </div>
+                <div class="col-md-1">
+                    @Html.ActionLink("Editor", "Index", "Editor", new { projectID = item.ProjectID, documentID = item.ID}, new { @type = "button", @class = "btn btn-primary editButton" })
+>>>>>>> d5d2597712b9c9e05e7712cc7a7070c807aac9a1
                 </div>
             </div>
         </li>
     }
 </ul>
-
+*@

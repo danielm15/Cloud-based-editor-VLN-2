@@ -35,24 +35,14 @@ namespace Cloud_based_editor_VLN_2.Controllers {
  
     
         [HttpPost]
-        public ActionResult SaveFile(FormCollection collection) {
+        public ActionResult SaveFile(int updateDocumentID, string contentData) {
 
-            string updateDocumentIDstring = collection["updateDocumentID"];
-            string documentContent = collection["documentContent"];
-
-            
-
-            //Document updateDocument = _service.GetDocumentByID(updateDocumentID);
-
-            //if (ModelState.IsValid) {
-            //    _service.UpdateDocument(updateDocument);
-            //    return View();
-            //    Console.WriteLine("KOMST I DATA");
-            //}
-
-            Console.WriteLine("KOMST HINGAD");
-
-            return View();
+            Document updatedocument = _service.GetDocumentByID(updateDocumentID);
+            updatedocument.Content = contentData;
+            _service.UpdateDocument(updatedocument);
+            Console.WriteLine("komst i data");
+            return Json(new {  success = true});
+       
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Cloud_based_editor_VLN_2
     {
         public void Configuration(IAppBuilder app)
         {
+            app.MapSignalR();
             ConfigureAuth(app);
         }
     }

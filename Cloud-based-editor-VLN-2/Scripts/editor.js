@@ -1,16 +1,16 @@
-﻿$(document).ready(function {
-    $("#saveFileBtn").on("click", function () {
-        $.ajax({
-            url: '@Url.Action("SaveFile", "Editor")',
-            type: 'POST',
-            data: { updateDocumentID: "1", documentContent: "ABC" },
-            cache: false,
-            success: function (response) {
-                alert("Changes Saved.");
-            }
-        });
-    });
-});
+﻿//$(document).ready(function {
+//    $("#saveFileBtn").on("click", function () {
+//        $.ajax({
+//            url: '@Url.Action("SaveFile", "Editor")',
+//            type: 'POST',
+//            data: { updateDocumentID: "1", documentContent: "ABC" },
+//            cache: false,
+//            success: function (response) {
+//                alert("Changes Saved.");
+//            }
+//        });
+//    });
+//});
 
 function bodyMargin() {
     document.getElementById("bodyId").classList.toggle("addToBody");
@@ -55,5 +55,11 @@ function showHeader(id) {
     document.getElementById(id).classList.toggle("showHeader");
 }
 
+(function ($) {
+    'use strict';
 
-            
+    $(function () {
+    });
+
+})(jQuery);
+

@@ -23,42 +23,39 @@
 }
 
 .projectNav {
+    padding-top: 20px;
     position:fixed;
     z-index:1000;
     top: 0;
     bottom: 0;
     width: 200px;
-    background-color: lightgray;
-    transform: translate3d(-200px, 0, 0);
+    background-color: white;
+    border-right: 1px solid darkgray;  
+    transform: translate3d(-160px, 0, 0);
     transition: transform 0.4s ease;
 }
 
 .activeNav {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(40px, 0, 0);
 }
 
 .projectNav ul {
     list-style: none;
-    margin-top: 100px;
+    margin-top: 50px;
+    padding: 20px 0 0 0;
 }
 
-.projectNav ul li a {
-    text-decoration: none;
-    display: block;
-    text-align: center;
-    color: red;
-    padding: 10px 0;
-}
+
 
 .navToggle {
     display: block;
     position:absolute; 
-    left:200px;
-    top: 73px;
+    top: 24px;
     width: 40px;
     height: 100%;
     background-color: white;
     border-right: 1px solid darkgray;
+    z-index: 2000;
 }
 
 .changeWidth {
@@ -81,9 +78,34 @@
 .verticalText {
     transform: rotate(-90deg);
     color: darkgray;
-    margin-top: 65px;
     padding-left: 10px;
-    border-left: 1px solid darkgray;
+    padding-top: 8px;
     cursor: default;
+    margin-left: -45px;
+    width: 130px;
+    height: 40px;
+    border-left: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
+    user-select: none;  
 }
 
+.hideHeader {
+    display: none;
+}
+
+.showHeader {
+    display:block;
+}
+
+.navigationLink {
+    padding: 5px 0 0 10px;
+    color: black;
+}
+
+.selectedNav {
+    background-color: lightgray;
+}
+
+.navbar {
+    z-index: 3000;
+}

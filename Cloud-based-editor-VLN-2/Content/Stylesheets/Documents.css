@@ -2,16 +2,27 @@
 
 /*////////// ID Selectors //////////*/
 
-.documentListItem {
-    margin-top: 2px;
-    border: 1px solid lightgray;
-}
 /*////////// Class Selectors //////////*/
 
 .documentList {
     border: 2px solid gray;
 }
 
+.documentListItem {
+    margin-top: 2px;
+    border: 1px solid lightgray;
+}
+
 .editButton {
     float: right;
+    position: relative;
+}
+
+.clickableDiv {
+    display: block;
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
 }

@@ -18,9 +18,11 @@ namespace Cloud_based_editor_VLN_2.Services {
         }
 
         // Fetch a single document by its ID
-        public DocumentViewModel GetDocumentByID(int DocumentID) {
-            // TODO
-            return null;
+        public Document GetDocumentByID(int DocumentID) {
+            var document = (from doc in _db.Documents
+                            where doc.ID == DocumentID
+                            select doc).SingleOrDefault();
+            return document;
         }
 
         public bool AddDocument(Document newDocument) {

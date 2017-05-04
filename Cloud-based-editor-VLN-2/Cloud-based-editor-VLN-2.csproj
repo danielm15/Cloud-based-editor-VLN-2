@@ -253,7 +253,6 @@
     <Content Include="Content\Stylesheets\Editor.css" />
     <Content Include="Content\Stylesheets\HomePage.css" />
     <Content Include="Content\Stylesheets\Projects.css" />
-    <Content Include="Content\Stylesheets\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

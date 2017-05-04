@@ -72,6 +72,14 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -205,6 +213,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\DocumentHub.cs" />
     <Compile Include="Migrations\201705021108241_Test.cs" />
     <Compile Include="Migrations\201705021108241_Test.Designer.cs">
       <DependentUpon>201705021108241_Test.cs</DependentUpon>
@@ -216,6 +225,10 @@
     <Compile Include="Migrations\201705041058416_CreatedBy.cs" />
     <Compile Include="Migrations\201705041058416_CreatedBy.Designer.cs">
       <DependentUpon>201705041058416_CreatedBy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705041256437_LastUpdatedBy.cs" />
+    <Compile Include="Migrations\201705041256437_LastUpdatedBy.Designer.cs">
+      <DependentUpon>201705041256437_LastUpdatedBy.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\Document.cs" />
@@ -269,12 +282,14 @@
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\documentList.js" />
-    <Content Include="Scripts\editorLook.js" />
+    <Content Include="Scripts\editor.js" />
     <Content Include="Scripts\IndexSliderScript.js" />
     <Content Include="Scripts\dropDownScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.1.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -347,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705041058416_CreatedBy.resx">
       <DependentUpon>201705041058416_CreatedBy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041256437_LastUpdatedBy.resx">
+      <DependentUpon>201705041256437_LastUpdatedBy.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -33,6 +33,11 @@ namespace Cloud_based_editor_VLN_2.Services {
             return false;
         }
 
+        public bool UpdateDocument(Document documentToUpadate) {
+            _db.Entry(documentToUpadate).State = System.Data.Entity.EntityState.Modified;
+            return _db.SaveChanges() == 1;
+        }
+
         public bool DeleteDocument() {
             // TODO
             return true;

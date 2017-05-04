@@ -15,6 +15,9 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
         public string Type { get; set; }
 
         public DateTime DateCreated { get; set; }
+        
+        [Column(TypeName = "ntext")]
+        public string Content { get; set; }
 
         public int ProjectID { get; set; }
 

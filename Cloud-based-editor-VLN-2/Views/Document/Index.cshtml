@@ -10,13 +10,23 @@
 <ul style="list-style: none">
     @foreach (Cloud_based_editor_VLN_2.Models.Entities.Document item in Model.Documents) {
         <li>
-            <div class="documentListItem">
+            <div class="row documentListItem">
                 <a href="@Url.Action("Index", "Editor" , new { projectID = item.ID, documentID = item.ProjectID })" class="clickableDiv" />
-                <p>
+                <div class="col-md-4">
                     @Html.DisplayFor(modelItem => item.Name)
+                </div>
+                <div class="col-md-4">
+                    Created By Example..
+                </div>
+                <div class="col-md-2">
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </div>
+                <div class="col-md-1">
                     @Html.DisplayFor(modelItem => item.Type)
+                </div>
+                <div class="col-md-1">
                     @Html.ActionLink("Editor", "Index", "Editor", new { projectID = item.ID, documentID = item.ProjectID }, new { @type = "button", @class = "btn btn-primary editButton" })
-                </p>
+                </div>
             </div>
         </li>
     }

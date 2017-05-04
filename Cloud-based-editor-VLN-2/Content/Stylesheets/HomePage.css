@@ -22,12 +22,7 @@
 /*////////// Class Selectors //////////*/
 
 .row {
-    margin-top: 30px;
     text-align: center;
-}
-
-.row p {
-    margin-top: 30px;
 }
 
 .imageDiv img {

@@ -14,6 +14,8 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
 
         public string Type { get; set; }
 
+        public string CreatedBy { get; set; }
+
         public DateTime DateCreated { get; set; }
         
         [Column(TypeName = "ntext")]

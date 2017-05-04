@@ -213,6 +213,10 @@
     <Compile Include="Migrations\201705040948555_Content.Designer.cs">
       <DependentUpon>201705040948555_Content.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705041058416_CreatedBy.cs" />
+    <Compile Include="Migrations\201705041058416_CreatedBy.Designer.cs">
+      <DependentUpon>201705041058416_CreatedBy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\Document.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -341,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705040948555_Content.resx">
       <DependentUpon>201705040948555_Content.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041058416_CreatedBy.resx">
+      <DependentUpon>201705041058416_CreatedBy.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -30,8 +30,17 @@
         else {
             @Html.Raw("<h2 id=\"doc" + item.ID + "\" class=\"hideHeader\" > " + item.Name + "</h2>")
         }
-
+ 
     }
+   
+    @using (Html.BeginForm("SaveFile", "Editor"))
+     {
+        <input type="hidden" name="updateDocumentID" value="@Model.Doc.ID" />
+        <input type="hidden" name="documentContent" value="ABC" />
+        <button type="submit" id="saveFileBtn">Save</button>
+    }
+    
+  
     <div id="editorID">Editor</div>
 </div>
 

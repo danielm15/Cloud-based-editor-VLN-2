@@ -2,6 +2,54 @@
 
 /*////////// ID Selectors //////////*/
 
+#createFileBtn {
+    display: inline;
+    float: right;
+    margin: 20px 0 0 0;
+}
+
+#listHeader.row {
+    height: 23.5px;
+    font-weight: 700;
+}
+
+#documentListID {
+    margin-top: 20px;
+}
+
+#projectFilesHeader {
+    display: inline;
+    
+}
+
+#createFileDropDown {
+    width: 300px;
+    height: 270px;
+    padding: 20px;
+}
+
+#createFileHeader {
+    font-size: 20pt;
+    font-weight: 600;
+    text-align: center;
+}
+
+#fileNameInput {
+    border: 1px solid lightgray;
+    box-shadow: none;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+#fileTypeInput {
+    width: 100%;
+}
+
+#createFileSubmitBtn {
+    margin: 15px auto 0 auto;
+    text-align: center;
+}
+
 /*////////// Class Selectors //////////*/
 
 .documentList {
@@ -39,4 +87,18 @@
     top: 0;
     height: 100%;
     width: 100%;
+}
+
+.listText {
+    padding-top: 6px;
+}
+
+.listTop {
+    margin: 23px 0 0 0;
+   padding: 20px 0 0 0;
+}
+
+.inputLablel {
+    text-align:left;
+    font-weight: 700;
 }

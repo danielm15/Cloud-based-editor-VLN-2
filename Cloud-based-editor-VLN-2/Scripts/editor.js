@@ -55,11 +55,3 @@ function showHeader(id) {
     document.getElementById(id).classList.toggle("showHeader");
 }
 
-(function ($) {
-    'use strict';
-
-    $(function () {
-    });
-
-})(jQuery);
-

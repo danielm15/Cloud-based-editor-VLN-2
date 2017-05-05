@@ -33,8 +33,7 @@
  
     }
    
-    @using (Html.BeginForm("SaveFile", "Editor"))
-     {
+    @using (Html.BeginForm("SaveFile", "Editor")) {
         <input type="hidden" name="updateDocumentID" value="@Model.Doc.ID" />
         <input type="hidden" name="documentContent" value="ABC" />
         <button type="submit" id="saveFileBtn">Save</button>
@@ -44,6 +43,7 @@
     <div id="editorID">Editor</div>
 </div>
 
+<script src="~/Scripts/editorSignalR.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editorID");
     var content = @Html.Raw(Json.Encode(Model.Doc.Content));

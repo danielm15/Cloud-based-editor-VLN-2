@@ -14,22 +14,24 @@
         <ul class="dropdown-menu  pull-right" id="createFileDropDown">
             <li id="createFileHeader">Create file</li>
             <li>
-                <form id="createFileForm">
+                @using (Html.BeginForm("Create", "Document", FormMethod.Post, new { id = "createFileForm" })) {
+                    <input type="hidden" name="projectID" value="@Model.CurrProjectID">
                     <label for="fileName" class="inputLablel">File name</label> <br />
-                    <input type="text" name="fileName" id="fileNameInput" /> <br/>
-                    <label for="fileTypes" class="inputLablel">File type</label> <br/>
-                    <input list="fileTypes" name="fileTypes" placeholder="Choose your file type" id="fileTypeInput" /> <br />
+                    <input type="text" name="fileName" id="fileNameInput" /> <br />
+                    <label for="fileType" class="inputLablel">File type</label> <br />
+                    <input list="fileTypes" name="fileType" placeholder="Choose your file type" id="fileTypeInput" /> <br />
                     <datalist id="fileTypes">
-                        <option value="txt"/>
-                        <option value="css"/>
-                        <option value="html"/>
-                        <option value="cs"/>
-                        <option value="js"/>
-                    </datalist> 
+                        <option value="txt" />
+                        <option value="css" />
+                        <option value="html" />
+                        <option value="cs" />
+                        <option value="js" />
+                    </datalist>
                     <input type="submit" value="Create file" id="createFileSubmitBtn" class="btn btn-warning" />
-                </form>
+                    @Html.ValidationSummary(false)
+                }
+
             </li>
-            <!--<li> @Html.ActionLink("Create new file", "Create", new { projectID = Model.CurrProjectID }, new { @type = "button", @class = "btn btn-default" }) </li>-->
         </ul>
     </div>
 </div>

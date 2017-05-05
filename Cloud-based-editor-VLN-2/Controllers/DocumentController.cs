@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Text;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
     public class DocumentController : Controller {
@@ -77,6 +78,22 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             }
 
             return RedirectToAction("Index", "Project", new { userID = userID });
+        }
+
+        public ActionResult DownloadFile(int? documentID) {
+            Document doc = _service.GetDocumentByID(documentID ?? default(int));
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ContentType = "text/plain";
+            Response.AppendHeader("content-disposition", "attachment;filename="+ doc.Name + doc.Type);
+
+            StringBuilder content = new StringBuilder();
+            content.Append(doc.Content);
+            Response.Write(content.ToString());
+            Response.End();
+
+            return RedirectToAction("Index", new { projectID = doc.ProjectID });
         }
     }
 }

@@ -1,23 +1,40 @@
 ﻿(function ($) {
     $(document).ready(function () {
-    $("#saveFileBtn").on("click", function () {
-      
-        var updateDocumentID = document.getElementById("activeDocID").value
-        var editor = ace.edit("editorID");
-        var contentData = editor.getValue();
-
-        $.ajax({
-            type: "POST",
-            url: "/Editor/SaveFile",
-            data: {updateDocumentID, contentData: contentData},
-            success: function (response) {
-                alert("changes saved.");
-            }
+    $("#saveFileBtn").on("click", function() {
+    
+        saveEditorContent($);
+     
         });
-    });
     });
 
 })(jQuery);
+
+function saveEditorContent($) {
+    var updateDocumentID = document.getElementById("activeDocID").value
+    var editor = ace.edit("editorID");
+    var contentData = editor.getValue();
+
+    $.ajax({
+        type: "POST",
+        url: "/Editor/SaveFile",
+        data: { updateDocumentID, contentData: contentData },
+        success: function (response) {
+        }
+    });
+}
+
+function getContent($, ID) {
+    $.ajax({
+        type: "GET",
+        url: "/Editor/GetContent",
+        data: {documentID: ID},
+        success: function (response) {
+            var editor = ace.edit("editorID");
+            editor.getSession().setValue(response);
+            
+        }
+    });
+}
 
 function bodyMargin() {
     document.getElementById("bodyId").classList.toggle("addToBody");
@@ -44,6 +61,7 @@ function showNavBar() {
 }
 
 function showHeader(id) {
+    saveEditorContent($);
     var classElementsNav = document.getElementsByClassName("navigationLink");
 
     for (var i = 0; i < classElementsNav.length; i++) {
@@ -64,5 +82,6 @@ function showHeader(id) {
     var id = id.substring(3);
 
     document.getElementById("activeDocID").value = id;
+    getContent($, id);
 }
 

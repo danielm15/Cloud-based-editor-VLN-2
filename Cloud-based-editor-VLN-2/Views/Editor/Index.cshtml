@@ -1,7 +1,4 @@
 ﻿@model Cloud_based_editor_VLN_2.Models.ViewModels.DocumentViewModel
-@{
-    ViewBag.Title = "Index";
-}
 
 <script type="text/javascript">
     bodyMargin();
@@ -25,21 +22,17 @@
     @foreach (Cloud_based_editor_VLN_2.Models.Entities.Document item in Model.Documents) {
 
         if (item.ID == Model.Doc.ID) {
-            @Html.Raw("<h2 id=\"doc" + item.ID + "\" class=\"hideHeader showHeader\" > " + item.Name + "</h2>")
+            @Html.Raw("<h2 id=\"doc" + item.ID + "\" class=\"hideHeader showHeader\" > " + item.Name + item.Type + "</h2>")
         }
         else {
-            @Html.Raw("<h2 id=\"doc" + item.ID + "\" class=\"hideHeader\" > " + item.Name + "</h2>")
+            @Html.Raw("<h2 id=\"doc" + item.ID + "\" class=\"hideHeader\" > " + item.Name + item.Type + "</h2>")
         }
- 
     }
-   
-    @using (Html.BeginForm("SaveFile", "Editor")) {
-        <input type="hidden" name="updateDocumentID" value="@Model.Doc.ID" />
-        <input type="hidden" name="documentContent" value="ABC" />
+
+   @Html.HiddenFor(model => model.Doc.ID, new { id = "activeDocID"})
         <button type="submit" id="saveFileBtn">Save</button>
-    }
-    
-  
+
+
     <div id="editorID">Editor</div>
 </div>
 
@@ -47,7 +40,7 @@
 <script>
     var editor = ace.edit("editorID");
     var content = @Html.Raw(Json.Encode(Model.Doc.Content));
-    editor.setTheme("ace/theme/twilight");
+        editor.setTheme("ace/theme/twilight");
     editor.session.setMode("ace/mode/csharp");
     editor.getSession().setValue(content);
 </script>

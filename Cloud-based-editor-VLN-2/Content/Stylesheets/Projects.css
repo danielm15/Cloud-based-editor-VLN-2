@@ -36,3 +36,16 @@
     background-color:gainsboro;
 }
 
+#top-column-area {
+    background-color: gainsboro;
+    height: 100%;
+    width: 92.5%;
+    margin-left: 15px;
+ 
+}
+
+.project-pannel-box {
+    height:200px;
+
+}
+

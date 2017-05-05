@@ -31,28 +31,30 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return HttpNotFound();
         }
 
-      
- 
-    
-        [HttpPost]
-        public ActionResult SaveFile(FormCollection collection) {
+        public ActionResult GetContent(int? documentID) {
 
-            string updateDocumentIDstring = collection["updateDocumentID"];
-            string documentContent = collection["documentContent"];
-
-            
-
-            //Document updateDocument = _service.GetDocumentByID(updateDocumentID);
-
-            //if (ModelState.IsValid) {
-            //    _service.UpdateDocument(updateDocument);
-            //    return View();
-            //    Console.WriteLine("KOMST I DATA");
-            //}
-
-            Console.WriteLine("KOMST HINGAD");
+            if (documentID.HasValue) {
+                int documentByID = documentID ?? default(int);
+                string content = _service.GetDocumentByID(documentByID).Content;
+                return Json(content, JsonRequestBehavior.AllowGet);
+            }
 
             return View();
+        }
+    
+        [HttpPost]
+        public ActionResult SaveFile(int? updateDocumentID, string contentData) {
+
+            if (updateDocumentID.HasValue) {
+                int updateDocumentIDSend = updateDocumentID ?? default(int); 
+                Document updateDocument = _service.GetDocumentByID(updateDocumentIDSend);
+                updateDocument.Content = contentData;
+                if (_service.UpdateDocument(updateDocument)) {
+                    return Json(new { success = true });
+                }
+            }
+            return Json(new { success = false });
+
         }
     }
 }

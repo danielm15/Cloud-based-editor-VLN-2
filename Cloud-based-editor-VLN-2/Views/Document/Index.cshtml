@@ -40,7 +40,7 @@
                 <div class="col-md-3">File Name</div>
                 <div class="col-md-2">Created By</div>
                 <div class="col-md-3">Date Created</div>
-                <div class="col-md-1">Type</div>
+                <div class="col-md-2">Type</div>
             </div>
         </li>
         @foreach (Cloud_based_editor_VLN_2.Models.Entities.Document item in Model.Documents) {
@@ -57,7 +57,7 @@
                             <div class="col-md-3 listText">
                                 @Html.DisplayFor(modelItem => item.DateCreated)
                             </div>
-                            <div class="col-md-1 listText">
+                            <div class="col-md-2 listText">
                                 @Html.DisplayFor(modelItem => item.Type)
                             </div>
                         </a>

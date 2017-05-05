@@ -6,6 +6,7 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url("https://pixabay.com/get/ef3cb10d21f71c22d9584518a33219c8b66ae3d110b511419cf2c678/sky-690293_1920.jpg");
 }
 
 h2 {
@@ -48,10 +49,18 @@ textarea {
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 5%;
     min-height: 100%;
     position: relative;
+    background: white;
+}
+
+.parallaxBackground {
+    height: 1200px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .dropdownBtnDiv:hover, .dropdownBtn:focus {

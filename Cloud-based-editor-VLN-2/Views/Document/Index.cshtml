@@ -20,7 +20,7 @@
         <li>
             <div>
                 <div class="row documentListItem">
-                    <a href="@Url.Action("Index", "Editor", new { projectID = item.ProjectID, documentID = item.ID })" class="clickableDiv">
+                    <a href="@Url.Action("Index", "Editor", new { projectID = item.ProjectID, documentID = item.ID   })" class="clickableDiv">
                         <div class="col-md-3">
                             @Html.DisplayFor(modelItem => item.Name)
                         </div>

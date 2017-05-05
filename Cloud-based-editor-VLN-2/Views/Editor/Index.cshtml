@@ -40,7 +40,7 @@
 <script>
     var editor = ace.edit("editorID");
     var content = @Html.Raw(Json.Encode(Model.Doc.Content));
-        editor.setTheme("ace/theme/twilight");
+    editor.setTheme("ace/theme/twilight");
     editor.session.setMode("ace/mode/csharp");
     editor.getSession().setValue(content);
 </script>

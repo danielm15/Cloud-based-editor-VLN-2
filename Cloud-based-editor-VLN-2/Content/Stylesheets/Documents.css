@@ -68,10 +68,6 @@
     border: 1px solid gray;
 }
 
-.optionsButton {
-    float: right;
-}
-
 .editButton {
     float: right;
     padding: 0% 10% 0% 10%;
@@ -101,4 +97,12 @@
 .inputLablel {
     text-align:left;
     font-weight: 700;
+}
+
+.optionsButton {
+    margin-top: 50%;
+}
+
+.right-float {
+    float: right;
 }

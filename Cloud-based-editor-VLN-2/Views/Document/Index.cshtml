@@ -40,8 +40,8 @@
         <li>
             <div class="row" id="listHeader">
                 <div class="col-md-3">File Name</div>
-                <div class="col-md-3">Created By</div>
-                <div class="col-md-2">Date Created</div>
+                <div class="col-md-2">Created By</div>
+                <div class="col-md-3">Date Created</div>
                 <div class="col-md-1">Type</div>
             </div>
         </li>
@@ -53,22 +53,21 @@
                             <div class="col-md-3 listText">
                                 @Html.DisplayFor(modelItem => item.Name)
                             </div>
-                            <div class="col-md-3 listText">
+                            <div class="col-md-2 listText">
                                 @Html.DisplayFor(modelItem => item.CreatedBy)
                             </div>
-                            <div class="col-md-2 listText">
+                            <div class="col-md-3 listText">
                                 @Html.DisplayFor(modelItem => item.DateCreated)
                             </div>
                             <div class="col-md-1 listText">
                                 @Html.DisplayFor(modelItem => item.Type)
                             </div>
                         </a>
-                        <div class="col-md-3">
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                    Options
-                                    <span class="caret"></span>
-                                </button>
+                        <div class="col-md-2 right-float">
+                            <div class="dropdown right-float">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-option-vertical optionsButton"></span>
+                                </a>
 
                                 <ul class="dropdown-menu">
                                     <li>@Html.ActionLink("Rename", "Rename", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>

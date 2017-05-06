@@ -85,3 +85,64 @@ function showHeader(id) {
     getContent($, id);
 }
 
+//function update() {
+    (function ($) {
+        'use strict';
+        $(function () {
+            var dochub = $.connection.documentHub,
+                $editor = ace.edit("editorID"),
+                documentModel = {
+                    content: null
+                    
+
+                },
+                cursorPos = {
+                    row: 0,
+                    col: 0
+                },
+                
+
+                messageFrequency = 10,
+                updateRate = 1000 / messageFrequency;
+                //changed = false;
+            dochub.client.updateText = function (model, range) {
+                documentModel.content = model;
+                //$editor.getSession().
+                //$editor.getSession().setValue(documentModel.content);
+                $editor.getSession().replace(range, documentModel.content);
+            };
+            $.connection.hub.start().done(function () {
+                $editor.getSession().on('change',
+                    function () {
+                        cursorPos = $editor.getCursorPosition();
+                        documentModel.content = $editor.getSession().getLine(cursorPos.row);
+                        //var range = new ace.Range(cursorPos.row, 0, cursorPos.row + 1, 0);
+                        var range = {
+                            start: {
+                                 row: cursorPos.row,
+                                 column: 0
+                             },
+                             end: {
+                                 row: cursorPos.row + 1,
+                                 column: 0
+                             }
+                        };
+                        //documentModel.content = $editor.getValue();
+                        dochub.server.updateDocument(documentModel, range);
+
+
+                        setInterval(updateServerModel, updateRate);
+                    }
+                );
+                
+            });
+            function updateServerModel() {
+                //if (changed) {
+                    dochub.server.updateDocument(documentModel);
+                    //changed = false;
+                //}
+            }
+
+        });
+    })(jQuery);
+//}

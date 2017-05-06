@@ -47,9 +47,9 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
             if (updateDocumentID.HasValue) {
                 int updateDocumentIDSend = updateDocumentID ?? default(int); 
-                Document updatedocument = _service.GetDocumentByID(updateDocumentIDSend);
-                updatedocument.Content = contentData;
-                if (_service.UpdateDocument(updatedocument)) {
+                Document updateDocument = _service.GetDocumentByID(updateDocumentIDSend);
+                updateDocument.Content = contentData;
+                if (_service.UpdateDocument(updateDocument)) {
                     return Json(new { success = true });
                 }
             }

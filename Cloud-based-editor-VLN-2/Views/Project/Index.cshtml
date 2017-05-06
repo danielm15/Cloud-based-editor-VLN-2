@@ -6,24 +6,25 @@
 
 <h2>Projects</h2>
 <p>@Html.ActionLink("Create new project", "AddProject", new { ownerID = Model.CurrUserID }, new { @type = "button", @class = "btn btn-default" })</p>
-<div class="row"> 
+<div class="row">
+
     @foreach (Cloud_based_editor_VLN_2.Models.Entities.Project item in Model.Projects) {
-        <a href="@Url.Action("Index","Document", new { projectID = item.ID})">
+            <a href="@Url.Action("Index","Document", new { projectID = item.ID})">
             <div class="col-md-4 projectContainer">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                <div class="panel panel-defaults project-pannel-box">
+                    <div class="row">
+                        <div class="col-md-12" id="top-column-area">
+                            <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p>Id: @Html.DisplayFor(modelItem => item.ID)</p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Id: @Html.DisplayFor(modelItem => item.ID)</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row lastRow">
-
+                    <div class="row lastRow">
+                    </div>
                     <div class="col-md-4 col-md-offset-2">
                         @Html.ActionLink("Open", "Index", "Document", new { projectID = item.ID }, new { @type = "div", @class = "btn btn-default btn-block" })
                     </div>

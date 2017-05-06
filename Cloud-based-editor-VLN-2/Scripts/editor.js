@@ -85,6 +85,7 @@ function showHeader(id) {
     getContent($, id);
 }
 
+
 //function update() {
     (function ($) {
         'use strict';
@@ -104,7 +105,7 @@ function showHeader(id) {
 
                 messageFrequency = 10,
                 updateRate = 1000 / messageFrequency;
-                //changed = false;
+            //changed = false;
             dochub.client.updateText = function (model, range) {
                 documentModel.content = model;
                 //$editor.getSession().
@@ -119,13 +120,13 @@ function showHeader(id) {
                         //var range = new ace.Range(cursorPos.row, 0, cursorPos.row + 1, 0);
                         var range = {
                             start: {
-                                 row: cursorPos.row,
-                                 column: 0
-                             },
-                             end: {
-                                 row: cursorPos.row + 1,
-                                 column: 0
-                             }
+                                row: cursorPos.row,
+                                column: 0
+                            },
+                            end: {
+                                row: cursorPos.row + 1,
+                                column: 0
+                            }
                         };
                         //documentModel.content = $editor.getValue();
                         dochub.server.updateDocument(documentModel, range);
@@ -138,11 +139,12 @@ function showHeader(id) {
             });
             function updateServerModel() {
                 //if (changed) {
-                    dochub.server.updateDocument(documentModel);
-                    //changed = false;
+                dochub.server.updateDocument(documentModel);
+                //changed = false;
                 //}
             }
 
         });
-    })(jQuery);
-//}
+        })(jQuery);
+        //}
+    

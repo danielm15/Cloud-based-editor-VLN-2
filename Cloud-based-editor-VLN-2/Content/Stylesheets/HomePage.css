@@ -30,6 +30,10 @@
     margin-right: 330px;
 }
 
+#containerBodyID {
+    z-index: 2;
+}
+
 /*////////// Class Selectors //////////*/
 
 .row {

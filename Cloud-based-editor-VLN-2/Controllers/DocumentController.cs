@@ -10,6 +10,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
     public class DocumentController : Controller {
@@ -32,24 +33,35 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return HttpNotFound();
         }
 
-        [HttpGet]
-        public ActionResult Create(int? projectID) {
-            Document newDocument = new Document();
-            newDocument.ProjectID = (projectID ?? default(int));
-
-            return View(newDocument);
-        }
-
         [HttpPost]
-        public ActionResult Create(Document newDocument) {
-            if( ModelState.IsValid) {
-                newDocument.DateCreated = DateTime.Now;
-                _service.AddDocument(newDocument);
+        public ActionResult Create(FormCollection formCollection) {
 
-                return RedirectToAction("Index", new { projectID = newDocument.ProjectID });
+            string fileName = formCollection["fileName"];
+            string fileType = formCollection["fileType"];          
+            int projectID = Int32.Parse(formCollection["projectID"]);
+            string creator = User.Identity.Name;
+
+            fileType = "." + fileType;
+
+            if (string.IsNullOrEmpty(fileName) || string.IsNullOrEmpty(fileType)) {
+                return Json(new { success = false });
             }
+            else {
+                Document newDocument = new Document();
+                newDocument.Name = fileName;
+                newDocument.Type = fileType;
+                newDocument.ProjectID = projectID;
+                newDocument.LastUpdatedBy = creator;
+                newDocument.DateCreated = DateTime.Now;
+                newDocument.CreatedBy = creator;
+                newDocument.Content = "";
 
-            return View(newDocument);
+                if (_service.AddDocument(newDocument)) {
+                    return Json(newDocument);
+                }
+
+            }
+            return Json(new { success = false });
         }
 
         public ActionResult DownloadZip(int? projectID, int? userID, string projectName) {

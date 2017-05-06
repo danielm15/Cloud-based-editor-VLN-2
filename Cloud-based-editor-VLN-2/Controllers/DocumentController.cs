@@ -10,6 +10,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
     public class DocumentController : Controller {
@@ -32,14 +33,6 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return HttpNotFound();
         }
 
-        //[HttpGet]
-        //public ActionResult Create(int? projectID) {
-        //    Document newDocument = new Document();
-        //    newDocument.ProjectID = (projectID ?? default(int));
-
-        //    return View(newDocument);
-        //}
-
         [HttpPost]
         public ActionResult Create(FormCollection formCollection) {
 
@@ -61,9 +54,10 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 newDocument.LastUpdatedBy = creator;
                 newDocument.DateCreated = DateTime.Now;
                 newDocument.CreatedBy = creator;
+                newDocument.Content = "";
 
                 if (_service.AddDocument(newDocument)) {
-                    return Json(new { success = true });
+                    return Json(newDocument);
                 }
 
             }

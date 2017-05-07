@@ -13,7 +13,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         private string _currentUserEmail;
         private int _currentUserID;
         private ProjectService _service = new ProjectService();
-
+        
         // GET: ProjectsOverview
         public ActionResult Index() {
             _currentUserEmail = User.Identity.GetUserName();
@@ -33,7 +33,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult AddProject(Project item) {
 
             if (ModelState.IsValid) {
@@ -44,6 +44,26 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             }
 
             return View(item);
+        }
+
+        public ActionResult _RenameProject(int? ProjectID) {
+            Project p = new Project();
+            Project prj= _service.GetProjectByID(ProjectID ?? default(int));
+
+            return  PartialView("_RenameProject", prj);
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult _RenameProject(Project item) {
+            if (ModelState.IsValid) {
+                Project test = _service.GetProjectByID(item.ID);
+                test.Name = item.Name;
+                _service._db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
     }

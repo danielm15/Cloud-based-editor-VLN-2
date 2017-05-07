@@ -1,0 +1,48 @@
+﻿@model Cloud_based_editor_VLN_2.Models.Entities.AppUser
+@{
+    ViewBag.Title = "Invite";
+}
+
+<h2>Invite</h2>
+
+<div class="container" style="width:40%;margin-top:2%">
+
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Open Modal</a>
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin-top:30%">
+
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+
+                </div>
+                <div class="modal-body">
+
+                    <form id="myForm">
+                        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </form>
+
+                    <div style="text-align:center;display:none" id="loaderDiv">
+                        <img src="~/Content/InternetSlowdown_Day.gif" width="150" /> @* //put any image in content folder*@
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    <input type="reset" value="Submit" class="btn btn-success" id="btnSubmit" />
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+

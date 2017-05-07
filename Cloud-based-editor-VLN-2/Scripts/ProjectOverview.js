@@ -20,8 +20,6 @@ var submitUpdatedName = function () {
                 $("#loaderDiv").hide();
                 $("#myModal").modal("hide");
                 window.location.href = "/Project/";
-
-            }
-
+            },
         })
 }

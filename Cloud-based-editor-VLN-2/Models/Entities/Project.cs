@@ -12,6 +12,7 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
 
         public int OwnerID { get; set; }
 
+        [Required(ErrorMessage = "Name is Required.")]
         public string Name { get; set; }
 
         public DateTime DateCreated { get; set; }

@@ -290,6 +290,7 @@
     <Content Include="Scripts\editorJquery.js" />
     <Content Include="Scripts\editor.js" />
     <Content Include="Scripts\editorSignalR.js" />
+    <Content Include="Scripts\FileOverview.js" />
     <Content Include="Scripts\IndexSliderScript.js" />
     <Content Include="Scripts\dropDownScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -348,6 +349,7 @@
     <Content Include="Views\Shared\CreateNewDocument.cshtml" />
     <Content Include="Views\Document\Create.cshtml" />
     <Content Include="Views\Project\_RenameProject.cshtml" />
+    <Content Include="Views\Document\_RenameDocument.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

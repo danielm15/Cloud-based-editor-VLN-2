@@ -40,7 +40,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 item.DateCreated = DateTime.Now;
                 _service.AddProject(item);
                 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { projectID = item.ID });
             }
 
             return View(item);

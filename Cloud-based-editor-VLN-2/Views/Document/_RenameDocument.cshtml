@@ -1,27 +1,27 @@
-﻿@model Cloud_based_editor_VLN_2.Models.Entities.Project
+﻿@model Cloud_based_editor_VLN_2.Models.Entities.Document
 
 @{
-    ViewBag.Title = "_RenameProject";
+    ViewBag.Title = "Index";
 }
 <div class="modal-dialog">
-    <div class="modal-content" >
+    <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Rename</h4>
         </div>
-        <div class="modal-body" id="RenameModalBody">
-            <form id="myForm">
+        <div class="modal-body" id="RenameModalBodyFile">
+            <form id="myFormFile">
                 @Html.HiddenFor(model => model.ID)
                 @Html.LabelFor(model => model.Name)
                 @Html.TextBoxFor(model => model.Name)
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-
+                
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" onclick="submitUpdatedName()"  id="btnSubmit">Save</button>
+                    <button type="button" class="btn btn-default" onclick="submitUpdatedFileName(@Model.ProjectID)" id="btnSubmitFile">Save</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </form>
-</div>
+        </div>
     </div>
 
 </div>

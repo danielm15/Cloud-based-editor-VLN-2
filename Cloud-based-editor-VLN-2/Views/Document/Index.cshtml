@@ -70,7 +70,8 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Rename", "Rename", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
+                                    <li><a href="#" onclick="EditFileName(@item.ID)"><i class="glyphicon glyphicon-pencil"></i> Rename</a> </li>
+                                    @*<li>@Html.ActionLink("Rename", "Rename", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>*@
                                     <li>@Html.ActionLink("Download", "DownloadFile", new { documentID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
                                     <li>@Html.ActionLink("Delete", "Delete", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
                                 </ul>
@@ -82,6 +83,11 @@
         }
     </ul>
 </div>   
+
+@* This will load the modal window for Rename file *@
+<div class="modal" id="myModal1file">
+
+</div>
                     @*
                 <div class="col-md-4">
 >>>>>>> 845a163c7b9d6fa67f780f2d07b9994663b2e584

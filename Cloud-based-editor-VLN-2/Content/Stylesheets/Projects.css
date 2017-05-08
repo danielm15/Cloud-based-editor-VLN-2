@@ -39,15 +39,24 @@
 #top-column-area {
     background-color: gainsboro;
     height: 100%;
-    width: 92.5%;
+    background-size: contain;
     margin-left: 15px;
- 
+    border-radius: 2px 2px 0px 0px;
 }
 
 .project-panel-box {
     height:200px;
 }
 
+.project-panel-box:hover {
+    box-shadow: 0 0 1pt 1pt rgb(87, 164, 230);
+	outline: none;
+}
+
 .modal-content {
     margin-top:20%
+}
+
+.top-column-header {
+    width: 100%;
 }

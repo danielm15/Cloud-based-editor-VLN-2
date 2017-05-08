@@ -348,6 +348,7 @@
     <Content Include="Views\Shared\CreateNewDocument.cshtml" />
     <Content Include="Views\Document\Create.cshtml" />
     <Content Include="Views\Project\_RenameProject.cshtml" />
+    <Content Include="Views\Project\_InviteUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

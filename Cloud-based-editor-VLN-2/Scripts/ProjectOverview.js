@@ -1,5 +1,4 @@
 ﻿var EditProjectName = function (ProjectID) {
-
     var url = "/Project/_RenameProject?ProjectID=" + ProjectID;
 
     $("#myModal1").load(url, function () {

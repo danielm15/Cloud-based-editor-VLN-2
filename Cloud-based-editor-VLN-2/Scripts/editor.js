@@ -85,83 +85,45 @@ function showHeader(id) {
     getContent($, id);
 }
 
+(function ($) {
+    'use strict';
+    $(function () {
+        var dochub = $.connection.documentHub,
+            $editor = ace.edit("editorID"),
+            changed = false;
+        
+        dochub.client.updateText = function (obj) {
+            
+            //$editor.getSession().addMarker(range, "ace_active-line", "fullLine");
+            //var Anchor = ace.require('ace/anchor').Anchor;
+            //var myAnchor = new Anchor(editor.getSession().getDocument(), obj.start.row, obj.start.col);
+            /*var Range = ace.require('ace/range').Range;
+            var myRange = new Range(obj.start.row, obj.start.col, obj.start.row, obj.start.col + 1);
+            var currentMarker;
+            $editor.getSession().removeMarker(currentMarker);
+            $editor.getSession().addMarker(myRange, 'ace_marker-layer', 'text', false);*/
 
-//function update() {
-    (function ($) {
-        'use strict';
-        $(function () {
-            var dochub = $.connection.documentHub,
-                $editor = ace.edit("editorID"),
-                documentModel = {
-                    content: null
-
-
-                },
-                cursorPos = {
-                    row: 0,
-                    col: 0
-                },
-
-
-                messageFrequency = 10,
-                updateRate = 1000 / messageFrequency,
-                changed = false;
-                dochub.client.updateText = function (model, range) {
-                documentModel.content = model;
-                //$editor.getSession().
-                //$editor.getSession().setValue(documentModel.content);
-                //$editor.getSession().addMarker(range, "ace_active-line", "fullLine");
-
-                $editor.getSession().replace(range, documentModel.content);
-            };
-            $.connection.hub.start().done(function () {
-                $editor.on('change',
-                    function () {
-
-                        /*cursorPos = $editor.getCursorPosition();
-                        documentModel.content = $editor.getSession().getLine(cursorPos.row);
-                        //var range = new ace.Range(cursorPos.row, 0, cursorPos.row + 1, 0);
-                        var range = {
-                            start: {
-                                row: cursorPos.row,
-                                column: 0
-                            },
-                            end: {
-                                row: cursorPos.row + 1,
-                                column: 0
-                            }
-                        };*/
-                        //documentModel.content = $editor.getValue();
-                        //dochub.server.updateDocument(documentModel, range);
-
-                        changed = true;
-                        setInterval(updateServerModel, updateRate);
+            changed = true;
+            $editor.getSession().getDocument().applyDelta(obj);
+            
+            changed = false;
+        };
+        $.connection.hub.start().done(function () {
+            console.log(documentID);
+            dochub.server.joinDocument(documentID);
+            $editor.on('change',
+                function (obj) {
+                    saveEditorContent($);
+                    //console.log(obj);
+                    if (changed) {
+                        return;
                     }
-                );
-                
-            });
-            function updateServerModel() {
-                if (changed) {
-                    cursorPos = $editor.getCursorPosition();
-                    documentModel.content = $editor.getSession().getLine(cursorPos.row);
-                    //var range = new ace.Range(cursorPos.row, 0, cursorPos.row + 1, 0);
-                    
-                    var range = {
-                        start: {
-                            row: cursorPos.row,
-                            column: 0
-                        },
-                        end: {
-                            row: cursorPos.row + 1,
-                            column: 0
-                        }
-                    };
-                    dochub.server.updateDocument(documentModel, range);
-                    changed = false;
+                    dochub.server.updateDocument(obj, documentID);
                 }
-            }
-
+            );
+                
         });
-        })(jQuery);
-        //}
+    });
+})(jQuery);
+
     

@@ -28,7 +28,6 @@ namespace Cloud_based_editor_VLN_2
                     "~/Scripts/IndexSliderScript.js", "~/Scripts/editor.js",
                     "~/Scripts/documentList.js", "~/Scripts/ProjectOverview.js", "~/Scripts/FileOverview.js"));
 
-
             bundles.Add(new ScriptBundle("~/bundles/customscript2").Include(
                  "~/Scripts/documentList.js"
                 ));

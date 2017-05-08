@@ -291,7 +291,6 @@
     <Content Include="Scripts\documentList.js" />
     <Content Include="Scripts\editorJquery.js" />
     <Content Include="Scripts\editor.js" />
-    <Content Include="Scripts\editorSignalR.js" />
     <Content Include="Scripts\IndexSliderScript.js" />
     <Content Include="Scripts\dropDownScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

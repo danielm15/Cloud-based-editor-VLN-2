@@ -106,7 +106,7 @@ function showHeader(id) {
                 messageFrequency = 10,
                 updateRate = 1000 / messageFrequency,
                 changed = false;
-            dochub.client.updateText = function (model, range) {
+                dochub.client.updateText = function (model, range) {
                 documentModel.content = model;
                 //$editor.getSession().
                 //$editor.getSession().setValue(documentModel.content);

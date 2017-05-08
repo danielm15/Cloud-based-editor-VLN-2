@@ -110,11 +110,14 @@ function showHeader(id) {
                 documentModel.content = model;
                 //$editor.getSession().
                 //$editor.getSession().setValue(documentModel.content);
+                //$editor.getSession().addMarker(range, "ace_active-line", "fullLine");
+
                 $editor.getSession().replace(range, documentModel.content);
             };
             $.connection.hub.start().done(function () {
-                $editor.editSession().on('change',
+                $editor.on('change',
                     function () {
+
                         /*cursorPos = $editor.getCursorPosition();
                         documentModel.content = $editor.getSession().getLine(cursorPos.row);
                         //var range = new ace.Range(cursorPos.row, 0, cursorPos.row + 1, 0);
@@ -142,6 +145,7 @@ function showHeader(id) {
                     cursorPos = $editor.getCursorPosition();
                     documentModel.content = $editor.getSession().getLine(cursorPos.row);
                     //var range = new ace.Range(cursorPos.row, 0, cursorPos.row + 1, 0);
+                    
                     var range = {
                         start: {
                             row: cursorPos.row,

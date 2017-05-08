@@ -57,7 +57,8 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 newDocument.Content = "";
 
                 if (_service.AddDocument(newDocument)) {
-                    return Json(newDocument);
+                    //return Json(newDocument);
+                    return RedirectToAction("Index", "Document", new { projectID = newDocument.ProjectID });
                 }
 
             }

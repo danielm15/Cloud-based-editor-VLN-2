@@ -1,6 +1,4 @@
 ﻿var EditFileName = function (fileID) {
-    //alert('TEST');
-
     //var url = "~/Document/_RenameDocument?documentID=" + fileID;
 
     $("#myModal1file").load("/Document/_RenameDocument?documentID=" + fileID, function () {

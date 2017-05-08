@@ -1,5 +1,6 @@
 ﻿$(function () {
     $("#createFileForm").on("submit", function () {
+        document.getElementById("noFilesListItme").style.display = "none";
         var form = $(this);
         $.ajax({
             method: "post",
@@ -55,3 +56,6 @@
     });
 });
 
+$(function createFile() {
+
+});

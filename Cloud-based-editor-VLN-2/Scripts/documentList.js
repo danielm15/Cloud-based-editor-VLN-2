@@ -1,6 +1,9 @@
 ﻿$(function () {
     $("#createFileForm").on("submit", function () {
-        document.getElementById("noFilesListItme").style.display = "none";
+        var noFilesHeader = document.getElementById("noFilesListItme");
+        if (noFilesHeader != null) {
+            document.getElementById("noFilesListItme").style.display = "none";
+        }
         var form = $(this);
         $.ajax({
             method: "post",

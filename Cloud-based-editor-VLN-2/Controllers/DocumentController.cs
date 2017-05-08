@@ -58,8 +58,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 newDocument.Content = "";
 
                 if (_service.AddDocument(newDocument)) {
-                    //return Json(newDocument);
-                    return RedirectToAction("Index", "Document", new { projectID = newDocument.ProjectID });
+                    return Json(newDocument);
                 }
 
             }
@@ -92,6 +91,29 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             }
 
             return RedirectToAction("Index", "Project", new { userID = userID });
+        }
+
+        public ActionResult _RenameDocument(int? documentID)
+        {
+            Document d = new Document();
+            d = _service.GetDocumentByID(documentID ?? default(int));
+
+            return PartialView("_RenameDocument", d);
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult _RenameDocument(Document item)
+        {
+            if (ModelState.IsValid)
+            {
+                Document test = _service.GetDocumentByID(item.ID);
+                test.Name = item.Name;
+                _service._db.SaveChanges();
+
+                return RedirectToAction("Index", new { projectID = item.ProjectID });
+            }
+            return View();
         }
 
         public ActionResult DownloadFile(int? documentID) {

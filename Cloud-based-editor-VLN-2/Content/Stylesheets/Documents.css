@@ -106,3 +106,8 @@
 .right-float {
     float: right;
 }
+
+.noFiles {
+    margin-top: 30px;
+    text-align: center;
+}

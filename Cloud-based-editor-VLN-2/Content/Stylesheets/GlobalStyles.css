@@ -6,7 +6,7 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
-    /*background-image: url("https://pixabay.com/get/ef3cb10d21f71c22d9584518a33219c8b66ae3d110b511419cf2c678/sky-690293_1920.jpg");*/
+    background-image: url("../Img/clouds-in-shades-of-blue.jpg");
 }
 
 h2 {
@@ -110,3 +110,21 @@ textarea {
 .dl-horizontal dt {
     white-space: normal;
 }
+
+.grow { 
+    transition: all .2s ease-in-out;
+}
+
+.grow:hover { 
+    transform: scale(1.1); 
+}
+
+.btn:hover {
+    box-shadow: 0 0 1pt 1pt rgb(87, 164, 230);
+	outline: none;
+}
+
+.caret {
+    z-index: 3;
+}
+

@@ -22,6 +22,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         public ActionResult Index(int? projectID) {
             //_currentUserEmail = User.Identity.GetUserName();
             //_currentUserID = _service.getUserID(_currentUserEmail);
+            
             if (projectID.HasValue) {
                 int id = projectID ?? default(int);
                 DocumentViewModel model = new DocumentViewModel();

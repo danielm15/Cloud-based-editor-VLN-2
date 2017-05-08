@@ -36,16 +36,21 @@
                                 <span class="caret"></span>
                             </div>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Rename", "Rename", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
+                                <li><a href="#" onclick="EditProjectName(@item.ID)"><i class="glyphicon glyphicon-pencil"></i> Rename</a> </li>
                                 <li>@Html.ActionLink("Download", "DownloadZip", "Document", new { projectID = item.ID, userID = item.ID, projectName = item.Name }, new { @type = "a", @tabindex = "-1" })</li>
                                 <li>@Html.ActionLink("Delete", "Delete", "Document", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
-                            </ul>
+                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </a>
     }
+</div>
+
+@* This will load the modal window for Rename *@
+<div class="modal" id="myModal1">
+    
 </div>
 
 

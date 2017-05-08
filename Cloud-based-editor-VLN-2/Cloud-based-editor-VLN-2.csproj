@@ -208,6 +208,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AjaxAuthorizeAttribute.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EditorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -257,6 +258,7 @@
     <Content Include="Content\Img\2.png" />
     <Content Include="Content\Img\3.png" />
     <Content Include="Content\Img\cloud-icon.png" />
+    <Content Include="Content\Img\clouds-in-shades-of-blue.jpg" />
     <Content Include="Content\Img\dropDownArrow.png" />
     <Content Include="Content\Img\FileView.png" />
     <Content Include="Content\Img\logo2.png" />
@@ -290,7 +292,6 @@
     <Content Include="Scripts\editorJquery.js" />
     <Content Include="Scripts\editor.js" />
     <Content Include="Scripts\editorSignalR.js" />
-    <Content Include="Scripts\FileOverview.js" />
     <Content Include="Scripts\IndexSliderScript.js" />
     <Content Include="Scripts\dropDownScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -349,7 +350,7 @@
     <Content Include="Views\Shared\CreateNewDocument.cshtml" />
     <Content Include="Views\Document\Create.cshtml" />
     <Content Include="Views\Project\_RenameProject.cshtml" />
-    <Content Include="Views\Document\_RenameDocument.cshtml" />
+    <Content Include="Views\Shared\_Invite.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

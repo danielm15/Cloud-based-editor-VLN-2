@@ -94,18 +94,18 @@ function showHeader(id) {
                 $editor = ace.edit("editorID"),
                 documentModel = {
                     content: null
-                    
+
 
                 },
                 cursorPos = {
                     row: 0,
                     col: 0
                 },
-                
+
 
                 messageFrequency = 10,
-                updateRate = 1000 / messageFrequency;
-            //changed = false;
+                updateRate = 1000 / messageFrequency,
+                changed = false;
             dochub.client.updateText = function (model, range) {
                 documentModel.content = model;
                 //$editor.getSession().
@@ -113,9 +113,9 @@ function showHeader(id) {
                 $editor.getSession().replace(range, documentModel.content);
             };
             $.connection.hub.start().done(function () {
-                $editor.getSession().on('change',
+                $editor.editSession().on('change',
                     function () {
-                        cursorPos = $editor.getCursorPosition();
+                        /*cursorPos = $editor.getCursorPosition();
                         documentModel.content = $editor.getSession().getLine(cursorPos.row);
                         //var range = new ace.Range(cursorPos.row, 0, cursorPos.row + 1, 0);
                         var range = {
@@ -127,21 +127,34 @@ function showHeader(id) {
                                 row: cursorPos.row + 1,
                                 column: 0
                             }
-                        };
+                        };*/
                         //documentModel.content = $editor.getValue();
-                        dochub.server.updateDocument(documentModel, range);
+                        //dochub.server.updateDocument(documentModel, range);
 
-
+                        changed = true;
                         setInterval(updateServerModel, updateRate);
                     }
                 );
                 
             });
             function updateServerModel() {
-                //if (changed) {
-                dochub.server.updateDocument(documentModel);
-                //changed = false;
-                //}
+                if (changed) {
+                    cursorPos = $editor.getCursorPosition();
+                    documentModel.content = $editor.getSession().getLine(cursorPos.row);
+                    //var range = new ace.Range(cursorPos.row, 0, cursorPos.row + 1, 0);
+                    var range = {
+                        start: {
+                            row: cursorPos.row,
+                            column: 0
+                        },
+                        end: {
+                            row: cursorPos.row + 1,
+                            column: 0
+                        }
+                    };
+                    dochub.server.updateDocument(documentModel, range);
+                    changed = false;
+                }
             }
 
         });

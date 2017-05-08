@@ -38,8 +38,10 @@
                             </div>
                             <ul class="dropdown-menu">
                                 <li><a href="#" onclick="EditProjectName(@item.ID)"><i class="glyphicon glyphicon-pencil"></i> Rename</a> </li>
-                                <li>@Html.ActionLink("Download", "DownloadZip", "Document", new { projectID = item.ID, userID = item.ID, projectName = item.Name }, new { @type = "a", @tabindex = "-1" })</li>
-                                <li>@Html.ActionLink("Delete", "Delete", "Document", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
+                                <li>@Html.ActionLink(" Download", "DownloadZip", "Document", new { projectID = item.ID, userID = item.ID, projectName = item.Name }, new { @type = "a", @tabindex = "-1",
+                                   @class = "glyphicon glyphicon-download" })</li>
+                                <li>@Html.ActionLink(" Delete", "Delete", "Document", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" ,
+                                   @class = "glyphicon glyphicon-remove" })</li>
                              </ul>
                         </div>
                     </div>

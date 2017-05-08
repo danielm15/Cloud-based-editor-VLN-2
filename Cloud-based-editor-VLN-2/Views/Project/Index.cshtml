@@ -26,7 +26,8 @@
                     <div class="row lastRow">
                     </div>
                     <div class="col-md-4 col-md-offset-2">
-                        @Html.ActionLink("Open", "Index", "Document", new { projectID = item.ID }, new { @type = "div", @class = "btn btn-default btn-block" })
+                       @* @Html.ActionLink("Invite", "Index", "InviteUser", new { projectID = item.ID }, new { @type = "div", @class = "btn btn-default btn-block" })*@
+                        <a href="#" class="btn" onclick="InviteToProject(@item.ID)"><i class="glyphicon glyphicon-user"></i> Invite</a>
                     </div>
 
                     <div class="col-md-4">

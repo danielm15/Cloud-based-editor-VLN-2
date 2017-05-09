@@ -5,6 +5,10 @@
     border: 1px solid lightgray;
 }
 
+#RenameProjectErrorDiv {
+    display:none;
+}
+
 /*////////// Class Selectors //////////*/
 .row  div a{   
     text-decoration: none;

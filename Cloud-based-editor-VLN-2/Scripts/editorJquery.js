@@ -1,4 +1,4 @@
-﻿$(document).ready(function {
+﻿$(document).ready(function (){
     $("#saveFileBtn").on("click", function () {
         $.ajax({
             url: '@Url.Action("SaveFile", "Editor")',

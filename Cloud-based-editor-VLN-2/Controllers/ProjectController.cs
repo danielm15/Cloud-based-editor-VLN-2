@@ -54,6 +54,17 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         }
 
         [HttpPost]
+        public ActionResult DeleteProject(int? id) {
+
+            if (id.HasValue) {
+                int projectdID = id ?? default(int);
+                _service.DeleteProject(projectdID);
+            }
+
+            return View();
+        }
+
+        [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult _RenameProject(Project item) {
             if (ModelState.IsValid) {

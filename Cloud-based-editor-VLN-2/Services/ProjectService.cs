@@ -40,8 +40,23 @@ namespace Cloud_based_editor_VLN_2.Services {
             return true;
         }
 
-        public bool DeleteProject() {
-            // TODO
+        public bool DeleteProject(int projectID) {
+
+            var documents = _db.Documents.Where(item => item.ProjectID == projectID);
+            
+            foreach (var document in documents) {
+                _db.Documents.Remove(document);
+            }
+
+            var userProjectConnections = _db.UserProjects.Where(item => item.ProjectID == projectID);
+
+            foreach (var userProjectConnection in userProjectConnections) {
+                _db.UserProjects.Remove(userProjectConnection);
+            }
+
+            var project = _db.Projects.Where(item => item.ID == projectID).Single();
+            _db.Projects.Remove(project);
+            _db.SaveChanges();
             return true;
         }
      }

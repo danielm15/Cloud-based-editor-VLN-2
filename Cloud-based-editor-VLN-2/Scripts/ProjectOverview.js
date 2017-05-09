@@ -22,3 +22,19 @@ var submitUpdatedName = function () {
             },
         })
 }
+
+var deleteProject = function (projectID) {
+    deleteProjectAjax(projectID);
+}
+
+var deleteProjectAjax = function (projectID) {
+    $.ajax({
+
+        type: "POST",
+        url: "/Project/DeleteProject",
+        data: { id: projectID },
+        success: function () {
+
+        },
+    })
+}

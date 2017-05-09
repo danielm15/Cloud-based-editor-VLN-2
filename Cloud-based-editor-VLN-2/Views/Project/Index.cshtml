@@ -8,6 +8,10 @@
 
 <h2>Projects</h2>
 <p>@Html.ActionLink("Create new project", "AddProject", new { ownerID = Model.CurrUserID }, new { @type = "button", @class = "btn btn-success" })</p>
+@if (Model.Projects.Count() == 0) {
+    <h4 class="no-files">You have no projects</h4>
+}
+
 <div class="row">
 
     @foreach (Cloud_based_editor_VLN_2.Models.Entities.Project item in Model.Projects) {

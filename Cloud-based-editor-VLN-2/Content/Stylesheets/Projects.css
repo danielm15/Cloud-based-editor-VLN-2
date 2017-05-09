@@ -1,6 +1,9 @@
 ﻿/*////////// Global tags //////////*/
 
 /*////////// ID Selectors //////////*/
+#Name {
+    border: 1px solid lightgray;
+}
 
 /*////////// Class Selectors //////////*/
 .row  div a{   

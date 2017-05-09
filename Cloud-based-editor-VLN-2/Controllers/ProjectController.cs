@@ -31,7 +31,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         public ActionResult AddProject(int? ownerID) {
             Project newP = new Project();
             newP.OwnerID = (ownerID ?? default(int));
-            return View(newP);             
+            return PartialView("AddProject", newP);             
         }
 
         public ActionResult DeleteProjectVal(int? projectID) {
@@ -62,17 +62,17 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult AddProject(Project item) {
 
             if (ModelState.IsValid) {
                 item.DateCreated = DateTime.Now;
                 _service.AddProject(item);
                 
-                return RedirectToAction("Index", new { projectID = item.ID });
+                return RedirectToAction("Index");
             }
 
-            return View(item);
+            return View();
         }
 
         public ActionResult _RenameProject(int? ProjectID) {
@@ -109,6 +109,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
         public ActionResult InviteUser(int? ProjectID) {
             Project p = new Project();
+            ProjectViewModel someTest = new ProjectViewModel(); 
             Project prj = _service.GetProjectByID(ProjectID ?? default(int));
             return PartialView("_InviteUser", prj);
         }
@@ -121,13 +122,11 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 int userID = _service.getUserID(item.Name);
 
                 UserProjects p = new UserProjects();
+                
                 p.ProjectID = test.ID;
                 p.AppUserID = userID;
 
                 _userService.addUserToProject(p);
-
-                //_service._db.UserProjects.Add(p);
-                //_service._db.SaveChanges();
 
                 return RedirectToAction("Index", new { projectID = item.ID});
             }

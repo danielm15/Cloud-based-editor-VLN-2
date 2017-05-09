@@ -107,3 +107,34 @@ var submitInviteName = function () {
         }
     })
 }
+
+var  AddProject = function (currUserID) {
+    var url = "/Project/AddProject?ownerID=" + currUserID;
+    $("#myModal1").load(url, function () {
+        $("#myModal1").modal("show");
+
+    })
+}
+
+var AddnewProjectFunc = function () {
+    var test = document.getElementById("AddProjectTextBox").value;
+  
+    if (test != "") {
+        var myformdata = $("#AddProjectForm").serialize();
+        $.ajax({
+
+            type: "POST",
+            url: "/Project/AddProject",
+            data: myformdata,
+            success: function () {
+                $("#myModal").modal("hide");
+                window.location.href = "/Project/";
+            }
+        })
+    }
+    else {
+        var div = document.getElementById("AddProjectErrorDiv");
+        div.innerHTML = "You must enter a name";
+        div.style.display = "block";
+    }
+}

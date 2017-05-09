@@ -10,45 +10,50 @@
 <p>@Html.ActionLink("Create new project", "AddProject", new { ownerID = Model.CurrUserID }, new { @type = "button", @class = "btn btn-default" })</p>
 <div class="row">
 
-    @foreach (Cloud_based_editor_VLN_2.Models.Entities.Project item in Model.Projects) {   
+        @foreach (Cloud_based_editor_VLN_2.Models.Entities.Project item in Model.Projects) {
             <a href="@Url.Action("Index","Document", new { projectID = item.ID})" id="link\@item.ID">
-            <div class="col-md-4 projectContainer" id="div\@item.ID">
-                <div class="panel panel-defaults project-pannel-box">
-                    <div class="row top-column-header">
-                        <div class="col-md-12" id="top-column-area">
-                            <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>Id: @Html.DisplayFor(modelItem => item.ID)</p>
-                        </div>
-                    </div>
-
-                    <div class="row lastRow">
-                    </div>
-                    <div class="col-md-4 col-md-offset-2">
-                       @* @Html.ActionLink("Invite", "Index", "InviteUser", new { projectID = item.ID }, new { @type = "div", @class = "btn btn-default btn-block" })*@
-                        <a href="#" class="btn" onclick="InviteToProject(@item.ID)"><i class="glyphicon glyphicon-user"></i> Invite</a>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="btn-default btn-block dropDownOptions">
-                            <div class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                Options
-                                <span class="caret"></span>
+                <div class="col-md-4 projectContainer"  id="div\@item.ID">
+                    <div class="panel panel-defaults project-panel-box">
+                        <div class="row top-column-header">
+                            <div class="col-md-12" id="top-column-area">
+                                <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
                             </div>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" onclick="EditProjectName(@item.ID)"><i class="glyphicon glyphicon-pencil"></i> Rename</a> </li>
-                                 <li>@Html.ActionLink(" Download", "DownloadZip", "Document", new { projectID = item.ID, userID = item.ID, projectName = item.Name }, new { @type = "a", @tabindex = "-1",
-                                   @class = "glyphicon glyphicon-download" })</li>
-                                <li><a href="#" onclick="deleteProject(@item.ID)"><i class = "glyphicon glyphicon-remove"></i></a></li>
-                             </ul>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>Id: @Html.DisplayFor(modelItem => item.ID)</p>
+                            </div>
+                        </div>
+
+                        <div class="row lastRow">
+                        </div>
+                        <div class="col-md-4 col-md-offset-2">
+                            @* @Html.ActionLink("Invite", "Index", "InviteUser", new { projectID = item.ID }, new { @type = "div", @class = "btn btn-default btn-block" })*@
+                            <a href="#" class="btn" onclick="InviteToProject(@item.ID)"><i class="glyphicon glyphicon-user"></i> Invite</a>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="btn-default btn-block dropDownOptions">
+                                <div class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    Options
+                                    <span class="caret"></span>
+                                </div>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" onclick="EditProjectName(@item.ID)"><i class="glyphicon glyphicon-pencil"></i> Rename</a> </li>
+                                    <li>
+                                        @Html.ActionLink(" Download", "DownloadZip", "Document", new { projectID = item.ID, userID = item.ID, projectName = item.Name }, new {
+                                       @type = "a",
+                                       @tabindex = "-1",
+                                       @class = "glyphicon glyphicon-download"
+                                   })
+                                </li>
+                                <li><a href="#" onclick="deleteProject(@item.ID)"><i class="glyphicon glyphicon-remove"></i></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </a>
+        </div>
+    </a>
     }
 </div>
 

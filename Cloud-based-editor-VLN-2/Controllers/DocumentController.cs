@@ -42,12 +42,18 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             int projectID = Int32.Parse(formCollection["projectID"]);
             string creator = User.Identity.Name;
 
-            fileType = "." + fileType;
-
-            if (string.IsNullOrEmpty(fileName) || string.IsNullOrEmpty(fileType)) {
-                return Json(new { success = false });
+            
+            if(string.IsNullOrEmpty(fileName) && string.IsNullOrEmpty(fileType)) {
+                return Json(new { success = "bothempty" });
+            }
+            else if (string.IsNullOrEmpty(fileName)) {
+                return Json(new { success = "nameempty" });
+            }
+            else if(string.IsNullOrEmpty(fileType)) {
+                return Json(new { success = "filetypeempty" });
             }
             else {
+                fileType = "." + fileType;
                 Document newDocument = new Document();
                 newDocument.Name = fileName;
                 newDocument.Type = fileType;

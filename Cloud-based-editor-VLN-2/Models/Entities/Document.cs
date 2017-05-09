@@ -13,6 +13,8 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
         public int ID { get; set; }
 
         [JsonIgnore]
+        [Index("NameProject", 1, IsUnique = true)]
+        [StringLength(400)]
         public string Name { get; set; }
 
         [JsonIgnore]
@@ -32,11 +34,14 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
         public string LastUpdatedBy { get; set; }
 
         [JsonIgnore]
+        [Index("NameProject", 2, IsUnique = true)]
         public int ProjectID { get; set; }
 
         [JsonIgnore]
         [ForeignKey("ProjectID")]
         public virtual Project Project { get; set; }
+
+
 
         //public virtual List<User> Collaborators { get; set; }
     }

@@ -7,29 +7,32 @@
 
 
 <h2>Projects</h2>
-@*<p>@Html.ActionLink("Create new project", "AddProject", new { ownerID = Model.CurrUserID }, new { @type = "button", @class = "btn btn-success" })</p>*@
 <a href="#" onclick="AddProject(@Model.CurrUserID)">   
-    <i class="glyphicon glyphicon-pencil"> Add Project</i>
+    <i class="btn btn-success"> Add Project</i>
 </a>
+
     <div class="row">
+@if (Model.Projects.Count() == 0) {
+    <h4 class="no-files">You have no projects</h4>
+}
+
 
         @foreach (Cloud_based_editor_VLN_2.Models.Entities.Project item in Model.Projects) {
             <a href="@Url.Action("Index","Document", new { projectID = item.ID})" id="link\@item.ID">
                 <div class="col-md-4 projectContainer grow" id="div\@item.ID">
                     <div class="panel panel-defaults project-panel-box">
 
-                        <div class="row top-column-header">
-                            <div class="col-md-12" id="top-column-area">
-                                <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
-                            </div>
+                    <div class="row top-column-header">
+                        <div class="col-md-12" id="top-column-area">
+                            <h3 class="hideOverFlow">@Html.DisplayFor(modelItem => item.Name)</h3>
+                        </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <p class="creatorClass">Created by: @item.AppUser.UserName</p>
-                                <p class="dateCreatedClass">Date created: @item.DateCreated.ToString("dd.mm.yyyy")</p>
-                            </div>
+                                <p class="dateCreatedClass">Date created: @item.DateCreated.ToString("dd.MM.yyyy")</p>
                         </div>
-
+                        </div>
                         <div class="row lastRow">
                             <div class="col-md-4 col-md-offset-2">
                                 @* @Html.ActionLink("Invite", "Index", "InviteUser", new { projectID = item.ID }, new { @type = "div", @class = "btn btn-default btn-block" })*@

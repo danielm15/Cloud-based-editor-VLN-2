@@ -1,7 +1,11 @@
 ﻿@model Cloud_based_editor_VLN_2.Models.ViewModels.DocumentViewModel
 
+@{ 
+    ViewBag.DocumentID = Model.Doc.ID;
+}
 <script type="text/javascript">
     bodyMargin();
+    var documentID = @ViewBag.documentID;
 </script>
 
 <div class="navToggle"> <div class="verticalText" id="verticalTextID" onclick="showNavBar();">Navigation</div> </div>
@@ -36,7 +40,6 @@
     <div id="editorID">Editor</div>
 </div>
 
-<script src="~/Scripts/editorSignalR.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editorID");
     var content = @Html.Raw(Json.Encode(Model.Doc.Content));

@@ -110,3 +110,17 @@ textarea {
 .dl-horizontal dt {
     white-space: normal;
 }
+
+.grow { 
+    transition: all .2s ease-in-out;
+}
+
+.grow:hover { 
+    transform: scale(1.05);
+}
+
+.btn:hover {
+    box-shadow: 0 0 1pt 1pt rgb(87, 164, 230);
+	outline: none;
+}
+

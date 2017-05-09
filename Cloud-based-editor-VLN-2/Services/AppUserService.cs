@@ -14,5 +14,10 @@ namespace Cloud_based_editor_VLN_2.Services {
             _db.AppUsers.Add(newUser);
             _db.SaveChanges();
         }
+
+        public void addUserToProject(UserProjects user) {
+            _db.UserProjects.Add(user);
+            _db.SaveChanges();
+        }
     }
 }

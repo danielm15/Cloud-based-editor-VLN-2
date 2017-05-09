@@ -291,7 +291,6 @@
     <Content Include="Scripts\documentList.js" />
     <Content Include="Scripts\editorJquery.js" />
     <Content Include="Scripts\editor.js" />
-    <Content Include="Scripts\editorSignalR.js" />
     <Content Include="Scripts\IndexSliderScript.js" />
     <Content Include="Scripts\dropDownScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -349,6 +348,7 @@
     <Content Include="Views\Project\AddProject.cshtml" />
     <Content Include="Views\Shared\CreateNewDocument.cshtml" />
     <Content Include="Views\Project\_RenameProject.cshtml" />
+    <Content Include="Views\Project\_InviteUser.cshtml" />
     <Content Include="Views\Shared\_Invite.cshtml" />
   </ItemGroup>
   <ItemGroup>

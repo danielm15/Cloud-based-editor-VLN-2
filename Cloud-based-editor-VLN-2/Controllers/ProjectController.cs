@@ -13,7 +13,8 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         private string _currentUserEmail;
         private int _currentUserID;
         private ProjectService _service = new ProjectService();
-        
+        private AppUserService _userService = new AppUserService();
+
         // GET: ProjectsOverview
         public ActionResult Index() {
             _currentUserEmail = User.Identity.GetUserName();
@@ -49,7 +50,6 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         public ActionResult _RenameProject(int? ProjectID) {
             Project p = new Project();
             Project prj= _service.GetProjectByID(ProjectID ?? default(int));
-
             return  PartialView("_RenameProject", prj);
         }
 
@@ -77,5 +77,31 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return View();
         }
 
+        public ActionResult InviteUser(int? ProjectID) {
+            Project p = new Project();
+            Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+            return PartialView("_InviteUser", prj);
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult InviteUser(Project item) {
+            if (ModelState.IsValid) {
+                Project test = _service.GetProjectByID(item.ID);
+                int userID = _service.getUserID(item.Name);
+
+                UserProjects p = new UserProjects();
+                p.ProjectID = test.ID;
+                p.AppUserID = userID;
+
+                _userService.addUserToProject(p);
+
+                //_service._db.UserProjects.Add(p);
+                //_service._db.SaveChanges();
+
+                return RedirectToAction("Index", new { projectID = item.ID});
+            }
+            return View();
+        }
     }
 }

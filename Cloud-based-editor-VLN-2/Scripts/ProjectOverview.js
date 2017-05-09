@@ -3,25 +3,32 @@
 
     $("#myModal1").load(url, function () {
         $("#myModal1").modal("show");
-
     })
-
 }
 
-var submitUpdatedName = function () {
-    var myformdata = $("#myForm").serialize();
-        $.ajax({
 
-            type: "POST",
-            url: "/Project/_RenameProject",
-            data: myformdata,
-            success: function () {
-                $("#myModal").modal("hide");
-                window.location.href = "/Project/";
-            },
-        })
-}
+    var submitUpdatedName = function () {
+        var test = document.getElementById("MyId").value;
+        if (test != "") {
+            var myformdata = $("#myForm").serialize();
+            $.ajax({
 
+                type: "POST",
+                url: "/Project/_RenameProject",
+                data: myformdata,
+                success: function () {
+                    $("#myModal").modal("hide");
+                    window.location.href = "/Project/";
+                }
+            })
+        }
+        else {
+            var div = document.getElementById("RenameProjectErrorDiv");
+            div.innerHTML = "You must enter a name";
+            div.style.display = "block";
+        }
+    }
+    
 var deleteProject = function (projectID) {
 
     $.ajax({

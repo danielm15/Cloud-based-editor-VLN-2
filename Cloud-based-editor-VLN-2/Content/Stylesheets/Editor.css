@@ -11,6 +11,11 @@
     min-height: 100%;
 }
 
+#currentUser {
+    display: none;
+    border: 2px solid grey;
+}
+
 
 /*////////// Class Selectors //////////*/
 
@@ -110,4 +115,9 @@
 
 .navbar {
     z-index: 3000;
+}
+
+.mymarker {
+    position: absolute;
+    border: 2px solid gold;
 }

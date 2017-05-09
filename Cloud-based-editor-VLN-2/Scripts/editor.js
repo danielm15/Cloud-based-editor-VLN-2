@@ -90,35 +90,57 @@ function showHeader(id) {
     $(function () {
         var dochub = $.connection.documentHub,
             $editor = ace.edit("editorID"),
-            changed = false;
+            changed = false,
+            markerID = null;
         
-        dochub.client.updateText = function (obj) {
-            
-            //$editor.getSession().addMarker(range, "ace_active-line", "fullLine");
-            //var Anchor = ace.require('ace/anchor').Anchor;
-            //var myAnchor = new Anchor(editor.getSession().getDocument(), obj.start.row, obj.start.col);
-            /*var Range = ace.require('ace/range').Range;
-            var myRange = new Range(obj.start.row, obj.start.col, obj.start.row, obj.start.col + 1);
-            var currentMarker;
-            $editor.getSession().removeMarker(currentMarker);
-            $editor.getSession().addMarker(myRange, 'ace_marker-layer', 'text', false);*/
+        dochub.client.updateText = function (obj, cursorScreenPos) {
+            var message = document.getElementById("currentUser");
+            $('#currentUser').stop(true);
+
+            var Range = ace.require('ace/range').Range;
+            var myRange = new Range(obj.start.row, obj.start.column, obj.end.row, obj.end.column);
+
+            if (markerID != null) {
+                $editor.getSession().removeMarker(markerID);
+            }
 
             changed = true;
             $editor.getSession().getDocument().applyDelta(obj);
-            
+            markerID = $editor.getSession().addMarker(myRange, 'mymarker', 'text', false);
+
+            var message = document.getElementById("currentUser");
+            message.innerHTML = "User";
+            message.style.position = "absolute";
+
+            var offset = $('#editorID').position();
+
+            cursorScreenPos.row *= 14;
+            cursorScreenPos.row += offset.top;
+
+            cursorScreenPos.column *= 7;
+            cursorScreenPos.column += 40;
+            cursorScreenPos.column += (offset.left + 28);
+
+            message.style.top = cursorScreenPos.row + "px";
+            message.style.left = cursorScreenPos.column + "px";
+
+            message.style.zIndex = 100;
+
+            $('#currentUser').fadeIn().delay(100).fadeOut();
+
             changed = false;
         };
         $.connection.hub.start().done(function () {
-            console.log(documentID);
             dochub.server.joinDocument(documentID);
             $editor.on('change',
                 function (obj) {
                     saveEditorContent($);
-                    //console.log(obj);
                     if (changed) {
                         return;
                     }
-                    dochub.server.updateDocument(obj, documentID);
+
+                    var cursorScreenPos = $editor.getCursorPositionScreen();
+                    dochub.server.updateDocument(obj, documentID, cursorScreenPos);
                 }
             );
                 

@@ -350,6 +350,8 @@
     <Content Include="Views\Project\_RenameProject.cshtml" />
     <Content Include="Views\Project\_InviteUser.cshtml" />
     <Content Include="Views\Shared\_Invite.cshtml" />
+    <Content Include="Views\Project\_DeleteProjectConfirm.cshtml" />
+    <Content Include="Views\Project\_DeleteNoPermission.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

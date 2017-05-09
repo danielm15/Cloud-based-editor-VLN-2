@@ -50,7 +50,7 @@ textarea {
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding: 5%;
-    min-height: 100%;
+    min-height: 102%;
     position: relative;
     background: white;
 }

@@ -32,14 +32,18 @@ namespace Cloud_based_editor_VLN_2
                  "~/Scripts/documentList.js"
                 ));
 
+            bundles.Add(new StyleBundle("~/Content/Stylesheets/AllStyles").Include(
+                "~/Content/Stylesheets/AllStylesConcat.min.css"
+                ));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                    "~/Content/bootstrap.min.css", "~/Content/editor.css"
+                    "~/Content/bootstrap.min.css"
                     ));
 
             bundles.Add(new StyleBundle("~/Content/Stylesheets/css").Include(
-                    "~/Content/Stylesheets/Site.css", "~/Content/Stylesheets/Documents.css",
-                    "~/Content/Stylesheets/Editor.css", "~/Content/Stylesheets/GlobalStyles.css",
-                    "~/Content/Stylesheets/HomePage.css", "~/Content/Stylesheets/Projects.css"
+                    "~/Content/Stylesheets/Documents.css", "~/Content/Stylesheets/Editor.css",
+                    "~/Content/Stylesheets/GlobalStyles.css", "~/Content/Stylesheets/HomePage.css",
+                    "~/Content/Stylesheets/Projects.css"
                     ));
        
         }

@@ -4,13 +4,25 @@
 
 #editorID {
     position: relative;
-    width: 1000px;
+    width: 97.5%;
     height: 600px;
-    border-radius: 12px;
-    margin: 5%;
+    margin-left: 2%;
     min-height: 100%;
 }
 
+#saveFileBtn {
+    float: right;
+    padding-top: 18px;
+    margin-right: -3px;
+}
+
+#editorHeaderContainer {
+    margin-left: 3%;
+    margin-top: -46px;
+    position: relative;
+    height: 45px;
+    width: 102%;
+}
 
 /*////////// Class Selectors //////////*/
 
@@ -65,8 +77,7 @@
 }
 
 .editorContent {
-    height: 100%;
-    padding-left: 100px;
+    width: 106%;
     transition: margin-left 0.4s ease;
 }
 
@@ -110,4 +121,11 @@
 
 .navbar {
     z-index: 3000;
+}
+
+.editorHeader {
+    float: left;
+    padding: 0px 14px 0px 25px;
+    font-size: 25px;
+    font-weight: bold;
 }

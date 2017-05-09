@@ -79,3 +79,8 @@
 .projectButton:hover {
     background-color: gainsboro;
 }
+
+.hideOverFlow {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

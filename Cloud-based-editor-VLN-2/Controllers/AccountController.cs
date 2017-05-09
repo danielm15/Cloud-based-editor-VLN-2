@@ -136,9 +136,10 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
                 if (result.Succeeded) {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    Models.Entities.AppUser newUser = new Models.Entities.AppUser();
-                    newUser.Email = model.Email;
-                    newUser.UserName = model.UserName;
+                    Models.Entities.AppUser newUser = new Models.Entities.AppUser() {
+                        Email = model.Email,
+                        UserName = model.UserName
+                    };
                     _service.addUser(newUser);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

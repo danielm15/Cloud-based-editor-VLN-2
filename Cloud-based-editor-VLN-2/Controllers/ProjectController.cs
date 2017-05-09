@@ -20,17 +20,18 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         public ActionResult Index() {
             _currentUserEmail = User.Identity.GetUserName();
             _currentUserID = _service.getUserID(_currentUserEmail);
-            ProjectViewModel model = new ProjectViewModel();
-            model.CurrUserID = _currentUserID;
-            model.Projects = _service.GetProjectsByUserID(_currentUserID);
-
+            ProjectViewModel model = new ProjectViewModel() {
+                CurrUserID = _currentUserID,
+                Projects = _service.GetProjectsByUserID(_currentUserID)
+            };
             return View(model);
         }
 
         [HttpGet]
         public ActionResult AddProject(int? ownerID) {
-            Project newP = new Project();
-            newP.OwnerID = (ownerID ?? default(int));
+            Project newP = new Project() {
+                OwnerID = (ownerID ?? default(int))
+            };
             return PartialView("AddProject", newP);             
         }
 
@@ -121,11 +122,10 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 Project test = _service.GetProjectByID(item.ID);
                 int userID = _service.getUserID(item.Name);
 
-                UserProjects p = new UserProjects();
-                
-                p.ProjectID = test.ID;
-                p.AppUserID = userID;
-
+                UserProjects p = new UserProjects() {
+                    ProjectID = test.ID,
+                    AppUserID = userID
+                };
                 _userService.addUserToProject(p);
 
                 return RedirectToAction("Index", new { projectID = item.ID});

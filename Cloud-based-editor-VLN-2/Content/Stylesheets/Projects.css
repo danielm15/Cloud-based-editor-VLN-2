@@ -17,7 +17,6 @@
 .lastRow {
     margin-top: 0;
     position: relative;
-    top: 25%;
 }
 /*.projectContainer {
     border: 1px solid #E8E4E4;
@@ -82,4 +81,12 @@
 
 .projectButton:hover {
     background-color: gainsboro;
+}
+
+.dateCreatedClass {
+    margin-top: -15px;
+}
+
+.creatorClass, .dateCreatedClass {
+    color:gray;
 }

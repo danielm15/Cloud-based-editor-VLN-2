@@ -40,9 +40,9 @@
     <div id="editorID">Editor</div>
 </div>
 
+
 <div id="currentUser"></div>
 
-<script src="~/Scripts/editorSignalR.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editorID");
     var content = @Html.Raw(Json.Encode(Model.Doc.Content));

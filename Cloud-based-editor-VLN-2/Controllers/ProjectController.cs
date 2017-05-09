@@ -69,8 +69,6 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         public ActionResult InviteUser(int? ProjectID) {
             Project p = new Project();
             Project prj = _service.GetProjectByID(ProjectID ?? default(int));
-            //int userID = _service.getUserID(userName);
-            //ViewBag.message = prj.Name;
             return PartialView("_InviteUser", prj);
         }
 
@@ -85,8 +83,10 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 p.ProjectID = test.ID;
                 p.AppUserID = userID;
 
-                _service._db.UserProjects.Add(p);
-                _service._db.SaveChanges();
+                _userService.addUserToProject(p);
+
+                //_service._db.UserProjects.Add(p);
+                //_service._db.SaveChanges();
 
                 return RedirectToAction("Index", new { projectID = item.ID});
             }

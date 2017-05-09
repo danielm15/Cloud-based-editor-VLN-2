@@ -85,8 +85,6 @@ function showHeader(id) {
     getContent($, id);
 }
 
-
-
 (function ($) {
     'use strict';
     $(function () {
@@ -97,11 +95,11 @@ function showHeader(id) {
         
         dochub.client.updateText = function (obj, cursorScreenPos) {
             var message = document.getElementById("currentUser");
-            $('#currentUser').clearQueue();
+            $('#currentUser').stop(true);
 
             var Range = ace.require('ace/range').Range;
             var myRange = new Range(obj.start.row, obj.start.column, obj.end.row, obj.end.column);
-            
+
             if (markerID != null) {
                 $editor.getSession().removeMarker(markerID);
             }
@@ -113,12 +111,22 @@ function showHeader(id) {
             var message = document.getElementById("currentUser");
             message.innerHTML = "User";
             message.style.position = "absolute";
-            cursorScreenPos.row *= 30;
-            cursorScreenPos.column *= 20;
+
+            var offset = $('#editorID').position();
+
+            cursorScreenPos.row *= 14;
+            cursorScreenPos.row += offset.top;
+
+            cursorScreenPos.column *= 7;
+            cursorScreenPos.column += 40;
+            cursorScreenPos.column += (offset.left + 28);
+
             message.style.top = cursorScreenPos.row + "px";
             message.style.left = cursorScreenPos.column + "px";
+
             message.style.zIndex = 100;
-            $('#currentUser').fadeIn().delay(1000).fadeOut();
+
+            $('#currentUser').fadeIn().delay(100).fadeOut();
 
             changed = false;
         };
@@ -130,8 +138,8 @@ function showHeader(id) {
                     if (changed) {
                         return;
                     }
+
                     var cursorScreenPos = $editor.getCursorPositionScreen();
-                    console.log(cursorScreenPos)
                     dochub.server.updateDocument(obj, documentID, cursorScreenPos);
                 }
             );

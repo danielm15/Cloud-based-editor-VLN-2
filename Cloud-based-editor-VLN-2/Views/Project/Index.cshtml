@@ -21,7 +21,13 @@
 
                     <div class="row top-column-header">
                         <div class="col-md-12" id="top-column-area">
-                            <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                            <h3 class="hideOverFlow">@Html.DisplayFor(modelItem => item.Name)</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                                <p class="creatorClass">Created by: @item.AppUser.UserName</p>
+                                <p class="dateCreatedClass">Date created: @item.DateCreated.ToString("dd.MM.yyyy")</p>
                         </div>
                     </div>
 

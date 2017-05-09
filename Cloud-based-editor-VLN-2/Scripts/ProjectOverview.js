@@ -30,7 +30,42 @@
     }
     
 var deleteProject = function (projectID) {
-    deleteProjectAjax(projectID);
+
+    $.ajax({
+        type: "GET",
+        url: "/Project/DeleteProjectVal",
+        data: { projectID: projectID },
+        success: function (response) {
+           
+            if (response.success == true) {
+                deleteConfirmation(projectID);
+            } else {
+                deleteNoPermission(projectID);
+            }
+
+        } 
+    });
+    
+}
+
+var deleteConfirmation = function (projectID) {
+
+    var url = "/Project/DeleteProjectConfirm?ProjectID=" + projectID;
+
+    $("#myModal1").load(url, function () {
+        $("#myModal1").modal("show");
+
+    })
+}
+
+var deleteNoPermission =  function (projectID) {
+
+    var url = "/Project/DeleteNoPermission?ProjectID=" + projectID;
+
+    $("#myModal1").load(url, function () {
+        $("#myModal1").modal("show");
+
+    })
 }
 
 var deleteProjectAjax = function (projectID) {

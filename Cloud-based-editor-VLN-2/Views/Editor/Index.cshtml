@@ -39,6 +39,9 @@
     <div id="editorID">Editor</div>
 </div>
 
+
+<div id="currentUser"></div>
+
 <script>
     var editor = ace.edit("editorID");
     var content = @Html.Raw(Json.Encode(Model.Doc.Content));

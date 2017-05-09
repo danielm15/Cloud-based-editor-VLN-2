@@ -3,27 +3,69 @@
 
     $("#myModal1").load(url, function () {
         $("#myModal1").modal("show");
+    })
+}
+
+
+    var submitUpdatedName = function () {
+        var test = document.getElementById("MyId").value;
+        if (test != "") {
+            var myformdata = $("#myForm").serialize();
+            $.ajax({
+
+                type: "POST",
+                url: "/Project/_RenameProject",
+                data: myformdata,
+                success: function () {
+                    $("#myModal").modal("hide");
+                    window.location.href = "/Project/";
+                }
+            })
+        }
+        else {
+            var div = document.getElementById("RenameProjectErrorDiv");
+            div.innerHTML = "You must enter a name";
+            div.style.display = "block";
+        }
+    }
+    
+var deleteProject = function (projectID) {
+
+    $.ajax({
+        type: "GET",
+        url: "/Project/DeleteProjectVal",
+        data: { projectID: projectID },
+        success: function (response) {
+           
+            if (response.success == true) {
+                deleteConfirmation(projectID);
+            } else {
+                deleteNoPermission(projectID);
+            }
+
+        } 
+    });
+    
+}
+
+var deleteConfirmation = function (projectID) {
+
+    var url = "/Project/DeleteProjectConfirm?ProjectID=" + projectID;
+
+    $("#myModal1").load(url, function () {
+        $("#myModal1").modal("show");
 
     })
-
 }
 
-var submitUpdatedName = function () {
-    var myformdata = $("#myForm").serialize();
-        $.ajax({
+var deleteNoPermission =  function (projectID) {
 
-            type: "POST",
-            url: "/Project/_RenameProject",
-            data: myformdata,
-            success: function () {
-                $("#myModal").modal("hide");
-                window.location.href = "/Project/";
-            },
-        })
-}
+    var url = "/Project/DeleteNoPermission?ProjectID=" + projectID;
 
-var deleteProject = function (projectID) {
-    deleteProjectAjax(projectID);
+    $("#myModal1").load(url, function () {
+        $("#myModal1").modal("show");
+
+    })
 }
 
 var deleteProjectAjax = function (projectID) {

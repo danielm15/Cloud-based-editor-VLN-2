@@ -10,16 +10,23 @@
 }
 
 var submitUpdatedFileName = function (projectID) {
-    var myformdata = $("#myFormFile").serialize();
-    console.log(projectID);
-    $.ajax({
-        type: "POST",
-        url: "/Document/_RenameDocument",
-        data: myformdata,
-        success: function () {
-            $("#myModal1file").modal("hide");
+    var test = document.getElementById("RenameDocumentTextBox").value;
+    if (test != "") {
+        var myformdata = $("#myFormFile").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/Document/_RenameDocument",
+            data: myformdata,
+            success: function () {
+                $("#myModal1file").modal("hide");
 
-            window.location.href = "/Document?ProjectID=" + projectID + "";
-        }
-    });
+                window.location.href = "/Document?ProjectID=" + projectID + "";
+            }
+        });
+    }
+    else {
+        var div = document.getElementById("RenameDocumentErrorDiv");
+        div.innerHTML = "You must enter a name";
+        div.style.display = "block";
+    }
 }

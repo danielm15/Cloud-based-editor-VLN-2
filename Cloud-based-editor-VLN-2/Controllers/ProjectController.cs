@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Cloud_based_editor_VLN_2.Models.Entities;
 using Cloud_based_editor_VLN_2.Models.ViewModels;
+using System.IO;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
     public class ProjectController : Controller {
@@ -32,6 +33,33 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             newP.OwnerID = (ownerID ?? default(int));
             return View(newP);             
         }
+
+        public ActionResult DeleteProjectVal(int? projectID) {
+
+            int currentUserID = _service.getUserID(User.Identity.GetUserName());
+
+            if (projectID.HasValue) {
+                int ID = projectID ?? default(int);
+                Project projectToDelete = _service.GetProjectByID(ID);
+                if (projectToDelete.OwnerID == currentUserID) {  
+                    return Json(new { success = true}, JsonRequestBehavior.AllowGet);
+                }
+                
+            }
+
+            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteProjectConfirm(int? ProjectID) {
+            Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+            return PartialView("_DeleteProjectConfirm", prj);
+        }
+
+        public ActionResult DeleteNoPermission(int? ProjectID) {
+            Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+            return PartialView("_DeleteNoPermission", prj);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

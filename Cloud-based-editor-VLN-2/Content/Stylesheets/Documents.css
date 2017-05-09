@@ -85,6 +85,10 @@
     width: 100%;
 }
 
+.listHead {
+    display: block;
+}
+
 .listText {
     padding-top: 6px;
 }
@@ -110,4 +114,42 @@
 .noFiles {
     margin-top: 30px;
     text-align: center;
+}
+
+.createButton {
+
+}
+
+@media screen and (max-width: 490px){ 
+    .createButton {
+        left: 10%;
+        margin-top: -10%;
+    }
+
+    #projectFilesHeader {
+        font-size: 40px;
+    }
+}
+
+@media screen and (min-width: 490px){ 
+    .createButton {
+        left: 0;
+        margin-top: 0;
+    }
+
+    #projectFilesHeader {
+        font-size: 45px;
+    }
+}
+
+@media screen and (max-width: 1000px){ 
+    .listHead {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1000px){ 
+    .listHead {
+        display: block;
+    }
 }

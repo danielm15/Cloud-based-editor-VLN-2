@@ -1,6 +1,13 @@
 ﻿/*////////// Global tags //////////*/
 
 /*////////// ID Selectors //////////*/
+#Name {
+    border: 1px solid lightgray;
+}
+
+#RenameProjectErrorDiv {
+    display:none;
+}
 
 /*////////// Class Selectors //////////*/
 .row  div a{   
@@ -9,6 +16,8 @@
 
 .lastRow {
     margin-top: 0;
+    position: relative;
+    top: 25%;
 }
 /*.projectContainer {
     border: 1px solid #E8E4E4;
@@ -60,3 +69,17 @@
 .top-column-header {
     width: 100%;
 } 
+
+.optionsMenu {
+    min-width: 100px;
+}
+
+.projectButton {
+    font-size: 15px;
+    padding-bottom: 9px;
+    margin-left: 15px;
+}
+
+.projectButton:hover {
+    background-color: gainsboro;
+}

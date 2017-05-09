@@ -13,8 +13,10 @@
             <form id="myFormFile">
                 @Html.HiddenFor(model => model.ID)
                 @Html.LabelFor(model => model.Name)
-                @Html.TextBoxFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.Name, new { id = "RenameDocumentTextBox" })
+                <div class="text-danger" id="RenameDocumentErrorDiv">
+
+                </div>
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" onclick="submitUpdatedFileName(@Model.ProjectID)" id="btnSubmitFile">Save</button>

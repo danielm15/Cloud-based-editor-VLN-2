@@ -7,7 +7,7 @@
 <div class="listTop">
     <h2 id="projectFilesHeader">Project Files</h2>
     <div class="dropdown" id = "createFileBtn">
-        <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
+        <button class="btn btn-success dropdown-toggle createButton" type="button" data-toggle="dropdown">
             Create new file
         </button>
 
@@ -41,7 +41,7 @@
 <div id="documentListID">
     <ul style="list-style: none" id="documentUlListID">
         <li>
-            <div class="row" id="listHeader">
+            <div class="row listHead" id="listHeader">
                 <div class="col-md-3">File Name</div>
                 <div class="col-md-2">Created By</div>
                 <div class="col-md-3">Date Created</div>
@@ -49,7 +49,7 @@
             </div>
         </li>
         @if (!Model.Documents.Any()) {
-            <li id="noFilesListItme"><h4 class="noFiles">No files to display</h4></li>
+            <li id="noFilesListItem"><h4 class="noFiles">No files to display</h4></li>
         }
         @foreach (Cloud_based_editor_VLN_2.Models.Entities.Document item in Model.Documents) {
             <li>
@@ -70,8 +70,8 @@
                             </div>
                         </a>
                         <div class="col-md-2 right-float">
-                            <div class="dropdown right-float">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <div class="left menu right-float">
+                                <a href="#" class="left dropdown-toggle" data-toggle="dropdown">
                                     <span class="glyphicon glyphicon-option-vertical optionsButton"></span>
                                 </a>
 

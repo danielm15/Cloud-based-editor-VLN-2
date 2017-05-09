@@ -1,6 +1,6 @@
 ﻿$(function () {
     $("#createFileForm").on("submit", function () {
-        var noFilesHeader = document.getElementById("noFilesListItme");
+        var noFilesHeader = document.getElementById("noFilesListItem");
         if (noFilesHeader != null) {
             document.getElementById("noFilesListItme").style.display = "none";
         }

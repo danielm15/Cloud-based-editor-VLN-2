@@ -4,13 +4,15 @@
     ViewBag.Title = "Index";
 }
 
+
+
 <h2>Projects</h2>
 <p>@Html.ActionLink("Create new project", "AddProject", new { ownerID = Model.CurrUserID }, new { @type = "button", @class = "btn btn-success" })</p>
 <div class="row">
 
     @foreach (Cloud_based_editor_VLN_2.Models.Entities.Project item in Model.Projects) {
-            <a href="@Url.Action("Index","Document", new { projectID = item.ID})">
-            <div class="col-md-4 projectContainer grow">
+            <a href="@Url.Action("Index","Document", new { projectID = item.ID})" id="link\@item.ID">
+            <div class="col-md-4 projectContainer grow" id="div\@item.ID">
                 <div class="panel panel-defaults project-panel-box">
 
                     <div class="row top-column-header">
@@ -22,7 +24,9 @@
                     <div class="row lastRow">
                         <div class="col-md-4 col-md-offset-2">
                             @* @Html.ActionLink("Invite", "Index", "InviteUser", new { projectID = item.ID }, new { @type = "div", @class = "btn btn-default btn-block" })*@
-                            <a href="#" class="btn" onclick="InviteToProject(@item.ID)"><i class="glyphicon glyphicon-user"></i> Invite</a>
+                            <a href="#" class="btn" onclick="InviteToProject(@item.ID)">
+                                <i class="glyphicon glyphicon-user"></i> Invite
+                            </a>
                         </div>
 
                         <div class="col-md-4 dropup">
@@ -34,7 +38,7 @@
                                 <ul class="dropdown-menu optionsMenu">
                                     <li>
                                         <a href="#" onclick="EditProjectName(@item.ID)">
-                                            <i class="glyphicon glyphicon-pencil"></i>Rename
+                                            <i class="glyphicon glyphicon-pencil"> Rename</i>
                                         </a>
                                     </li>
                                     <li>
@@ -45,11 +49,9 @@
                                        })
                                     </li>
                                     <li>
-                                       @Html.ActionLink(" Delete", "Delete", "Document", new { projectID = item.ID }, new {
-                                           @type = "a",
-                                           @tabindex = "-1",
-                                           @class = "glyphicon glyphicon-remove"
-                                       })
+                                        <a href="#" onclick="deleteProject(@item.ID)">
+                                            <i class="glyphicon glyphicon-remove"> Delete</i>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -57,7 +59,7 @@
                     </div>
                 </div>
             </div>
-        </a>
+    </a>
     }
 </div>
 

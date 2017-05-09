@@ -1,6 +1,9 @@
 ﻿/*////////// Global tags //////////*/
 
 /*////////// ID Selectors //////////*/
+#Name {
+    border: 1px solid lightgray;
+}
 
 /*////////// Class Selectors //////////*/
 .row  div a{   
@@ -65,4 +68,14 @@
 
 .optionsMenu {
     min-width: 100px;
+}
+
+.projectButton {
+    font-size: 15px;
+    padding-bottom: 9px;
+    margin-left: 15px;
+}
+
+.projectButton:hover {
+    background-color: gainsboro;
 }

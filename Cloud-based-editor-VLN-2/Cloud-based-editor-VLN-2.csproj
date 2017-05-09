@@ -347,7 +347,6 @@
     <Content Include="Views\Document\Index.cshtml" />
     <Content Include="Views\Project\AddProject.cshtml" />
     <Content Include="Views\Shared\CreateNewDocument.cshtml" />
-    <Content Include="Views\Document\Create.cshtml" />
     <Content Include="Views\Project\_RenameProject.cshtml" />
     <Content Include="Views\Project\_InviteUser.cshtml" />
     <Content Include="Views\Shared\_Invite.cshtml" />

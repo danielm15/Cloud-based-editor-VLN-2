@@ -22,6 +22,28 @@ var submitUpdatedName = function () {
         })
 }
 
+var deleteProject = function (projectID) {
+    deleteProjectAjax(projectID);
+}
+
+var deleteProjectAjax = function (projectID) {
+    $.ajax({
+
+        type: "POST",
+        url: "/Project/DeleteProject",
+        data: { id: projectID },
+        success: function (response) {
+            var linkString = "link\\" + projectID;
+            var divString = "div\\" + projectID;
+            var linkToDelete = document.getElementById(linkString);
+            var divToDelete = document.getElementById(divString);
+            linkToDelete.parentNode.removeChild(linkToDelete);
+            divToDelete.parentNode.removeChild(divToDelete);
+        }
+    });
+
+}
+
 var InviteToProject = function (ProjectID) {
     var url = "/Project/InviteUser?ProjectID=" + ProjectID;
     $("#myModal1").load(url, function () {

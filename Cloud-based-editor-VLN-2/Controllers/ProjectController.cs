@@ -59,9 +59,11 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             if (id.HasValue) {
                 int projectdID = id ?? default(int);
                 _service.DeleteProject(projectdID);
+
+                return Json(new { success = true });
             }
 
-            return View();
+            return Json(new { success = false });
         }
 
         [HttpPost]

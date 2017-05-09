@@ -32,9 +32,14 @@ var deleteProjectAjax = function (projectID) {
         type: "POST",
         url: "/Project/DeleteProject",
         data: { id: projectID },
-        success: function () {
-
-        },
+        success: function (response) {
+            var linkString = "link\\" + projectID;
+            var divString = "div\\" + projectID;
+            var linkToDelete = document.getElementById(linkString);
+            var divToDelete = document.getElementById(divString);
+            linkToDelete.parentNode.removeChild(linkToDelete);
+            divToDelete.parentNode.removeChild(divToDelete);
+        }
     });
 
 }

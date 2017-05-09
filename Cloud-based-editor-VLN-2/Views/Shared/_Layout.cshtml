@@ -35,7 +35,7 @@
                         <li>@Html.ActionLink("Support", "Support", "Home")</li>
                     }
                     @if (Request.IsAuthenticated) {
-                        <li>@Html.ActionLink("Projects", "Index", "Project")</li>
+                        <li class="projectNav">@Html.ActionLink("Projects", "Index", "Project")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

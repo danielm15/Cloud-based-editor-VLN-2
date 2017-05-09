@@ -9,6 +9,8 @@
 
 .lastRow {
     margin-top: 0;
+    position: relative;
+    top: 25%;
 }
 /*.projectContainer {
     border: 1px solid #E8E4E4;
@@ -60,3 +62,7 @@
 .top-column-header {
     width: 100%;
 } 
+
+.optionsMenu {
+    min-width: 100px;
+}

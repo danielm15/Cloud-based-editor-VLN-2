@@ -13,7 +13,7 @@
             <form id="InviteUserForm">
                
                 @Html.HiddenFor(model => model.ID)
-                @Html.TextBoxFor(model => model.Name, new { Value = "" })
+                @Html.TextBoxFor(model => model.Name, new { Value = "" , @placeholder = "Please enter username" })
                 @*@Html.TextBox("InviteTxtBox", "", new { placeholder = "Please enter username" })*@
 
                 <div class="modal-footer">

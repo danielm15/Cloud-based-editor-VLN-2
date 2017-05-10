@@ -16,7 +16,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
     public class DocumentController : Controller {
         //private string _currentUserEmail;
         //private int _currentUserID;
-        private DocumentService _service = new DocumentService();
+        private DocumentService _service = new DocumentService(null);
 
         // GET: Document
         public ActionResult Index(int? projectID) {

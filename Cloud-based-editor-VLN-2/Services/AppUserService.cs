@@ -8,7 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace Cloud_based_editor_VLN_2.Services {
-    public class AppUserService : BaseService{
+    public class AppUserService : BaseService   {
+
+        public AppUserService(IAppDataContext context) : base(context) {
+            
+        }
 
         public void addUser(AppUser newUser) {
             _db.AppUsers.Add(newUser);

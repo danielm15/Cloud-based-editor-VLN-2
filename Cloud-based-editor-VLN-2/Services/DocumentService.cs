@@ -5,9 +5,14 @@ using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
+using Cloud_based_editor_VLN_2.Models;
 
 namespace Cloud_based_editor_VLN_2.Services {
     public class DocumentService : BaseService {
+
+        public DocumentService(IAppDataContext context) : base(context) {
+
+        }
 
         // Fetch all files from a single project
         public List<Document> GetDocumentsByProjectID(int ProjectID) {

@@ -16,14 +16,28 @@ namespace Cloud_based_editor_VLN_2.Models {
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser> {
-        public DbSet<AppUser> AppUsers { get; set; }
+    public interface IAppDataContext {
+        IDbSet<AppUser> AppUsers { get; set; }
 
-        public DbSet<UserProjects> UserProjects { get; set; }
+        IDbSet<UserProjects> UserProjects { get; set; }
 
-        public DbSet<Project> Projects { get; set; }
+        IDbSet<Project> Projects { get; set; }
 
-        public DbSet<Document> Documents { get; set; }
+        IDbSet<Document> Documents { get; set; }
+
+        int SaveChanges();
+
+        System.Data.Entity.Infrastructure.DbEntityEntry Entry(object entity);
+    }
+
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IAppDataContext {
+        public IDbSet<AppUser> AppUsers { get; set; }
+
+        public IDbSet<UserProjects> UserProjects { get; set; }
+
+        public IDbSet<Project> Projects { get; set; }
+
+        public IDbSet<Document> Documents { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false) {

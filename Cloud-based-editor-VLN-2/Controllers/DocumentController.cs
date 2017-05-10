@@ -16,8 +16,9 @@ namespace Cloud_based_editor_VLN_2.Controllers {
     public class DocumentController : Controller {
         //private string _currentUserEmail;
         //private int _currentUserID;
-        private DocumentService _service = new DocumentService();
-        private ProjectService _projectService = new ProjectService();
+
+        private DocumentService _service = new DocumentService(null);
+        private ProjectService _projectService = new ProjectService(null);
 
         // GET: Document
         public ActionResult Index(int? projectID) {
@@ -110,8 +111,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult _RenameDocument(Document item)
-        {
+        public ActionResult _RenameDocument(Document item) {
 
             Document documentToUpdate = _service.GetDocumentByID(item.ID);
             documentToUpdate.Name = item.Name;
@@ -122,9 +122,9 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             }
             if (_service.UpdateDocument(documentToUpdate)) {
                 return Json(new { success = true, name = documentToUpdate.Name, type = documentToUpdate.Type, docID = documentToUpdate.ID });
-            }
-
-            return Json(new { success = false });
+            } else {
+                return Json(new { success = false, message = "duplicateFileName", name = documentToUpdate.Name, type = documentToUpdate.Type, docID = documentToUpdate.ID });
+            } 
         }
 
         public ActionResult DownloadFile(int? documentID) {

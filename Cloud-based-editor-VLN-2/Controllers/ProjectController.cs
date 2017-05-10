@@ -13,8 +13,8 @@ namespace Cloud_based_editor_VLN_2.Controllers {
     public class ProjectController : Controller {
         private string _currentUserEmail;
         private int _currentUserID;
-        private ProjectService _service = new ProjectService();
-        private AppUserService _userService = new AppUserService();
+        private ProjectService _service = new ProjectService(null);
+        private AppUserService _userService = new AppUserService(null);
 
         // GET: ProjectsOverview
         public ActionResult Index() {
@@ -107,14 +107,20 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult _RenameProject(Project item) {
-            if (ModelState.IsValid) {
-                Project test = _service.GetProjectByID(item.ID);
-                test.Name = item.Name;
-                _service._db.SaveChanges();
 
-                return RedirectToAction("Index");
+
+            Project projectToUpdate = _service.GetProjectByID(item.ID);
+            projectToUpdate.Name = item.Name;
+
+            if (projectToUpdate.AppUser.UserName != User.Identity.GetUserName()) {
+                return Json(new { success = false, message = "noPermission", name = projectToUpdate.Name,  projectID = projectToUpdate.ID });
+            } 
+            if (_service.UpdateProject(projectToUpdate)) {
+                return Json(new { success = true, name = projectToUpdate.Name, projectID = projectToUpdate.ID });
             }
-            return View();
+
+            return Json(new { success = false });
+
         }
 
         public ActionResult InviteUser(int? ProjectID) {

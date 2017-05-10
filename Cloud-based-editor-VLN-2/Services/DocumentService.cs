@@ -5,9 +5,14 @@ using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
+using Cloud_based_editor_VLN_2.Models;
 
 namespace Cloud_based_editor_VLN_2.Services {
     public class DocumentService : BaseService {
+
+        public DocumentService(IAppDataContext context) : base(context) {
+
+        }
 
         // Fetch all files from a single project
         public List<Document> GetDocumentsByProjectID(int ProjectID) {
@@ -40,9 +45,15 @@ namespace Cloud_based_editor_VLN_2.Services {
             return true;
         }
 
-        public bool UpdateDocument(Document documentToUpadate) {
-            _db.Entry(documentToUpadate).State = System.Data.Entity.EntityState.Modified;
-            return _db.SaveChanges() == 1;
+        public bool UpdateDocument(Document documentToUpdate) {
+            _db.Entry(documentToUpdate).State = System.Data.Entity.EntityState.Modified;
+            try {
+                _db.SaveChanges();
+            }
+            catch {
+                return false;
+            }
+            return true;
         }
 
         public bool DeleteDocument(Document documentToDelete) {

@@ -4,9 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Cloud_based_editor_VLN_2.Models;
 
 namespace Cloud_based_editor_VLN_2.Services {
     public class ProjectService : BaseService {
+
+        public ProjectService(IAppDataContext context) : base(context) {
+
+        }
 
         // Fetch all projects owned by a particular User
         public List<Project> GetProjectsByUserID(int UserID) {
@@ -37,6 +42,17 @@ namespace Cloud_based_editor_VLN_2.Services {
             newLink.ProjectID = newProjectID;
             _db.UserProjects.Add(newLink);
             _db.SaveChanges();
+            return true;
+        }
+
+        public bool UpdateProject(Project projectToUpdate) {
+            _db.Entry(projectToUpdate).State = System.Data.Entity.EntityState.Modified;
+            try {
+                _db.SaveChanges();
+            }
+            catch {
+                return false;
+            }
             return true;
         }
 

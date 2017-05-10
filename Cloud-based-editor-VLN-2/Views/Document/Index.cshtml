@@ -4,6 +4,10 @@
     ViewBag.Title = "Index";
 }
 
+<ul class="pager">
+    <li class="previous"><a href="@Url.Action("Index","Project")">Back to Projects</a></li>
+</ul>
+
 <div class="listTop">
     <h2 id="projectFilesHeader">Project Files<em id="documentMsg"></em></h2>
     <div class="dropdown" id = "createFileBtn">

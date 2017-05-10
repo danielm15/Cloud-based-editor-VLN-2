@@ -14,19 +14,29 @@ using Newtonsoft.Json;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
     public class DocumentController : Controller {
-        //private string _currentUserEmail;
-        //private int _currentUserID;
 
         private DocumentService _service = new DocumentService(null);
         private ProjectService _projectService = new ProjectService(null);
 
+        private bool checkAuthorization(int projectID) {
+            int userID = _service.getUserID(User.Identity.GetUserName());
+            List<Project> userProjects = _projectService.GetProjectsByUserID(userID);
+            Project currentProject = _projectService.GetProjectByID(projectID);
+
+            if (userProjects.Contains(currentProject)) {
+                return true;
+            }
+            return false;
+        }
+
         // GET: Document
         public ActionResult Index(int? projectID) {
-            //_currentUserEmail = User.Identity.GetUserName();
-            //_currentUserID = _service.getUserID(_currentUserEmail);
-            
-            if (projectID.HasValue) {
+
+            if (projectID.HasValue) {        
                 int id = projectID ?? default(int);
+                if (!checkAuthorization(id)) {
+                    return RedirectToAction("AccessDenied", "Error");
+                }
                 DocumentViewModel model = new DocumentViewModel();
                 model.CurrProjectID = id;
                 model.Documents = _service.GetDocumentsByProjectID(id);
@@ -74,7 +84,11 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         }
 
         public ActionResult DownloadZip(int? projectID, int? userID, string projectName) {
+
             int id = projectID ?? default(int);
+            if (!checkAuthorization(id)) {
+                return RedirectToAction("AccessDenied", "Error");
+            }
             List<Document> documents = _service.GetDocumentsByProjectID(id);
             int count = 0;
 

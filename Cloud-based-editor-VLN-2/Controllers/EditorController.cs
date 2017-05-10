@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 
 namespace Cloud_based_editor_VLN_2.Controllers {
@@ -13,14 +14,29 @@ namespace Cloud_based_editor_VLN_2.Controllers {
     public class EditorController : Controller {
 
         private DocumentService _service = new DocumentService(null);
+        private ProjectService _projectService = new ProjectService(null);
 
-        // GET: Editor
+
+        private bool checkAuthorization(int projectID) {
+            int userID = _service.getUserID(User.Identity.GetUserName());
+            List<Project> userProjects = _projectService.GetProjectsByUserID(userID);
+            Project currentProject = _projectService.GetProjectByID(projectID);
+
+            if (userProjects.Contains(currentProject)) {
+                return true;
+            }
+            return false;
+        }
+
         public ActionResult Index(int? projectID, int? documentID) {
 
             if(projectID.HasValue && documentID.HasValue) {
                 ViewBag.DocumentID = documentID ?? default(int);
                 int projectByID = projectID ?? default(int);
                 int documentByID = documentID ?? default(int);
+                if (!checkAuthorization(projectByID)) {
+                    return RedirectToAction("AccessDenied", "Error");
+                }
                 DocumentViewModel model = new DocumentViewModel();
                 model.CurrProjectID = projectByID;
                 model.Documents = _service.GetDocumentsByProjectID(projectByID);

@@ -49,34 +49,67 @@ int main() {
             else if (projectType == "Python") {
                 name = "app";
                 type = ".py";
+                content = @"print ""Hello World"" "; 
             }
             else if (projectType == "C#") {
                 name = "project";
                 type = ".cs";
+                content = @"public class project
+{
+   public static void Main()
+   {
+      System.Console.WriteLine(""Hello, World!"");
+   }
+        }";
             }
             else if (projectType == "Javascript") {
                 name = "project";
                 type = ".js";
+                content = @"console.log(""Hello World"" ";
             }
             else if (projectType == "Java") {
                 name = "project";
                 type = ".java";
+                content = @"public class project{
+    public static void main(string[] args){
+        System.out.println(""Hello World"");
+    }
+        }";
             }
             else if (projectType == "C") {
                 name = "main";
                 type = ".c";
+                content = @"#include<stdio.h>
+
+main()
+{
+    printf(""Hello World"");
+}
+            ";
             }
             else if (projectType == "Php") {
                 name = "project";
                 type = ".php";
+                content = @"<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+echo ""Hello World!"";
+?>
+
+</ body >
+</ html > ";
             }
             else if (projectType == "Node.js") {
                 name = "project";
                 type = ".js";
+                content = @"console.log(""Hello World"")";
             }
             else if (projectType == "Ruby") {
                 name = "project";
                 type = ".rb";
+                content = @"puts ""Hello World""  ";
             }
         }
         

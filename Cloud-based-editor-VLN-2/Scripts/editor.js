@@ -53,15 +53,16 @@ function showNavBar() {
     if (document.getElementById("editorContentId").style.marginLeft == "200px") {
         document.getElementById("editorContentId").style.marginLeft = "0px";
         document.getElementById("verticalTextID").style.borderBottom = "1px solid darkgray";
+        document.getElementById("editorHeaderContainer").style.marginLeft = "3%";
     } else {
         document.getElementById("editorContentId").style.marginLeft = "200px";
+        document.getElementById("editorHeaderContainer").style.marginLeft = "220px";
         document.getElementById("verticalTextID").style.borderBottom = "1px solid white";
     }
     
 }
 
 function showHeader(id) {
-    saveEditorContent($);
     var classElementsNav = document.getElementsByClassName("navigationLink");
 
     for (var i = 0; i < classElementsNav.length; i++) {

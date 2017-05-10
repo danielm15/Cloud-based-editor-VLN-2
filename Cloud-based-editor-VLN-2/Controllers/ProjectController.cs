@@ -15,7 +15,61 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         private int _currentUserID;
         private ProjectService _service = new ProjectService();
         private AppUserService _userService = new AppUserService();
+        private DocumentService _documentService = new DocumentService();
 
+        private void InstanceCorrectFile(string projectType, ref string name, ref string type, ref string content) {
+            if(projectType == "HTML") {
+                name = "Index";
+                type = ".html";
+//                content = @"<!DOCTYPE html>
+//<html>
+//<head>
+//<title> Page Title </title>  
+//</head> 
+//<body> 
+//<p> Hello world! </p> 
+//</body>
+//</html> ";
+            }
+            else if (projectType == "C++") {
+                name = "main";
+                type = ".cpp";
+            }
+            else if (projectType == "Python") {
+                name = "app";
+                type = ".py"
+            }
+            else if (projectType == "C#") {
+                name = "project";
+                type = ".cs";
+            }
+            else if (projectType == "Javascript") {
+                name = "project";
+                type = ".js";
+            }
+            else if (projectType == "Java") {
+                name = "project";
+                type = ".java";
+            }
+            else if (projectType == "C") {
+                name = "main";
+                type = ".c";
+            }
+            else if (projectType == "Php") {
+                name = "project";
+                type = ".php";
+            }
+            else if (projectType == "Node.js") {
+                name = "project";
+                type = ".js";
+            }
+            else if (projectType == "Ruby") {
+                name = "project";
+                type = ".rb";
+            }
+
+        }
+        
         // GET: ProjectsOverview
         public ActionResult Index() {
             _currentUserEmail = User.Identity.GetUserName();
@@ -74,11 +128,24 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult AddProject(Project item) {
-
+            string name = "", type ="", content ="";
             if (ModelState.IsValid) {
                 item.DateCreated = DateTime.Now;
                 _service.AddProject(item);
-                
+
+                Document doc = new Document();
+                doc.ProjectID = item.ID;
+                doc.DateCreated = item.DateCreated;
+                doc.CreatedBy = _service.GetUserNameByUserID(item.OwnerID);
+                doc.LastUpdatedBy = doc.CreatedBy;
+                InstanceCorrectFile(item.ProjectType, ref name, ref type, ref content);
+                doc.Name = name;
+                doc.Type = type;
+                doc.Content = content;
+
+                    //doc.CreatedBy = _service._db.AppUsers.
+                _documentService.AddDocument(doc);
+
                 return RedirectToAction("Index");
             }
 

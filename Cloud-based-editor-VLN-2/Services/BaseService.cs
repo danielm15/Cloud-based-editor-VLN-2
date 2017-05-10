@@ -15,5 +15,13 @@ namespace Cloud_based_editor_VLN_2.Services {
 
             return userID;
         }
+
+        public string GetUserNameByUserID(int userID) {
+            var userName = (from users in _db.AppUsers
+                            where users.ID == userID
+                            select users.UserName).SingleOrDefault();
+            return userName;
+        }
+        
     }
 }

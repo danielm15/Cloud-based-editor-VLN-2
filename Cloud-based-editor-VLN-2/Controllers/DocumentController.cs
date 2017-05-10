@@ -22,11 +22,16 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
         // GET: Document
         public ActionResult Index(int? projectID) {
-            //_currentUserEmail = User.Identity.GetUserName();
-            //_currentUserID = _service.getUserID(_currentUserEmail);
-            
-            if (projectID.HasValue) {
+
+            int userID = _service.getUserID(User.Identity.GetUserName());
+            List<Project> userProjects = _projectService.GetProjectsByUserID(userID);
+
+            if (projectID.HasValue) {        
                 int id = projectID ?? default(int);
+                Project currentProject = _projectService.GetProjectByID(id);
+                if (!userProjects.Contains(currentProject)) {
+                    return RedirectToAction("AccessDenied", "Error");
+                }
                 DocumentViewModel model = new DocumentViewModel();
                 model.CurrProjectID = id;
                 model.Documents = _service.GetDocumentsByProjectID(id);

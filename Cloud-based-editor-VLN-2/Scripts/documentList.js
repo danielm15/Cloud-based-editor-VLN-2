@@ -143,12 +143,21 @@ var deleteDocument = function (documentID) {
                 }
 
             } else {
-                $("#documentMsg").empty();
-                var html = "Failed to delete <strong>" + response.name + response.type + "</strong>";
+                if (response.message == "noPermission") {
+                    $("#documentMsg").empty();
+                    var html = "You don't have permission to delete file: <strong>" + response.name + response.type + "</strong>";
 
-                $("#documentMsg").append(html);
-                document.getElementById("documentMsg").style.color = "red";
-                $('#documentMsg').fadeIn().delay(3500).fadeOut();
+                    $("#documentMsg").append(html);
+                    document.getElementById("documentMsg").style.color = "red";
+                    $('#documentMsg').fadeIn().delay(3500).fadeOut();
+                } else {
+                    $("#documentMsg").empty();
+                    var html = "Failed to delete <strong>" + response.name + response.type + "</strong>";
+
+                    $("#documentMsg").append(html);
+                    document.getElementById("documentMsg").style.color = "red";
+                    $('#documentMsg').fadeIn().delay(3500).fadeOut();
+                }
             }
         }
 

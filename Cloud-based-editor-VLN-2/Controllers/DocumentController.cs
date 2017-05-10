@@ -113,13 +113,13 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         {
             if (ModelState.IsValid)
             {
-                Document test = _service.GetDocumentByID(item.ID);
-                test.Name = item.Name;
-                _service._db.SaveChanges();
-
-                return RedirectToAction("Index", new { projectID = item.ProjectID });
+                Document document = _service.GetDocumentByID(item.ID);
+                document.Name = item.Name;
+                if (_service.UpdateDocument(document)) {
+                    return RedirectToAction("Index", new { projectID = item.ProjectID });
+                }
             }
-            return View();
+            return Json(new { success = false });
         }
 
         public ActionResult DownloadFile(int? documentID) {

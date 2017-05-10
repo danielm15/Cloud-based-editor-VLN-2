@@ -45,13 +45,20 @@ namespace Cloud_based_editor_VLN_2.Services {
             return true;
         }
 
-        public bool UpdateDocument(Document documentToUpadate) {
-            _db.Entry(documentToUpadate).State = System.Data.Entity.EntityState.Modified;
-            return _db.SaveChanges() == 1;
+        public bool UpdateDocument(Document documentToUpdate) {
+            _db.Entry(documentToUpdate).State = System.Data.Entity.EntityState.Modified;
+            try {
+                _db.SaveChanges();
+            }
+            catch {
+                return false;
+            }
+            return true;
         }
 
-        public bool DeleteDocument() {
-            // TODO
+        public bool DeleteDocument(Document documentToDelete) {
+            _db.Documents.Remove(documentToDelete);
+            _db.SaveChanges();
             return true;
         }
     }

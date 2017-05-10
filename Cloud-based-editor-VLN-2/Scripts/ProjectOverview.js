@@ -96,17 +96,64 @@ var InviteToProject = function (ProjectID) {
 
 var submitInviteName = function () {
     var myformdata = $("#InviteUserForm").serialize();
-    console.log(myformdata);
     $.ajax({
         type: "POST",
         url: "/Project/InviteUser",
         data: myformdata,
-        success: function () {
-            $("#myModal").modal("hide");
-            window.location.href = "/Project";
+        success: function (response) {
+            if (response.success == true) {
+                document.getElementById("userListInput").classList.toggle("hideInput");
+                document.getElementById("myHeaderMessage").innerHTML = "Invite successful user <strong> " + response.name + " </strong> added to project <strong> " + response.project + "</strong>";
+                document.getElementById("InviteUserSubmitBtn").innerHTML = "Invite another user";
+                var functionName = "InviteToProject(" + response.projectID + " )";
+                $("#InviteUserSubmitBtn").attr("onclick", functionName);
+            } else {
+                if (response.message == "userNotFound") {
+                    document.getElementById("userListInput").classList.toggle("hideInput");
+                    document.getElementById("myHeaderMessage").innerHTML = "User <strong> " + response.name + " </strong> not found in database ";
+                    document.getElementById("InviteUserSubmitBtn").innerHTML = "Try again";
+                    var functionName = "InviteToProject(" +response.projectID + " )";
+                    $("#InviteUserSubmitBtn").attr("onclick", functionName);
+                } else if (response.message == "userAlreadyInProject") {
+                    document.getElementById("userListInput").classList.toggle("hideInput");
+                    document.getElementById("myHeaderMessage").innerHTML = "User <strong> " + response.name + " </strong> is already collaborator in this project";
+                    document.getElementById("InviteUserSubmitBtn").innerHTML = "Try again";
+                    var functionName = "InviteToProject(" + response.projectID + " )";
+                    $("#InviteUserSubmitBtn").attr("onclick", functionName);
+                }
+            }
+           
+        }
+    })
+}
+
+var populateList = function (searchStringInput) {
+
+    var searchString = $(searchStringInput).val().toString();
+    if (searchString == "") {
+        var emptyHtml = " ";
+        $("#usersAutoComplete").html(emptyHtml);
+        return;
+    }
+    $.ajax({
+        type: "GET",
+        url: "/Project/PopulateList",
+        data: { searchString: searchString },
+        success: function (response) {
+            var html = "";
+            for (var i=0; i < response.userList.length; i++){
+                html += "<li id=\""  + response.userList[i].UserName + "\" onclick=\"chosenUser(this.id)\" ><strong>" + response.userList[i].UserName + "</strong>   Email: " + response.userList[i].Email + "</li>";
+            }
+            $("#usersAutoComplete").html(html);
         }
     });
-};
+}
+
+var chosenUser = function (id) {
+    document.getElementById("userListInput").value = id;
+    var emptyHtml = " ";
+    $("#usersAutoComplete").html(emptyHtml);
+}
 
 var AddProject = function (currUserID) {
     var url = "/Project/AddProject?ownerID=" + currUserID;
@@ -118,7 +165,8 @@ var AddProject = function (currUserID) {
 
 var AddnewProjectFunc = function () {
     var test = document.getElementById("AddProjectTextBox").value;
-
+    var test1 = document.getElementById("AddProjectDropDown").value;
+    alert(test1);
     if (test !== "") {
         var myformdata = $("#AddProjectForm").serialize();
         $.ajax({

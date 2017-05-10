@@ -16,7 +16,9 @@ namespace Cloud_based_editor_VLN_2.Controllers {
     public class DocumentController : Controller {
         //private string _currentUserEmail;
         //private int _currentUserID;
+
         private DocumentService _service = new DocumentService(null);
+        private ProjectService _projectService = new ProjectService(null);
 
         // GET: Document
         public ActionResult Index(int? projectID) {
@@ -113,13 +115,13 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         {
             if (ModelState.IsValid)
             {
-                Document test = _service.GetDocumentByID(item.ID);
-                test.Name = item.Name;
-                _service._db.SaveChanges();
-
-                return RedirectToAction("Index", new { projectID = item.ProjectID });
+                Document document = _service.GetDocumentByID(item.ID);
+                document.Name = item.Name;
+                if (_service.UpdateDocument(document)) {
+                    return RedirectToAction("Index", new { projectID = item.ProjectID });
+                }
             }
-            return View();
+            return Json(new { success = false });
         }
 
         public ActionResult DownloadFile(int? documentID) {
@@ -137,5 +139,25 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
             return RedirectToAction("Index", new { projectID = doc.ProjectID });
         }
+
+        [HttpPost]
+        public ActionResult Delete(int? documentID) {
+
+            if (documentID.HasValue) {
+                int ID = documentID ?? default(int);
+                Document documentToDelete = _service.GetDocumentByID(ID);
+                Project projectForOwner = _projectService.GetProjectByID(documentToDelete.ProjectID);
+                if (documentToDelete.CreatedBy != User.Identity.GetUserName() && projectForOwner.AppUser.UserName != User.Identity.GetUserName()) {
+                    return Json(new { success = false, message = "noPermission", name = documentToDelete.Name, documentID = documentID, type = documentToDelete.Type });
+                }
+
+                if (_service.DeleteDocument(documentToDelete)) {
+                    return Json(new { success = true, name = documentToDelete.Name, documentID = documentID, type  = documentToDelete.Type });
+                }
+            }
+
+            return Json(new { success = false });
+        }
     }
+
 }

@@ -1,12 +1,9 @@
 ﻿var EditFileName = function (fileID) {
-    //var url = "~/Document/_RenameDocument?documentID=" + fileID;
 
     $("#myModal1file").load("/Document/_RenameDocument?documentID=" + fileID, function () {
         $("#myModal1file").modal("show");
-        //$("#myModal1file").style.display = "block";
 
     })
-    //$("#myModal1file").modal("show");
 }
 
 var submitUpdatedFileName = function (projectID) {
@@ -17,10 +14,23 @@ var submitUpdatedFileName = function (projectID) {
             type: "POST",
             url: "/Document/_RenameDocument",
             data: myformdata,
-            success: function () {
-                $("#myModal1file").modal("hide");
+            success: function (responseData) {
+                if (responseData.success == false) {
+                    $('#RenameDocumentErrorDiv').empty();
 
-                window.location.href = "/Document?ProjectID=" + projectID + "";
+                    var html = "Duplicate file name"
+                    $('#RenameDocumentErrorDiv').append(html);
+
+                    var error = document.getElementById('RenameDocumentErrorDiv');
+                    error.style.color = "red";
+
+                    $('#RenameDocumentErrorDiv').fadeIn().delay(2000).fadeOut();
+                }
+                else {
+                    $("#myModal1file").modal("hide");
+
+                    window.location.href = "/Document?ProjectID=" + projectID + "";
+                }
             }
         });
     }

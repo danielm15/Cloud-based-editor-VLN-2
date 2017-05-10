@@ -51,6 +51,15 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult PopulateList(string searchString) {
+
+            IEnumerable<AppUser> userList = _userService.getLimitedUserList(searchString);
+
+            var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            string jsonUsers = serializer.Serialize(userList);
+            return Json(new { userList = userList}, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult DeleteProjectConfirm(int? ProjectID) {
             Project prj = _service.GetProjectByID(ProjectID ?? default(int));
             return PartialView("_DeleteProjectConfirm", prj);
@@ -116,21 +125,30 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult InviteUser(Project item) {
-            if (ModelState.IsValid) {
-                Project test = _service.GetProjectByID(item.ID);
-                int userID = _service.getUserID(item.Name);
+        public ActionResult InviteUser(FormCollection collection) {
 
-                UserProjects p = new UserProjects() {
-                    ProjectID = test.ID,
-                    AppUserID = userID
-                };
-                _userService.addUserToProject(p);
+            int projectID = int.Parse(collection["ID"]);
+            string userName = collection["inputUser"];
 
-                return RedirectToAction("Index", new { projectID = item.ID});
+            int userID = _service.getUserID(userName);
+
+            if (userID == 0) {
+                return Json(new { sucess = false, message = "userNotFound", name = userName, projectID = projectID });
+            } else {
+                Project projectToAddTo = _service.GetProjectByID(projectID);
+                List<Project> userProjects = _service.GetProjectsByUserID(userID);
+
+                if (userProjects.Contains(projectToAddTo)) {
+                    return Json(new { sucess = false, message = "userAlreadyInProject", name = userName, project = projectToAddTo.Name, projectID = projectID});
+                } else {
+                    UserProjects userProject = new UserProjects();
+                    userProject.ProjectID = projectToAddTo.ID;
+                    userProject.AppUserID = userID;
+
+                    _userService.addUserToProject(userProject);
+                    return Json(new { success = true, name = userName, project = projectToAddTo.Name, projectID = projectID });
+                }
             }
-            return View();
         }
     }
 }

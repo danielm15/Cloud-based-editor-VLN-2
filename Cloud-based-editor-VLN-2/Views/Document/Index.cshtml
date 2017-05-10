@@ -5,7 +5,7 @@
 }
 
 <div class="listTop">
-    <h2 id="projectFilesHeader">Project Files</h2>
+    <h2 id="projectFilesHeader">Project Files<em id="documentMsg"></em></h2>
     <div class="dropdown" id = "createFileBtn">
         <button class="btn btn-success dropdown-toggle createButton" type="button" data-toggle="dropdown">
             Create new file
@@ -52,7 +52,7 @@
             <li id="noFilesListItem"><h4 class="noFiles">No files to display</h4></li>
         }
         @foreach (Cloud_based_editor_VLN_2.Models.Entities.Document item in Model.Documents) {
-            <li>
+            <li id="@("listItem" + @item.ID)">
                 <div>
                     <div class="row documentListItem">
                         <a href="@Url.Action("Index", "Editor", new { projectID = item.ProjectID, documentID = item.ID })" class="clickableDiv">
@@ -79,7 +79,7 @@
                                     <li><a href="#" onclick="EditFileName(@item.ID)"><i class="glyphicon glyphicon-pencil"></i> Rename</a> </li>
                                     @*<li>@Html.ActionLink("Rename", "Rename", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>*@
                                     <li>@Html.ActionLink("Download", "DownloadFile", new { documentID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
-                                    <li>@Html.ActionLink("Delete", "Delete", new { projectID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
+                                    <li><a href="#" onclick="deleteDocument(@item.ID)">Delete</a></li>
                                 </ul>
                             </div>
                         </div>

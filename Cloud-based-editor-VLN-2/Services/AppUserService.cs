@@ -23,5 +23,12 @@ namespace Cloud_based_editor_VLN_2.Services {
             _db.UserProjects.Add(user);
             _db.SaveChanges();
         }
+
+        public IEnumerable<AppUser> getLimitedUserList(string searchString) {
+            IEnumerable<AppUser> users = (from user in _db.AppUsers
+                                          where user.UserName.Contains(searchString) || user.Email.Contains(searchString)
+                                          select user).Take(10);
+            return users;
+        }
     }
 }

@@ -50,6 +50,12 @@
   
 }
 
+#documentMsg {
+    font-size: 20px;
+    margin-left: 10%;
+    text-align: center;
+}
+
 /*////////// Class Selectors //////////*/
 
 .documentList {

@@ -165,7 +165,8 @@ var AddProject = function (currUserID) {
 
 var AddnewProjectFunc = function () {
     var test = document.getElementById("AddProjectTextBox").value;
-
+    var test1 = document.getElementById("AddProjectDropDown").value;
+    alert(test1);
     if (test !== "") {
         var myformdata = $("#AddProjectForm").serialize();
         $.ajax({

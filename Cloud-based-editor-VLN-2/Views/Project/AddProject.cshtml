@@ -1,5 +1,20 @@
 ﻿@model Cloud_based_editor_VLN_2.Models.Entities.Project
 
+@{
+        var domainsList = new SelectList(new[]
+        {
+                new SelectListItem { Text = "HTML", Value = "HTML", Selected = true },
+                new SelectListItem { Text = "C++", Value = "C++"},
+                new SelectListItem { Text = "Python", Value = "Python"},
+                new SelectListItem { Text = "C#", Value = "C#"},
+                new SelectListItem { Text = "Javascript", Value = "Javascript"},
+                new SelectListItem { Text = "Java", Value = "Java"},
+                new SelectListItem { Text = "C", Value = "C"},
+                new SelectListItem { Text = "Php", Value = "Php"},
+                new SelectListItem { Text = "Node.js", Value = "Node.js" },
+                new SelectListItem { Text = "Ruby", Value = "Ruby" },
+            }, "Value", "Text");
+}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,6 +31,10 @@
                     <div class="text-danger" id="AddProjectErrorDiv">
 
                     </div>
+                    
+                    @Html.DropDownListFor(m => m.ProjectType, domainsList, new { @id = "AddProjectDropDown", @class = "myclass" })
+
+
                     
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" onclick="AddnewProjectFunc()" id="InviteUserSubmitBtn">Create Project</button>

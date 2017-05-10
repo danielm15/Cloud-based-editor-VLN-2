@@ -27,6 +27,8 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
         IEnumerable<AppUser> Users { get; set; }
         //[ForeignKey("StartUpFileID")]
         //public virtual Document Document { get; set; }
-        
+
+        [Required(ErrorMessage = "Type of project is Required")]
+        public string ProjectType { get; set; }
     }
 }

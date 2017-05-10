@@ -12,7 +12,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
     public class EditorController : Controller {
 
-        private DocumentService _service = new DocumentService();
+        private DocumentService _service = new DocumentService(null);
 
         // GET: Editor
         public ActionResult Index(int? projectID, int? documentID) {

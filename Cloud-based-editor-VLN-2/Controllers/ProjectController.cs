@@ -13,9 +13,10 @@ namespace Cloud_based_editor_VLN_2.Controllers {
     public class ProjectController : Controller {
         private string _currentUserEmail;
         private int _currentUserID;
-        private ProjectService _service = new ProjectService();
-        private AppUserService _userService = new AppUserService();
-        private DocumentService _documentService = new DocumentService();
+
+        private ProjectService _service = new ProjectService(null);
+        private AppUserService _userService = new AppUserService(null);
+        private DocumentService _documentService = new DocumentService(null);
 
         private void InstanceCorrectFile(string projectType, ref string name, ref string type, ref string content) {
             if(projectType == "HTML") {
@@ -37,7 +38,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             }
             else if (projectType == "Python") {
                 name = "app";
-                type = ".py"
+                type = ".py";
             }
             else if (projectType == "C#") {
                 name = "project";
@@ -67,7 +68,6 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 name = "project";
                 type = ".rb";
             }
-
         }
         
         // GET: ProjectsOverview

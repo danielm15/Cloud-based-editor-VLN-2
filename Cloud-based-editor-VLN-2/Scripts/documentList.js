@@ -11,7 +11,6 @@
             url: "Document/Create",
             data: form.serialize(),
             success: function (response) {
-                console.log(response);
                 
                 if (response.success == false) {
                     $('#duplicateErrorMsg').empty();
@@ -68,7 +67,7 @@
                     var day = date.getDate();
                     var month = date.getMonth() + 1;
                     var year = date.getFullYear();
-                    var html = "<li>"
+                    var html = "<li id=\"listItem" + response.ID + "\">"
                        + "<div>"
                            + "<div class=\"row documentListItem\">"
                             + "<a href=\"/Editor?projectID=" + response.ProjectID + "&documentID=" + response.ID + "\" class=\"clickableDiv\">"
@@ -93,7 +92,7 @@
                                    + "<ul class=\"dropdown-menu\">"
                                    + "<li><a href=\"/Document/Rename?projectID=" + response.ProjectID + "\" tabindex=\"-1\" type=\"a\">Rename</a></li>"
                                    + "<li><a href=\"/Document/DownloadFile?documentID=" + response.ID + "\" tabindex=\"-1\" type=\"a\">Download</a></li>"
-                                   + "<li><a href=\"/Document/Delete?projectID=" + response.ProjectID + "\" tabindex=\"-1\" type=\"a\">Delete</a></li>"
+                                   + "<li><a href=\"#\" onclick=\"deleteDocument(" + response.ID + ")\">Delete</a></li>"
                                    + "</ul>"
                                    + "</div>"
                                    + "</div>"
@@ -103,6 +102,13 @@
                     $("#documentUlListID").append(html);
                     document.getElementById("createFileForm").reset();
                     document.getElementById("createFileBtn").classList.toggle("open");
+
+                    $("#documentMsg").empty();
+                    var html = "File: <strong>" + response.Name + response.Type + "</strong> Created";
+
+                    $("#documentMsg").append(html);
+                    document.getElementById("documentMsg").style.color = "gray";
+                    $('#documentMsg').fadeIn().delay(3500).fadeOut();
                 }
             }
         });
@@ -111,6 +117,50 @@
     });
 });
 
-$(function createFile() {
+var deleteDocument = function (documentID) {
 
-});
+    $.ajax({
+        method: "post",
+        url: "Document/Delete",
+        data: { documentID: documentID },
+        success: function (response) {
+            if (response.success == true) {
+                var itemID = "listItem" + response.documentID;
+                $("#" + itemID).remove();
+                $("#documentMsg").empty();
+                var html = "File: <strong>" + response.name + response.type + "</strong> deleted";
+
+                $("#documentMsg").append(html);
+                document.getElementById("documentMsg").style.color = "red";
+                $('#documentMsg').fadeIn().delay(3500).fadeOut();
+
+                var liList = document.getElementById("documentUlListID").getElementsByTagName("li");
+                var listLength = liList.length - 1;
+                if (listLength < 2) {
+                    $('#noFilesListItem').empty();
+                    var html = "<li id=\"noFilesListItem\"><h4 class=\"noFiles\">No files to display</h4></li>";
+                    $("#documentUlListID").append(html);
+                }
+
+            } else {
+                if (response.message == "noPermission") {
+                    $("#documentMsg").empty();
+                    var html = "You don't have permission to delete file: <strong>" + response.name + response.type + "</strong>";
+
+                    $("#documentMsg").append(html);
+                    document.getElementById("documentMsg").style.color = "red";
+                    $('#documentMsg').fadeIn().delay(3500).fadeOut();
+                } else {
+                    $("#documentMsg").empty();
+                    var html = "Failed to delete <strong>" + response.name + response.type + "</strong>";
+
+                    $("#documentMsg").append(html);
+                    document.getElementById("documentMsg").style.color = "red";
+                    $('#documentMsg').fadeIn().delay(3500).fadeOut();
+                }
+            }
+        }
+
+    });
+}
+

@@ -8,6 +8,8 @@
     var documentID = @ViewBag.documentID;
 </script>
 
+
+
 <div class="navToggle"> <div class="verticalText" id="verticalTextID" onclick="showNavBar();">Navigation</div> </div>
 <nav class="projectNav" id="sideNav">
     <ul>
@@ -32,7 +34,10 @@
         }
     }
     @Html.HiddenFor(model => model.Doc.ID, new { id = "activeDocID" })
-    <button type="submit" id="saveFileBtn">Save</button>
+    <div class="btn-group">
+        @Html.ActionLink("Back to project files", "Index", "Document", new { projectID = Model.Doc.ProjectID }, new { @type = "button", @class = "btn btn-default" })
+        <button type="button" class="btn btn-default" id="saveFileBtn">Save</button>
+    </div>
 </div>
 
 <div class="editorContent" id="editorContentId">
@@ -46,11 +51,11 @@
     var editor = ace.edit("editorID");
     var content = @Html.Raw(Json.Encode(Model.Doc.Content));
     editor.setTheme("ace/theme/twilight");
-    editor.session.setMode("ace/mode/csharp");
+    var type = '@Model.Doc.Type';
+    var highlighting = changeHighlighting(type);
+    console.log(highlighting);
+    editor.session.setMode("ace/mode/" + highlighting);
     editor.getSession().setValue(content);
-    /*editor.getSession().on('change', function() {
-        update()
-    });*/
 </script>
 
 

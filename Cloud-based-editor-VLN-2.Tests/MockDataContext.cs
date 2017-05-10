@@ -23,7 +23,7 @@ namespace Cloud_based_editor_VLN_2.Tests {
 
          public MockDataContext() {
             // We're setting our DbSets to be InMemoryDbSets rather than using SQL Server.
-            AppUsers = new InMemoryDbSet<AppUser>();
+            this.AppUsers = new InMemoryDbSet<AppUser>();
             this.UserProjects = new InMemoryDbSet<UserProjects>();
             this.Projects = new InMemoryDbSet<Project>();
             this.Documents = new InMemoryDbSet<Document>();

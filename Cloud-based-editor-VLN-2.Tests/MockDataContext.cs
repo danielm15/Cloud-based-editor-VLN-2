@@ -45,9 +45,5 @@ namespace Cloud_based_editor_VLN_2.Tests {
 
             return changes;
         }
-
-        public void Dispose() {
-            // Do nothing!
-        }
     }
 }

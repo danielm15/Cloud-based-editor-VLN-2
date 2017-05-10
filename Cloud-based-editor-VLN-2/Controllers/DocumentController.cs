@@ -18,10 +18,10 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         private DocumentService _service = new DocumentService(null);
         private ProjectService _projectService = new ProjectService(null);
 
-        public bool checkAuthorization(int projectID) {
+        private bool checkAuthorization(int projectID) {
             int userID = _service.getUserID(User.Identity.GetUserName());
             List<Project> userProjects = _projectService.GetProjectsByUserID(userID);
-            Project currentProject = _projectService.GetProjectByID(id);
+            Project currentProject = _projectService.GetProjectByID(projectID);
 
             if (userProjects.Contains(currentProject)) {
                 return true;
@@ -31,8 +31,6 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
         // GET: Document
         public ActionResult Index(int? projectID) {
-
-           
 
             if (projectID.HasValue) {        
                 int id = projectID ?? default(int);

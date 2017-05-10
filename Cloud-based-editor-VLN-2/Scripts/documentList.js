@@ -71,7 +71,7 @@
                        + "<div>"
                            + "<div class=\"row documentListItem\">"
                             + "<a href=\"/Editor?projectID=" + response.ProjectID + "&documentID=" + response.ID + "\" class=\"clickableDiv\">"
-                                   + "<div class=\"col-md-3 listText\">"
+                                   + "<div class=\"col-md-3 listText\" id=\"nameID" + response.ID + "\">"
                                         + response.Name
                                    + "</div>"
                                    + "<div class=\"col-md-2 listText\">"

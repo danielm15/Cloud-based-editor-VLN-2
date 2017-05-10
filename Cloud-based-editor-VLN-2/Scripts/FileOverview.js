@@ -1,29 +1,42 @@
 ﻿var EditFileName = function (fileID) {
-    //var url = "~/Document/_RenameDocument?documentID=" + fileID;
-
     $("#myModal1file").load("/Document/_RenameDocument?documentID=" + fileID, function () {
         $("#myModal1file").modal("show");
-        //$("#myModal1file").style.display = "block";
 
     })
-    //$("#myModal1file").modal("show");
+
 }
 
 var submitUpdatedFileName = function (projectID) {
-    var test = document.getElementById("RenameDocumentTextBox").value;
-    if (test != "") {
+    var nameField = document.getElementById("RenameDocumentTextBox").value;
+    if (nameField != "") {
         var myformdata = $("#myFormFile").serialize();
         $.ajax({
             type: "POST",
             url: "/Document/_RenameDocument",
             data: myformdata,
-            success: function () {
+            success: function (response) {
                 $("#myModal1file").modal("hide");
-
-                window.location.href = "/Document?ProjectID=" + projectID + "";
+                if (response.success == true) {
+                    var itemID = "nameID" + response.docID;
+                    document.getElementById(itemID).innerHTML = response.name;
+                    $("#documentMsg").empty();
+                    var html = "File name change to: <strong>" + response.name + response.type + "</strong>";
+                    $("#documentMsg").append(html);
+                    document.getElementById("documentMsg").style.color = "gray";
+                    $('#documentMsg').fadeIn().delay(3500).fadeOut();
+                } else {
+                    if (response.message == "noPermission") {
+                        $("#documentMsg").empty();
+                        var html = "You don't have permission to rename this file";
+                        $("#documentMsg").append(html);
+                        document.getElementById("documentMsg").style.color = "red";
+                        $('#documentMsg').fadeIn().delay(3500).fadeOut();
+                    }
+                }
             }
         });
     }
+
     else {
         var div = document.getElementById("RenameDocumentErrorDiv");
         div.innerHTML = "You must enter a name";

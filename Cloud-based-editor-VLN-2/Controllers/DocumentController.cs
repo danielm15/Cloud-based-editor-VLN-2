@@ -112,15 +112,19 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         //[ValidateAntiForgeryToken]
         public ActionResult _RenameDocument(Document item)
         {
-            if (ModelState.IsValid)
-            {
-                Document test = _service.GetDocumentByID(item.ID);
-                test.Name = item.Name;
-                _service._db.SaveChanges();
 
-                return RedirectToAction("Index", new { projectID = item.ProjectID });
+            Document documentToUpdate = _service.GetDocumentByID(item.ID);
+            documentToUpdate.Name = item.Name;
+
+            Project projectForOwner = _projectService.GetProjectByID(documentToUpdate.ProjectID);
+            if (documentToUpdate.CreatedBy != User.Identity.GetUserName() && projectForOwner.AppUser.UserName != User.Identity.GetUserName()) {
+                return Json(new { success = false, message = "noPermission", name = documentToUpdate.Name, type = documentToUpdate.Type, docID = documentToUpdate.ID });
             }
-            return View();
+            if (_service.UpdateDocument(documentToUpdate)) {
+                return Json(new { success = true, name = documentToUpdate.Name, type = documentToUpdate.Type, docID = documentToUpdate.ID });
+            }
+
+            return Json(new { success = false });
         }
 
         public ActionResult DownloadFile(int? documentID) {

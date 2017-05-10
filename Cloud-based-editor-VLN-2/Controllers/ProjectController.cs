@@ -13,9 +13,106 @@ namespace Cloud_based_editor_VLN_2.Controllers {
     public class ProjectController : Controller {
         private string _currentUserEmail;
         private int _currentUserID;
+
         private ProjectService _service = new ProjectService(null);
         private AppUserService _userService = new AppUserService(null);
+        private DocumentService _documentService = new DocumentService(null);
 
+        private void InstanceCorrectFile(string projectType, ref string name, ref string type, ref string content) {
+            if(projectType == "HTML") {
+                name = "Index";
+                type = ".html";
+                content = @"<!DOCTYPE html>
+<html>
+<head>
+<title> Page Title </title>  
+</head> 
+<body> 
+<p> Hello world! </p> 
+</body>
+</html> ";
+                return;
+            }
+            else if (projectType == "C++") {
+                name = "main";
+                type = ".cpp";
+                content = @"#include <iostream>
+using namespace std;
+
+int main() {
+    cout << ""Hello world"" << endl;
+    
+    return 0;
+}";
+                return;
+            }
+            else if (projectType == "Python") {
+                name = "app";
+                type = ".py";
+                content = @"print ""Hello World"" "; 
+            }
+            else if (projectType == "C#") {
+                name = "project";
+                type = ".cs";
+                content = @"public class project
+{
+   public static void Main()
+   {
+      System.Console.WriteLine(""Hello, World!"");
+   }
+        }";
+            }
+            else if (projectType == "Javascript") {
+                name = "project";
+                type = ".js";
+                content = @"console.log(""Hello World"" ";
+            }
+            else if (projectType == "Java") {
+                name = "project";
+                type = ".java";
+                content = @"public class project{
+    public static void main(string[] args){
+        System.out.println(""Hello World"");
+    }
+        }";
+            }
+            else if (projectType == "C") {
+                name = "main";
+                type = ".c";
+                content = @"#include<stdio.h>
+
+main()
+{
+    printf(""Hello World"");
+}
+            ";
+            }
+            else if (projectType == "Php") {
+                name = "project";
+                type = ".php";
+                content = @"<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+echo ""Hello World!"";
+?>
+
+</ body >
+</ html > ";
+            }
+            else if (projectType == "Node.js") {
+                name = "project";
+                type = ".js";
+                content = @"console.log(""Hello World"")";
+            }
+            else if (projectType == "Ruby") {
+                name = "project";
+                type = ".rb";
+                content = @"puts ""Hello World""  ";
+            }
+        }
+        
         // GET: ProjectsOverview
         public ActionResult Index() {
             _currentUserEmail = User.Identity.GetUserName();
@@ -74,11 +171,24 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult AddProject(Project item) {
-
+            string name = "", type ="", content ="";
             if (ModelState.IsValid) {
                 item.DateCreated = DateTime.Now;
                 _service.AddProject(item);
-                
+
+                Document doc = new Document();
+                doc.ProjectID = item.ID;
+                doc.DateCreated = item.DateCreated;
+                doc.CreatedBy = _service.GetUserNameByUserID(item.OwnerID);
+                doc.LastUpdatedBy = doc.CreatedBy;
+                InstanceCorrectFile(item.ProjectType, ref name, ref type, ref content);
+                doc.Name = name;
+                doc.Type = type;
+                doc.Content = content;
+
+                    //doc.CreatedBy = _service._db.AppUsers.
+                _documentService.AddDocument(doc);
+
                 return RedirectToAction("Index");
             }
 

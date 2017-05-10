@@ -239,6 +239,10 @@
     <Compile Include="Migrations\201705091515214_NameProject.Designer.cs">
       <DependentUpon>201705091515214_NameProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705100938549_ProjectType.cs" />
+    <Compile Include="Migrations\201705100938549_ProjectType.Designer.cs">
+      <DependentUpon>201705100938549_ProjectType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\Document.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -388,6 +392,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705091515214_NameProject.resx">
       <DependentUpon>201705091515214_NameProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705100938549_ProjectType.resx">
+      <DependentUpon>201705100938549_ProjectType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

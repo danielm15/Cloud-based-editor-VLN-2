@@ -148,4 +148,28 @@ function showHeader(id) {
     });
 })(jQuery);
 
+function changeHighlighting(type) {
+    if (type == ".html") {
+        return "html";
+    }
+    else if (type == ".js") {
+        return "javascript";
+    }
+    else if (type == ".cs") {
+        return "csharp";
+    }
+    else if (type == ".css") {
+        return "css";
+    }
+    else if (type == ".c" || type == ".cpp") {
+        return "c_cpp";
+    }
+    else if (type == ".py") {
+        return "python";
+    }
+    else {
+        return "txt";
+    }
+}
+
     

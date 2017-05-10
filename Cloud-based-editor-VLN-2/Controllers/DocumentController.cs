@@ -17,6 +17,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         //private string _currentUserEmail;
         //private int _currentUserID;
         private DocumentService _service = new DocumentService();
+        private ProjectService _projectService = new ProjectService();
 
         // GET: Document
         public ActionResult Index(int? projectID) {
@@ -144,6 +145,11 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             if (documentID.HasValue) {
                 int ID = documentID ?? default(int);
                 Document documentToDelete = _service.GetDocumentByID(ID);
+                Project projectForOwner = _projectService.GetProjectByID(documentToDelete.ProjectID);
+                if (documentToDelete.CreatedBy != User.Identity.GetUserName() && projectForOwner.AppUser.UserName != User.Identity.GetUserName()) {
+                    return Json(new { success = false, message = "noPermission", name = documentToDelete.Name, documentID = documentID, type = documentToDelete.Type });
+                }
+
                 if (_service.DeleteDocument(documentToDelete)) {
                     return Json(new { success = true, name = documentToDelete.Name, documentID = documentID, type  = documentToDelete.Type });
                 }

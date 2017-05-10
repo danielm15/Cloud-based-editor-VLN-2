@@ -2,8 +2,12 @@
 
 @{
     ViewBag.Title = "Index";
+    ViewBag.UserID = Model.CurrUserID;
 }
 
+<script>
+    var userID = @ViewBag.userID;
+</script>
 
 
 <h2>Projects</h2>

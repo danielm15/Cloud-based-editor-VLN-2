@@ -85,6 +85,45 @@ function showHeader(id) {
     getContent($, id);
 }
 
+$(function () {
+    window.hubReady = $.connection.hub.start();
+});
+
+(function ($) {
+    'use strict';
+    $(function () {
+        var invhub = $.connection.invitationHub;
+
+        invhub.client.sendInvite = function (fromID, toID, projectID) {
+            
+            var notifyCount = document.getElementById("NotifyCount");
+
+            if (notifyCount.innerHTML == "") {
+                notifyCount.innerHTML = "1";
+            }
+            else {
+                notifyCount.innerHTML = (parseInt(notifyCount.innerHTML) + 1).toString();
+                
+            }
+        }
+ 
+        window.hubReady.done(function () {
+            invhub.server.joinUserGroup(userID);
+            $(document).on('click', '#InviteUserSubmitBtn', function () {
+                
+                var projectID = $('#CurrentProjectToInvite').serialize().substring(3);
+                var toUserName = $('#userListInput').serialize().substring(10); 
+                
+                console.log(toUserName);
+                console.log(projectID);
+
+                invhub.server.sendInvitation(userID, toUserName, parseInt(projectID));
+            });
+        });
+    });
+})(jQuery);
+
+
 (function ($) {
     'use strict';
     $(function () {
@@ -92,7 +131,7 @@ function showHeader(id) {
             $editor = ace.edit("editorID"),
             changed = false,
             markerID = null;
-        
+
         dochub.client.updateText = function (obj, cursorScreenPos) {
             var message = document.getElementById("currentUser");
             $('#currentUser').stop(true);
@@ -130,8 +169,9 @@ function showHeader(id) {
 
             changed = false;
         };
-        $.connection.hub.start().done(function () {
+        window.hubReady.done(function () {
             dochub.server.joinDocument(documentID);
+            dochub.server.joinUserGroup(userID);
             $editor.on('change',
                 function (obj) {
                     saveEditorContent($);
@@ -143,7 +183,6 @@ function showHeader(id) {
                     dochub.server.updateDocument(obj, documentID, cursorScreenPos);
                 }
             );
-                
         });
     });
 })(jQuery);

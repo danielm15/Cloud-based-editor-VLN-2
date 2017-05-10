@@ -18,7 +18,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         public ActionResult Index(int? projectID, int? documentID) {
 
             if(projectID.HasValue && documentID.HasValue) {
-                ViewBag.DocumentID = documentID ?? default(int);
+                //ViewBag.DocumentID = documentID ?? default(int);
                 int projectByID = projectID ?? default(int);
                 int documentByID = documentID ?? default(int);
                 DocumentViewModel model = new DocumentViewModel();

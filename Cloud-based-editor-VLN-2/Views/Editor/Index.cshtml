@@ -53,7 +53,6 @@
     editor.setTheme("ace/theme/twilight");
     var type = '@Model.Doc.Type';
     var highlighting = changeHighlighting(type);
-    console.log(highlighting);
     editor.session.setMode("ace/mode/" + highlighting);
     editor.getSession().setValue(content);
 </script>

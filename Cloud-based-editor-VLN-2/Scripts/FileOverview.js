@@ -27,6 +27,7 @@ var submitUpdatedFileName = function (projectID) {
                     $('#RenameDocumentErrorDiv').fadeIn().delay(2000).fadeOut();
                 }
                 else {
+                    alert('her');
                     $("#myModal1file").modal("hide");
 
                     window.location.href = "/Document?ProjectID=" + projectID + "";

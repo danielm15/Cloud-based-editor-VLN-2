@@ -24,7 +24,7 @@
 
                     <div class="row top-column-header">
                         <div class="col-md-12" id="top-column-area">
-                            <h3 class="hideOverFlow">@Html.DisplayFor(modelItem => item.Name)</h3>
+                            <h3 class="hideOverFlow" id="@("projectNameHeaderID" + item.ID)">@Html.DisplayFor(modelItem => item.Name)</h3>
                         </div>
                         </div>
                         <div class="row">
@@ -36,7 +36,7 @@
                         <div class="row lastRow">
                             <div class="col-md-4 col-md-offset-2">
                                 @* @Html.ActionLink("Invite", "Index", "InviteUser", new { projectID = item.ID }, new { @type = "div", @class = "btn btn-default btn-block" })*@
-                                <a href="#" class="btn" onclick="InviteToProject(@item.ID)">
+                                <a href="javascript:;" class="btn" onclick="InviteToProject(@item.ID)">
                                     <i class="glyphicon glyphicon-user"></i> Invite
                                 </a>
                             </div>
@@ -49,7 +49,7 @@
                                     </div>
                                     <ul class="dropdown-menu optionsMenu">
                                         <li>
-                                            <a href="#" onclick="EditProjectName(@item.ID)">
+                                            <a href="javascript:;" onclick="EditProjectName(@item.ID)">
                                                 <i class="glyphicon glyphicon-pencil"> Rename</i>
                                             </a>
                                         </li>
@@ -61,7 +61,7 @@
                                   })
                                         </li>
                                         <li>
-                                            <a href="#" onclick="deleteProject(@item.ID)">
+                                            <a href="javascript:;" onclick="deleteProject(@item.ID)">
                                                 <i class="glyphicon glyphicon-remove"> Delete</i>
                                             </a>
                                         </li>

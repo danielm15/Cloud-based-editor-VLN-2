@@ -45,6 +45,17 @@ namespace Cloud_based_editor_VLN_2.Services {
             return true;
         }
 
+        public bool UpdateProject(Project projectToUpdate) {
+            _db.Entry(projectToUpdate).State = System.Data.Entity.EntityState.Modified;
+            try {
+                _db.SaveChanges();
+            }
+            catch {
+                return false;
+            }
+            return true;
+        }
+
         public bool DeleteProject(int projectID) {
 
             var documents = _db.Documents.Where(item => item.ProjectID == projectID);

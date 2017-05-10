@@ -217,14 +217,20 @@ echo ""Hello World!"";
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult _RenameProject(Project item) {
-            if (ModelState.IsValid) {
-                Project test = _service.GetProjectByID(item.ID);
-                test.Name = item.Name;
-                _service._db.SaveChanges();
 
-                return RedirectToAction("Index");
+
+            Project projectToUpdate = _service.GetProjectByID(item.ID);
+            projectToUpdate.Name = item.Name;
+
+            if (projectToUpdate.AppUser.UserName != User.Identity.GetUserName()) {
+                return Json(new { success = false, message = "noPermission", name = projectToUpdate.Name,  projectID = projectToUpdate.ID });
+            } 
+            if (_service.UpdateProject(projectToUpdate)) {
+                return Json(new { success = true, name = projectToUpdate.Name, projectID = projectToUpdate.ID });
             }
-            return View();
+
+            return Json(new { success = false });
+
         }
 
         public ActionResult InviteUser(int? ProjectID) {

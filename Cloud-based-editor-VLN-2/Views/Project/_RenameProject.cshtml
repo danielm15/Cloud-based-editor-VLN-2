@@ -13,16 +13,16 @@
             <form id="myForm">
                 @Html.HiddenFor(model => model.ID)
                 @Html.LabelFor(model => model.Name)
-                @Html.TextBoxFor(model => model.Name,  new { id = "MyId" })
+                @Html.TextBoxFor(model => model.Name,  new { id = "projectTextBoxID" })
                 <div class="text-danger" id="RenameProjectErrorDiv">
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" onclick="submitUpdatedName()" id="RenameProjectSubmit">Save</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
             </form>
-</div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" onclick="submitUpdatedName()" id="RenameProjectSubmit">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
     </div>
 
 </div>

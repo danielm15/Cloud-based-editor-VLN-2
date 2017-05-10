@@ -8,17 +8,28 @@
 
 
 var submitUpdatedName = function () {
-    var test = document.getElementById("MyId").value;
-    if (test !== "") {
+    var newNameString = document.getElementById("projectTextBoxID").value;
+    if (newNameString !== "") {
         var myformdata = $("#myForm").serialize();
         $.ajax({
 
             type: "POST",
             url: "/Project/_RenameProject",
             data: myformdata,
-            success: function () {
-                $("#myModal").modal("hide");
-                window.location.href = "/Project/";
+            success: function (response) {
+                if (response.success == true) {
+                    $("#myModal1").modal("hide")
+                    var itemID = "projectNameHeaderID" + response.projectID;
+                    document.getElementById(itemID).innerHTML = response.name;
+
+                } else {
+                    if (response.message == "noPermission") {
+                        $("#myForm").remove();
+                        $("#RenameProjectSubmit").remove();
+                        var html = "<h5>You don't have permission to rename this project </h5>"
+                        $("#RenameModalBody").append(html);
+                    }
+                }
             }
         });
     }

@@ -45,8 +45,9 @@ namespace Cloud_based_editor_VLN_2.Services {
             return _db.SaveChanges() == 1;
         }
 
-        public bool DeleteDocument() {
-            // TODO
+        public bool DeleteDocument(Document documentToDelete) {
+            _db.Documents.Remove(documentToDelete);
+            _db.SaveChanges();
             return true;
         }
     }

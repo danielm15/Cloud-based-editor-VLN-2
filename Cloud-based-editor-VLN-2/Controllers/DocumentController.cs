@@ -137,5 +137,20 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
             return RedirectToAction("Index", new { projectID = doc.ProjectID });
         }
+
+        [HttpPost]
+        public ActionResult Delete(int? documentID) {
+
+            if (documentID.HasValue) {
+                int ID = documentID ?? default(int);
+                Document documentToDelete = _service.GetDocumentByID(ID);
+                if (_service.DeleteDocument(documentToDelete)) {
+                    return Json(new { success = true, name = documentToDelete.Name, documentID = documentID, type  = documentToDelete.Type });
+                }
+            }
+
+            return Json(new { success = false });
+        }
     }
+
 }

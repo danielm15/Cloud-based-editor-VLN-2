@@ -38,6 +38,10 @@
 }
 
 /*////////// Class Selectors //////////*/
+.row {
+    margin-top:10px;
+}
+
 .row  div a{   
     text-decoration: none;
 }
@@ -109,6 +113,11 @@
 
 .projectButton:hover {
     background-color: gainsboro;
+}
+
+.hideOverFlow {
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .dateCreatedClass {

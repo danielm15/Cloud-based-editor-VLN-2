@@ -2,6 +2,7 @@
 using Cloud_based_editor_VLN_2.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 
@@ -26,11 +27,17 @@ namespace Cloud_based_editor_VLN_2.Services {
         }
 
         public bool AddDocument(Document newDocument) {
-            _db.Documents.Add(newDocument);
-            if(_db.SaveChanges() == 1) {
-                return true;
+            var v = _db.Documents.Add(newDocument);
+            //_db.SaveChanges();
+            try {
+                _db.SaveChanges();
+                //return true;
             }
-            return false;
+            catch(DbUpdateException e) {
+                
+                return false;
+            }
+            return true;
         }
 
         public bool UpdateDocument(Document documentToUpadate) {

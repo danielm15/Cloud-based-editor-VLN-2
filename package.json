@@ -1,0 +1,28 @@
+{
+  "name": "cloud-based-editor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^2.1.2"
+  },
+  "devDependencies": {
+    "gulp-autoprefixer": "^4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielm15/Cloud-based-editor-VLN-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielm15/Cloud-based-editor-VLN-2/issues"
+  },
+  "homepage": "https://github.com/danielm15/Cloud-based-editor-VLN-2#readme"
+}

@@ -20,18 +20,19 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         public ActionResult Index() {
             _currentUserEmail = User.Identity.GetUserName();
             _currentUserID = _service.getUserID(_currentUserEmail);
-            ProjectViewModel model = new ProjectViewModel();
-            model.CurrUserID = _currentUserID;
-            model.Projects = _service.GetProjectsByUserID(_currentUserID);
-
+            ProjectViewModel model = new ProjectViewModel() {
+                CurrUserID = _currentUserID,
+                Projects = _service.GetProjectsByUserID(_currentUserID)
+            };
             return View(model);
         }
 
         [HttpGet]
         public ActionResult AddProject(int? ownerID) {
-            Project newP = new Project();
-            newP.OwnerID = (ownerID ?? default(int));
-            return View(newP);             
+            Project newP = new Project() {
+                OwnerID = (ownerID ?? default(int))
+            };
+            return PartialView("AddProject", newP);             
         }
 
         public ActionResult DeleteProjectVal(int? projectID) {
@@ -71,17 +72,17 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult AddProject(Project item) {
 
             if (ModelState.IsValid) {
                 item.DateCreated = DateTime.Now;
                 _service.AddProject(item);
                 
-                return RedirectToAction("Index", new { projectID = item.ID });
+                return RedirectToAction("Index");
             }
 
-            return View(item);
+            return View();
         }
 
         public ActionResult _RenameProject(int? ProjectID) {
@@ -118,6 +119,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
         public ActionResult InviteUser(int? ProjectID) {
             Project p = new Project();
+            ProjectViewModel someTest = new ProjectViewModel(); 
             Project prj = _service.GetProjectByID(ProjectID ?? default(int));
             return PartialView("_InviteUser", prj);
         }
@@ -146,7 +148,6 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                     _userService.addUserToProject(userProject);
                     return Json(new { success = true, name = userName, project = projectToAddTo.Name, projectID = projectID });
                 }
-
             }
         }
     }

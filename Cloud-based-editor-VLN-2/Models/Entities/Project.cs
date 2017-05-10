@@ -24,6 +24,7 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
         [ForeignKey("OwnerID")]
         public virtual AppUser AppUser { get; set; }
 
+        IEnumerable<AppUser> Users { get; set; }
         //[ForeignKey("StartUpFileID")]
         //public virtual Document Document { get; set; }
         

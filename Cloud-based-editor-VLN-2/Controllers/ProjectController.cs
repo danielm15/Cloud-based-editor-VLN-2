@@ -22,19 +22,29 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             if(projectType == "HTML") {
                 name = "Index";
                 type = ".html";
-//                content = @"<!DOCTYPE html>
-//<html>
-//<head>
-//<title> Page Title </title>  
-//</head> 
-//<body> 
-//<p> Hello world! </p> 
-//</body>
-//</html> ";
+                content = @"<!DOCTYPE html>
+<html>
+<head>
+<title> Page Title </title>  
+</head> 
+<body> 
+<p> Hello world! </p> 
+</body>
+</html> ";
+                return;
             }
             else if (projectType == "C++") {
                 name = "main";
                 type = ".cpp";
+                content = @"#include <iostream>
+using namespace std;
+
+int main() {
+    cout << ""Hello world"" << endl;
+    
+    return 0;
+}";
+                return;
             }
             else if (projectType == "Python") {
                 name = "app";

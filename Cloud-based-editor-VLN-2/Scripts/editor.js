@@ -134,6 +134,7 @@ function showHeader(id) {
             dochub.server.joinDocument(documentID);
             $editor.on('change',
                 function (obj) {
+                    
                     saveEditorContent($);
                     if (changed) {
                         return;

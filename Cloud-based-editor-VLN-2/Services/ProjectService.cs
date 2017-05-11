@@ -86,7 +86,7 @@ namespace Cloud_based_editor_VLN_2.Services {
             return true;
         }
 
-        public int HowManyUsersAreIntTheProject(int prjID) {
+        public int HowManyUsersAreInTheProject(int prjID) {
             IEnumerable<UserProjects> userList = (from item in _db.UserProjects
                                                where item.ProjectID == prjID
                                                select item).ToList();

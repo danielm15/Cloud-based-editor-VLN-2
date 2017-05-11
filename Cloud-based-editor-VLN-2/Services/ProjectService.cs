@@ -67,6 +67,11 @@ namespace Cloud_based_editor_VLN_2.Services {
                 Db.UserProjects.Remove(userProjectConnection);
             }
 
+            var invitations = Db.Invitations.Where(item => item.ProjectID == projectID);
+            foreach(var invitationsConnection in invitations.ToList()) {
+                Db.Invitations.Remove(invitationsConnection);
+            }
+
             var project = Db.Projects.Where(item => item.ID == projectID).Single();
             Db.Projects.Remove(project);
             Db.SaveChanges();

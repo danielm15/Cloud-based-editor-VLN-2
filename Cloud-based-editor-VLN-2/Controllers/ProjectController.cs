@@ -279,9 +279,8 @@ echo ""Hello World!"";
         }
 
         [HttpPost]
-        public ActionResult Invite(FormCollection collection) {
-            string userName = collection["toUserName"];
-            int projectID = int.Parse(collection["projectID"]);
+        public ActionResult Invite(int projectID, string userName) {
+ 
 
             int userID = _service.getUserID(userName);
 

@@ -3,7 +3,6 @@ using Cloud_based_editor_VLN_2.Models.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace Cloud_based_editor_VLN_2.Services {
     public class AppUserService : BaseService   {
 

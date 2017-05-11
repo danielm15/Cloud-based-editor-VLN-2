@@ -67,6 +67,11 @@ namespace Cloud_based_editor_VLN_2.Services {
                 Db.UserProjects.Remove(userProjectConnection);
             }
 
+            var invitations = Db.Invitations.Where(item => item.ProjectID == projectID);
+            foreach(var invitationsConnection in invitations.ToList()) {
+                Db.Invitations.Remove(invitationsConnection);
+            }
+
             var project = Db.Projects.Where(item => item.ID == projectID).Single();
             Db.Projects.Remove(project);
             Db.SaveChanges();
@@ -145,6 +150,22 @@ namespace Cloud_based_editor_VLN_2.Services {
             return userList.Count();
             //int number = _db.UserProjects.Where(item => item.ProjectID == prjID).All
             //return number;
+        }
+
+        public bool changeOwner(int prjID, int usrID) {
+
+            var project = Db.Projects.Where(item => item.ID == prjID).Single();
+            var newUser = Db.AppUsers.Where(item => item.ID == usrID).Single();
+            project.OwnerID = usrID;
+            project.AppUser = newUser;
+            Db.SetModified(project);
+            try {
+                Db.SaveChanges();
+            }
+            catch {
+                return false;
+            }
+            return true;
         }
      }
 }

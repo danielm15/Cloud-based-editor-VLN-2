@@ -297,3 +297,15 @@ var deleteUserFromProject = function (projectID, UserID) {
         }
     })
 }
+
+
+var makeAdminOfProject = function (projectID, UserID) {
+    $.ajax({
+        type: "POST",
+        url: "/Project/MakeAdmin",
+        data: { id: projectID, userID: UserID },
+        sucess: function (response) {
+          
+        }
+    })
+}

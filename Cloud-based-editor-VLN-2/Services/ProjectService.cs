@@ -77,15 +77,22 @@ namespace Cloud_based_editor_VLN_2.Services {
         }
 
         public bool AbandonProject(int prjID, int usrID) {
-            var project = _db.UserProjects.Where(item => item.ProjectID == prjID && item.AppUser.ID == usrID).SingleOrDefault();
+            //var project = _db.UserProjects.Where(item => item.ProjectID == prjID && item.AppUser.ID == usrID).SingleOrDefault();
+            var project = (from item in _db.UserProjects
+                           where item.ProjectID == prjID && item.AppUserID == usrID
+                           select item).SingleOrDefault();
             _db.UserProjects.Remove(project);
             _db.SaveChanges();
             return true;
         }
 
         public int HowManyUsersAreIntTheProject(int prjID) {
-            int number = _db.UserProjects.Where(item => item.ProjectID == prjID).Count();
-            return number;
+            IEnumerable<UserProjects> listi = (from item in _db.UserProjects
+                                               where item.ProjectID == prjID
+                                               select item).ToList();
+            return listi.Count();
+            //int number = _db.UserProjects.Where(item => item.ProjectID == prjID).All
+            //return number;
         }
      }
 }

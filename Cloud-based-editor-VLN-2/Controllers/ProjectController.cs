@@ -287,23 +287,40 @@ echo ""Hello World!"";
             Project prj = _service.GetProjectByID(ProjectID ?? default(int));
             int userID = _service.getUserID(User.Identity.GetUserName());
             prj.AppUser.ID = userID;
-            if(prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreIntTheProject(prj.ID) > 1) {
+            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreIntTheProject(prj.ID) > 1) {
+                return Json(new { message = "Admin++" }, JsonRequestBehavior.AllowGet);
+
                 /// TODO:: Tell him he cannot remove him self from the project || make someone else admin and remove him from the project
             }
-            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreIntTheProject(prj.ID) == 1){
-                /// TODO: Delete the project
+            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreIntTheProject(prj.ID) == 1) {
+                int something = _service.HowManyUsersAreIntTheProject(prj.ID);
+                return Json(new { message = "Admin-" }, JsonRequestBehavior.AllowGet);
             }
-            return PartialView("_AbandonPrjConfirm", prj);
-
+            else {
+                return Json(new { message = "notAdmin" }, JsonRequestBehavior.AllowGet);
+            }
         }
+        
+
 
         [HttpPost]
         public ActionResult AbandonPrj(int id, int userID) {
             if(ModelState.IsValid) {
+                userID = _service.getUserID(User.Identity.GetUserName());
                 _service.AbandonProject(id, userID);
                 return RedirectToAction("Index");
             }
             return View();
+        }
+
+        public ActionResult AbandonPrjAdmin(int? ProjectID) {
+            Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+            return PartialView("_AdminAbandonProject", prj);
+        }
+
+        public ActionResult AbandonPrjNormal(int? ProjectID) {
+            Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+            return PartialView("_AbandonPrjConfirm", prj);
         }
         #endregion
 

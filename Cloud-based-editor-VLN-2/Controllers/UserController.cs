@@ -16,6 +16,7 @@ namespace Cloud_based_editor_VLN_2.Controllers
         private int _currentUserID;
         private AppUserService _service = new AppUserService(null);
 
+        #region ProjectOverview
         // GET: ProjectsOverview
         public ActionResult Index() {
             _currentUserEmail = User.Identity.GetUserName();
@@ -23,6 +24,7 @@ namespace Cloud_based_editor_VLN_2.Controllers
 
             return View();
         }
+        #endregion
 
     }
 }

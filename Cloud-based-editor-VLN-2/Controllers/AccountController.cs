@@ -18,8 +18,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         private ApplicationUserManager _userManager;
         private AppUserService _service = new AppUserService(null);
 
-        public AccountController() {
-        }
+        public AccountController() { }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager) {
             UserManager = userManager;
@@ -30,8 +29,8 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             get {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set { 
-                _signInManager = value; 
+            private set {
+                _signInManager = value;
             }
         }
 
@@ -44,7 +43,6 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             }
         }
 
-        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl) {
@@ -52,7 +50,6 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return View();
         }
 
-        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -77,14 +74,12 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             }
         }
 
-        //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register() {
             return View();
         }
 
-        //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -95,13 +90,13 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded) {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     Models.Entities.AppUser newUser = new Models.Entities.AppUser() {
                         Email = model.Email,
                         UserName = model.UserName
                     };
                     _service.addUser(newUser);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -117,7 +112,6 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return View(model);
         }
 
-        //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code) {
@@ -128,14 +122,12 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
-        //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword() {
             return View();
         }
 
-        //
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
@@ -160,21 +152,18 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return View(model);
         }
 
-        //
         // GET: /Account/ForgotPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation() {
             return View();
         }
 
-        //
         // GET: /Account/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code) {
             return code == null ? View("Error") : View();
         }
 
-        //
         // POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
@@ -199,14 +188,12 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return View();
         }
 
-        //
         // GET: /Account/ResetPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation() {
             return View();
         }
 
-        //
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]

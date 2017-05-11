@@ -18,8 +18,6 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         private DocumentService _service = new DocumentService(null);
         private ProjectService _projectService = new ProjectService(null);
 
-
-
         #region Get Documents(Index)
         // GET: Document
         public ActionResult Index(int? projectID) {
@@ -59,7 +57,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 return Json(new { success = "filetypeempty" });
             }
             else {
-                if(fileType[0] != '.') {
+                if (fileType[0] != '.') {
                     fileType = "." + fileType;
                 }
                 Document newDocument = new Document();

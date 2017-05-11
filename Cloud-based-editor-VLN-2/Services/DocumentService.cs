@@ -1,10 +1,6 @@
 ﻿using Cloud_based_editor_VLN_2.Models.Entities;
-using Cloud_based_editor_VLN_2.Models.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Web;
 using Cloud_based_editor_VLN_2.Models;
 
 namespace Cloud_based_editor_VLN_2.Services {
@@ -16,8 +12,8 @@ namespace Cloud_based_editor_VLN_2.Services {
 
         // Fetch all files from a single project
         public List<Document> GetDocumentsByProjectID(int ProjectID) {
-            var documents = (from doc in _db.Documents
-                             join pro in _db.Projects on doc.ProjectID equals pro.ID
+            var documents = (from doc in Db.Documents
+                             join pro in Db.Projects on doc.ProjectID equals pro.ID
                              where doc.ProjectID == ProjectID
                              select doc).ToList();
             return documents;
@@ -25,30 +21,29 @@ namespace Cloud_based_editor_VLN_2.Services {
 
         // Fetch a single document by its ID
         public Document GetDocumentByID(int DocumentID) {
-            var document = (from doc in _db.Documents
+            var document = (from doc in Db.Documents
                             where doc.ID == DocumentID
                             select doc).SingleOrDefault();
             return document;
         }
 
         public bool AddDocument(Document newDocument) {
-            var v = _db.Documents.Add(newDocument);
-            //_db.SaveChanges();
+            Db.Documents.Add(newDocument);
+
             try {
-                _db.SaveChanges();
-                //return true;
+                Db.SaveChanges();
             }
-            catch(DbUpdateException e) {
-                
+            catch {
                 return false;
             }
             return true;
         }
 
         public bool UpdateDocument(Document documentToUpdate) {
-            _db.Entry(documentToUpdate).State = System.Data.Entity.EntityState.Modified;
+            Db.SetModified(documentToUpdate);
+
             try {
-                _db.SaveChanges();
+                Db.SaveChanges();
             }
             catch {
                 return false;
@@ -57,8 +52,8 @@ namespace Cloud_based_editor_VLN_2.Services {
         }
 
         public bool DeleteDocument(Document documentToDelete) {
-            _db.Documents.Remove(documentToDelete);
-            _db.SaveChanges();
+            Db.Documents.Remove(documentToDelete);
+            Db.SaveChanges();
             return true;
         }
 

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Cloud_based_editor_VLN_2;
 using Cloud_based_editor_VLN_2.Controllers;
 
 namespace Cloud_based_editor_VLN_2.Tests.Controllers {
@@ -29,6 +24,18 @@ namespace Cloud_based_editor_VLN_2.Tests.Controllers {
 
             // Act
             ViewResult result = controller.About() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void Support() {
+            // Arrange
+            HomeController controller = new HomeController();
+
+            // Act
+            ViewResult result = controller.Support() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);

@@ -25,9 +25,11 @@ namespace Cloud_based_editor_VLN_2.Models {
 
         IDbSet<Document> Documents { get; set; }
 
+        IDbSet<Invitation> Invitations { get; set; }
+
         int SaveChanges();
 
-        System.Data.Entity.Infrastructure.DbEntityEntry Entry(object entity);
+        void SetModified(object entity);
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IAppDataContext {
@@ -38,6 +40,12 @@ namespace Cloud_based_editor_VLN_2.Models {
         public IDbSet<Project> Projects { get; set; }
 
         public IDbSet<Document> Documents { get; set; }
+
+        public IDbSet<Invitation> Invitations { get; set; }
+
+        public void SetModified(object entity) {
+            Entry(entity).State = EntityState.Modified;
+        }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false) {

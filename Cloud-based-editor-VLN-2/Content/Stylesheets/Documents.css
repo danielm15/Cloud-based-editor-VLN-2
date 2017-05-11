@@ -76,8 +76,8 @@
 
 .editButton {
     float: right;
-    padding: 0% 10% 0% 10%;
-    margin: 3.5% -20% 0% 0%;
+    padding: 0 10% 0 10%;
+    margin: 3.5% -20% 0 0;
     border-radius: 4px;
     font-size: 80%;
 }
@@ -120,10 +120,6 @@
 .noFiles {
     margin-top: 30px;
     text-align: center;
-}
-
-.createButton {
-
 }
 
 @media screen and (max-width: 490px){ 

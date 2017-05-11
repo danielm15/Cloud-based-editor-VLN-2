@@ -395,9 +395,9 @@ echo ""Hello World!"";
 
 
         [HttpPost]
-        public ActionResult AbandonPrj(int id) {
-            if(ModelState.IsValid) {
-                _service.AbandonProject(id, userID);
+        public ActionResult AbandonPrj(int? id, int? userID) {
+            if(id.HasValue && userID.HasValue) {
+                _service.AbandonProject(id?? default(int), userID?? default(int));
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
@@ -410,6 +410,7 @@ echo ""Hello World!"";
 
         public ActionResult AbandonPrjNormal(int? ProjectID) {
             var prj = _service.GetProjectByID(ProjectID ?? default(int));
+            ViewBag.CurrentUserID = _service.getUserID(User.Identity.GetUserName());
             return PartialView("_AbandonPrjConfirm", prj);
         }
         #endregion

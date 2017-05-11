@@ -65,17 +65,11 @@
                                         </li>
                                         <li>
                                             @Html.ActionLink(" Download", "DownloadZip", "Document", new { projectID = item.ID, userID = item.ID, projectName = item.Name }, new {
-<<<<<<< HEAD
+
                                            @type = "a",
                                            @tabindex = "-1",
                                            @class = "glyphicon glyphicon-download"
-                                       })
-=======
-                                      type = "a",
-                                      tabindex = "-1",
-                                      @class = "glyphicon glyphicon-download"
-                                  })
->>>>>>> eddaacc14a8f56471e8f80eec9f1db79547610ee
+                                             })
                                         </li>
                                         <li>
                                             <a href="javascript:;" onclick="deleteProject(@item.ID)">

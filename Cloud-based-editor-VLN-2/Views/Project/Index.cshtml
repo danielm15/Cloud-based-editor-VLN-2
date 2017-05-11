@@ -50,16 +50,21 @@
                                     </div>
                                     <ul class="dropdown-menu optionsMenu">
                                         <li>
+                                            <a href="javascript:;" onclick="listCollaboratorsFunc(@item.ID)">
+                                                <i class="glyphicon glyphicon-list"> List Collaborators</i>
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="javascript:;" onclick="EditProjectName(@item.ID)">
                                                 <i class="glyphicon glyphicon-pencil"> Rename</i>
                                             </a>
                                         </li>
                                         <li>
                                             @Html.ActionLink(" Download", "DownloadZip", "Document", new { projectID = item.ID, userID = item.ID, projectName = item.Name }, new {
-                                      @type = "a",
-                                      @tabindex = "-1",
-                                      @class = "glyphicon glyphicon-download"
-                                  })
+                                           @type = "a",
+                                           @tabindex = "-1",
+                                           @class = "glyphicon glyphicon-download"
+                                       })
                                         </li>
                                         <li>
                                             <a href="javascript:;" onclick="deleteProject(@item.ID)">

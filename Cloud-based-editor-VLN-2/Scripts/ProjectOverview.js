@@ -219,3 +219,12 @@ var AbandonProjectAjax = function (ID, UserID) {
    })
 }
 
+
+var listCollaboratorsFunc = function (ID) {
+    var url = "/Project/AbandonPrj?ProjectID=" + ProjectID;
+
+    $("#myModal1").load(url, function () {
+        $("#myModal1").modal("show");
+        
+    });
+}

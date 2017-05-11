@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Cloud_based_editor_VLN_2.Models.Entities;
 using Cloud_based_editor_VLN_2.Models.ViewModels;
 using System.IO;
+using System.Web.Script.Serialization;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
     public class ProjectController : Controller {
@@ -306,6 +307,32 @@ echo ""Hello World!"";
             return View();
         }
         #endregion
+
+        #region ListCollaborators
+        public ActionResult ListCollaborators(int? ProjectID) {
+
+            if (ProjectID.HasValue) {
+                Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+
+                return PartialView("_Listcollaborators", prj);
+            }
+
+            return View();
+        }
+        #endregion
+
+        public ActionResult GetAllUsersInProject(int? ProjectID) {
+
+            if (ProjectID.HasValue) {
+                Project userProject = _service.GetProjectByID(ProjectID ?? default(int));
+                List<AppUser> allUsers = _userService.getAllUsersInProject(userProject);
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(allUsers);
+                return Json(new { success = true, usersInProject = json });
+            }
+
+            return Json(new { success = false });
+        }
 
     }
 }

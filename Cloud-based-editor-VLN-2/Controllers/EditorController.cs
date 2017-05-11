@@ -1,10 +1,7 @@
 ﻿using Cloud_based_editor_VLN_2.Models.Entities;
 using Cloud_based_editor_VLN_2.Models.ViewModels;
 using Cloud_based_editor_VLN_2.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 
@@ -70,8 +67,8 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         public ActionResult SaveFile(int? updateDocumentID, string contentData) {
 
             if (updateDocumentID.HasValue) {
-                int updateDocumentIDSend = updateDocumentID ?? default(int);
-                Document updateDocument = _service.GetDocumentByID(updateDocumentIDSend);
+                int updateDocumentIdSend = updateDocumentID ?? default(int);
+                Document updateDocument = _service.GetDocumentByID(updateDocumentIdSend);
                 updateDocument.Content = contentData;
                 if (_service.UpdateDocument(updateDocument)) {
                     return Json(new { success = true });

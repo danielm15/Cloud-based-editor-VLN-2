@@ -3,16 +3,16 @@
 @{
         var domainsList = new SelectList(new[]
         {
-                new SelectListItem { Text = "HTML", Value = "HTML", Selected = true },
-                new SelectListItem { Text = "C++", Value = "C++"},
-                new SelectListItem { Text = "Python", Value = "Python"},
-                new SelectListItem { Text = "C#", Value = "C#"},
-                new SelectListItem { Text = "Javascript", Value = "Javascript"},
-                new SelectListItem { Text = "Java", Value = "Java"},
-                new SelectListItem { Text = "C", Value = "C"},
-                new SelectListItem { Text = "Php", Value = "Php"},
-                new SelectListItem { Text = "Node.js", Value = "Node.js" },
-                new SelectListItem { Text = "Ruby", Value = "Ruby" },
+                new SelectListItem { Text = @"HTML", Value = "HTML", Selected = true },
+                new SelectListItem { Text = @"C++", Value = "C++"},
+                new SelectListItem { Text = @"Python", Value = "Python"},
+                new SelectListItem { Text = @"C#", Value = "C#"},
+                new SelectListItem { Text = @"Javascript", Value = "Javascript"},
+                new SelectListItem { Text = @"Java", Value = "Java"},
+                new SelectListItem { Text = @"C", Value = "C"},
+                new SelectListItem { Text = @"Php", Value = "Php"},
+                new SelectListItem { Text = @"Node.js", Value = "Node.js" },
+                new SelectListItem { Text = @"Ruby", Value = "Ruby" },
             }, "Value", "Text");
 }
     <div class="modal-dialog">
@@ -27,13 +27,13 @@
                     @Html.HiddenFor(model => model.OwnerID)
                     @*@Html.HiddenFor(model => model.AppUser.UserName)*@
                     @Html.LabelFor(model => model.Name)
-                    @Html.TextBoxFor(model => model.Name, new {@id="AddProjectTextBox" })
+                    @Html.TextBoxFor(model => model.Name, new { id="AddProjectTextBox" })
                     @*@Html.TextBox("InviteTxtBox", "", new { placeholder = "Please enter username" })*@
                     <div class="text-danger" id="AddProjectErrorDiv">
 
                     </div>
                     
-                    @Html.DropDownListFor(m => m.ProjectType, domainsList, new { @id = "AddProjectDropDown", @class = "myclass" })
+                    @Html.DropDownListFor(m => m.ProjectType, domainsList, new { id = "AddProjectDropDown" })
 
 
                     

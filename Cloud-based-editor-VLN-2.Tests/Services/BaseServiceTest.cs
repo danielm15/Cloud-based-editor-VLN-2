@@ -1,9 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cloud_based_editor_VLN_2.Services;
 using Cloud_based_editor_VLN_2.Models.Entities;
-using Cloud_based_editor_VLN_2.Tests;
-using System.Collections.Generic;
+
 
 namespace Cloud_based_editor_VLN_2.Tests.Services {
     [TestClass]
@@ -36,14 +34,14 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
         public void TestGetUserId() {
             // Arrange:
             // Act:
-            var User1ID = _BaseService.getUserID("User1");
-            var User2ID = _BaseService.getUserID("User2");
+            var user1ID = _BaseService.getUserID("User1");
+            var user2ID = _BaseService.getUserID("User2");
 
             // Assert:
-            Assert.IsNotNull(User1ID);
-            Assert.IsNotNull(User2ID);
-            Assert.AreEqual(1, User1ID);
-            Assert.AreEqual(2, User2ID);
+            Assert.IsNotNull(user1ID);
+            Assert.IsNotNull(user2ID);
+            Assert.AreEqual(1, user1ID);
+            Assert.AreEqual(2, user2ID);
         }
 
         [TestMethod]

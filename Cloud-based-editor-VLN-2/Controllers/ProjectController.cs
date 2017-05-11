@@ -1,13 +1,9 @@
 ﻿using Cloud_based_editor_VLN_2.Services;
 using System;
-using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Cloud_based_editor_VLN_2.Models.Entities;
 using Cloud_based_editor_VLN_2.Models.ViewModels;
-using System.IO;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
 
@@ -122,7 +118,7 @@ echo ""Hello World!"";
 
             _currentUserEmail = User.Identity.GetUserName();
             _currentUserID = _service.getUserID(_currentUserEmail);
-            ProjectViewModel model = new ProjectViewModel() {
+            var model = new ProjectViewModel() {
                 CurrUserID = _currentUserID,
                 Projects = _service.GetProjectsByUserID(_currentUserID)
             };
@@ -131,8 +127,8 @@ echo ""Hello World!"";
         #region AddPrj Get and Set
         [HttpGet]
         public ActionResult AddProject(int? ownerID) {
-            Project newP = new Project() {
-                OwnerID = (ownerID ?? default(int))
+            var newP = new Project() {
+                OwnerID = ownerID ?? default(int)
             };
             return PartialView("AddProject", newP);
         }
@@ -145,7 +141,7 @@ echo ""Hello World!"";
                 item.DateCreated = DateTime.Now;
                 _service.AddProject(item);
 
-                Document doc = new Document();
+                var doc = new Document();
                 doc.ProjectID = item.ID;
                 doc.DateCreated = item.DateCreated;
                 doc.CreatedBy = _service.GetUserNameByUserID(item.OwnerID);
@@ -167,24 +163,21 @@ echo ""Hello World!"";
 
         public ActionResult PopulateList(string searchString) {
 
-            IEnumerable<AppUser> userList = _userService.getLimitedUserList(searchString);
+            var userList = _userService.getLimitedUserList(searchString);
 
             var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-            string jsonUsers = serializer.Serialize(userList);
+            var jsonUsers = serializer.Serialize(userList);
             return Json(new { userList = userList }, JsonRequestBehavior.AllowGet);
         }
         #region Delete get and set
         public ActionResult DeleteProjectVal(int? projectID) {
 
-            int currentUserID = _service.getUserID(User.Identity.GetUserName());
+            var currentUserID = _service.getUserID(User.Identity.GetUserName());
 
             if (projectID.HasValue) {
-                int ID = projectID ?? default(int);
-                Project projectToDelete = _service.GetProjectByID(ID);
-                if (projectToDelete.OwnerID == currentUserID) {
-                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
-                }
-
+                var ID = projectID ?? default(int);
+                var projectToDelete = _service.GetProjectByID(ID);
+                if (projectToDelete.OwnerID == currentUserID) return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
 
             return Json(new { success = false }, JsonRequestBehavior.AllowGet);
@@ -193,12 +186,12 @@ echo ""Hello World!"";
 
 
         public ActionResult DeleteProjectConfirm(int? ProjectID) {
-            Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+            var prj = _service.GetProjectByID(ProjectID ?? default(int));
             return PartialView("_DeleteProjectConfirm", prj);
         }
 
         public ActionResult DeleteNoPermission(int? ProjectID) {
-            Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+            var prj = _service.GetProjectByID(ProjectID ?? default(int));
             return PartialView("_DeleteNoPermission", prj);
         }
 
@@ -208,7 +201,7 @@ echo ""Hello World!"";
         public ActionResult DeleteProject(int? id) {
 
             if (id.HasValue) {
-                int projectdID = id ?? default(int);
+                var projectdID = id ?? default(int);
                 _service.DeleteProject(projectdID);
 
                 return Json(new { success = true });
@@ -220,8 +213,8 @@ echo ""Hello World!"";
 
         #region RenamePrj Get and Post
         public ActionResult _RenameProject(int? ProjectID) {
-            Project p = new Project();
-            Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+            var p = new Project();
+            var prj = _service.GetProjectByID(ProjectID ?? default(int));
             return PartialView("_RenameProject", prj);
         }
 
@@ -230,49 +223,45 @@ echo ""Hello World!"";
         public ActionResult _RenameProject(Project item) {
 
 
-            Project projectToUpdate = _service.GetProjectByID(item.ID);
+            var projectToUpdate = _service.GetProjectByID(item.ID);
             projectToUpdate.Name = item.Name;
 
-            if (projectToUpdate.AppUser.UserName != User.Identity.GetUserName()) {
-                return Json(new { success = false, message = "noPermission", name = projectToUpdate.Name, projectID = projectToUpdate.ID });
-            }
-            if (_service.UpdateProject(projectToUpdate)) {
-                return Json(new { success = true, name = projectToUpdate.Name, projectID = projectToUpdate.ID });
-            }
+            if (projectToUpdate.AppUser.UserName != User.Identity.GetUserName()) return Json(new { success = false, message = "noPermission", name = projectToUpdate.Name, projectID = projectToUpdate.ID });
+	        if (_service.UpdateProject(projectToUpdate)) return Json(new { success = true, name = projectToUpdate.Name, projectID = projectToUpdate.ID });
 
-            return Json(new { success = false });
+	        return Json(new { success = false });
 
         }
         #endregion
 
         #region Invite Get and Post
         public ActionResult InviteUser(int? ProjectID) {
-            Project p = new Project();
-            ProjectViewModel someTest = new ProjectViewModel();
-            Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+            var p = new Project();
+            var someTest = new ProjectViewModel();
+            var prj = _service.GetProjectByID(ProjectID ?? default(int));
             return PartialView("_InviteUser", prj);
         }
 
         [HttpPost]
         public ActionResult InviteUser(FormCollection collection) {
 
-            int projectID = int.Parse(collection["ID"]);
-            string userName = collection["inputUser"];
+            var projectID = int.Parse(collection["ID"]);
+            var userName = collection["inputUser"];
 
-            int userID = _service.getUserID(userName);
+            var userID = _service.getUserID(userName);
 
             if (userID == 0) {
                 return Json(new { sucess = false, message = "userNotFound", name = userName, projectID = projectID });
             }
             else {
-                Project projectToAddTo = _service.GetProjectByID(projectID);
-                List<Project> userProjects = _service.GetProjectsByUserID(userID);
+                var projectToAddTo = _service.GetProjectByID(projectID);
+                var userProjects = _service.GetProjectsByUserID(userID);
 
                 if (userProjects.Contains(projectToAddTo)) {
                     return Json(new { sucess = false, message = "userAlreadyInProject", name = userName, project = projectToAddTo.Name, projectID = projectID });
                 }
                 else {
-                    UserProjects userProject = new UserProjects();
+                    var userProject = new UserProjects();
                     userProject.ProjectID = projectToAddTo.ID;
                     userProject.AppUserID = userID;
 
@@ -286,18 +275,14 @@ echo ""Hello World!"";
         #region AbandonProject
         public ActionResult AbandonPrj(int? ProjectID) {
 
-            Project p = new Project();
-            Project prj = _service.GetProjectByID(ProjectID ?? default(int));
-            int userID = _service.getUserID(User.Identity.GetUserName());
+            var p = new Project();
+            var prj = _service.GetProjectByID(ProjectID ?? default(int));
+            var userID = _service.getUserID(User.Identity.GetUserName());
             prj.AppUser.ID = userID;
 
-            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreInTheProject(prj.ID) > 1) {
-                return Json(new { message = "Admin++" }, JsonRequestBehavior.AllowGet);
-
-                /// TODO:: Tell him he cannot remove him self from the project || make someone else admin and remove him from the project
-            }
-            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreInTheProject(prj.ID) == 1) {
-                int something = _service.HowManyUsersAreInTheProject(prj.ID);
+            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreInTheProject(prj.ID) > 1) return Json(new { message = "Admin++" }, JsonRequestBehavior.AllowGet);
+	        if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreInTheProject(prj.ID) == 1) {
+                var something = _service.HowManyUsersAreInTheProject(prj.ID);
                 return Json(new { message = "Admin-" }, JsonRequestBehavior.AllowGet);
             }
             else {
@@ -308,22 +293,22 @@ echo ""Hello World!"";
 
 
         [HttpPost]
-        public ActionResult AbandonPrj(int id, int userID) {
+        public ActionResult AbandonPrj(int id) {
             if(ModelState.IsValid) {
-                userID = _service.getUserID(User.Identity.GetUserName());
+                int userID = _service.getUserID(User.Identity.GetUserName());
                 _service.AbandonProject(id, userID);
                 return RedirectToAction("Index");
             }
-            return View();
+            return RedirectToAction("Index");
         }
 
         public ActionResult AbandonPrjAdmin(int? ProjectID) {
-            Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+            var prj = _service.GetProjectByID(ProjectID ?? default(int));
             return PartialView("_AdminAbandonProject", prj);
         }
 
         public ActionResult AbandonPrjNormal(int? ProjectID) {
-            Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+            var prj = _service.GetProjectByID(ProjectID ?? default(int));
             return PartialView("_AbandonPrjConfirm", prj);
         }
         #endregion

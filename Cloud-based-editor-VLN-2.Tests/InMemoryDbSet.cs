@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Data.Entity;
 using System.Linq.Expressions;
 using System.Collections;
 using System.Collections.ObjectModel;
 
-namespace FakeDbSet {
+namespace Cloud_based_editor_VLN_2.Tests {
     /// <summary>
     /// The in-memory database set, taken from Microsoft's online example (http://msdn.microsoft.com/en-us/ff714955.aspx) 
     /// and modified to be based on DbSet instead of ObjectSet.
@@ -23,12 +22,8 @@ namespace FakeDbSet {
         /// </summary>
         private HashSet<T> Data {
             get {
-                if (_nonStaticData == null) {
-                    return _staticData;
-                }
-                else {
-                    return _nonStaticData;
-                }
+                if (_nonStaticData == null) return _staticData;
+                else return _nonStaticData;
             }
         }
 
@@ -64,9 +59,7 @@ namespace FakeDbSet {
         /// </summary>
         /// <param name="clearDownExistingData"></param>
         public InMemoryDbSet(bool clearDownExistingData) {
-            if (clearDownExistingData) {
-                Clear();
-            }
+            if (clearDownExistingData) Clear();
         }
 
         public void Clear() {
@@ -93,19 +86,13 @@ namespace FakeDbSet {
         }
 
         public virtual T Find(params object[] keyValues) {
-            if (FindFunction == null) {
-                return FindFunction(Data, keyValues);
-            }
-            else {
-                throw new NotImplementedException("Derive from InMemoryDbSet and override Find, or provide a FindFunction.");
-            }
+            if (FindFunction == null) return FindFunction(Data, keyValues);
+            else throw new NotImplementedException("Derive from InMemoryDbSet and override Find, or provide a FindFunction.");
         }
 
-        public ObservableCollection<T> Local {
-            get { return new ObservableCollection<T>(Data); }
-        }
+        public ObservableCollection<T> Local => new ObservableCollection<T>(Data);
 
-        public T Remove(T entity) {
+	    public T Remove(T entity) {
             Data.Remove(entity);
 
             return entity;
@@ -122,16 +109,10 @@ namespace FakeDbSet {
             return GetEnumerator1();
         }
 
-        public Type ElementType {
-            get { return Data.AsQueryable().ElementType; }
-        }
+        public Type ElementType => Data.AsQueryable().ElementType;
 
-        public Expression Expression {
-            get { return Data.AsQueryable().Expression; }
-        }
+	    public Expression Expression => Data.AsQueryable().Expression;
 
-        public IQueryProvider Provider {
-            get { return Data.AsQueryable().Provider; }
-        }
+	    public IQueryProvider Provider => Data.AsQueryable().Provider;
     }
 }

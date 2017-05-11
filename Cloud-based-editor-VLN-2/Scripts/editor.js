@@ -10,7 +10,7 @@
 })(jQuery);
 
 function saveEditorContent($) {
-    var updateDocumentID = document.getElementById("activeDocID").value
+    var updateDocumentID = document.getElementById("activeDocID").value;
     var editor = ace.edit("editorID");
     var contentData = editor.getValue();
 
@@ -50,8 +50,8 @@ function hideFooter() {
 
 function showNavBar() {
     document.getElementById("sideNav").classList.toggle("activeNav");
-    if (document.getElementById("editorContentId").style.marginLeft == "200px") {
-        document.getElementById("editorContentId").style.marginLeft = "0px";
+    if (document.getElementById("editorContentId").style.marginLeft === "200px") {
+        document.getElementById("editorContentId").style.marginLeft = "0";
         document.getElementById("verticalTextID").style.borderBottom = "1px solid darkgray";
         document.getElementById("editorHeaderContainer").style.marginLeft = "3%";
     } else {
@@ -95,7 +95,7 @@ function showHeader(id) {
             markerID = null;
         
         dochub.client.updateText = function (obj, cursorScreenPos) {
-            var message = document.getElementById("currentUser");
+
             $('#currentUser').stop(true);
 
             var Range = ace.require('ace/range').Range;
@@ -151,22 +151,22 @@ function showHeader(id) {
 })(jQuery);
 
 function changeHighlighting(type) {
-    if (type == ".html") {
+    if (type === ".html") {
         return "html";
     }
-    else if (type == ".js") {
+    else if (type === ".js") {
         return "javascript";
     }
-    else if (type == ".cs") {
+    else if (type === ".cs") {
         return "csharp";
     }
-    else if (type == ".css") {
+    else if (type === ".css") {
         return "css";
     }
-    else if (type == ".c" || type == ".cpp") {
+    else if (type === ".c" || type === ".cpp") {
         return "c_cpp";
     }
-    else if (type == ".py") {
+    else if (type === ".py") {
         return "python";
     }
     else {

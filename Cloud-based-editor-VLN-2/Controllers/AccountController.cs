@@ -1,13 +1,10 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Cloud_based_editor_VLN_2.Models.ViewModels;
 using Cloud_based_editor_VLN_2.Models;
 using Cloud_based_editor_VLN_2.Services;
 
@@ -65,9 +62,6 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             switch (result) {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);

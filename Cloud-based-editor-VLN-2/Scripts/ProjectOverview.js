@@ -177,7 +177,6 @@ var AddProject = function (currUserID) {
 var AddnewProjectFunc = function () {
     var test = document.getElementById("AddProjectTextBox").value;
     var test1 = document.getElementById("AddProjectDropDown").value;
-    alert(test1);
     if (test !== "") {
         var myformdata = $("#AddProjectForm").serialize();
         $.ajax({
@@ -198,33 +197,92 @@ var AddnewProjectFunc = function () {
     }
 };
 
-var abandonPrj = function (ProjectID) {
-    var url = "/Project/AbandonPrj?ProjectID=" + ProjectID;
+//var abandonPrj = function (ProjectID) {
+//    var url = "/Project/AbandonPrj?ProjectID=" + ProjectID;
+
+//    $("#myModal1").load(url, function () {
+//        $("#myModal1").modal("show");
+//    });
+//};
+
+var abandonPrj = function (projectID) {
+    $.ajax({
+        type: "GET",
+        url: "/Project/AbandonPrj",
+        data: { projectID: projectID },
+        success: function (response) {
+            if (response.message === "Admin++") {
+                // abandonProjectAdmin(projectID);
+
+                alert("Owner is not alone");
+            }
+            if (response.message === "Admin-") {
+                var urltwo = "/Project/AbandonPrjAdmin?ProjectID=" + projectID;
+
+                $("#myModal1").load(urltwo, function () {
+                    $("#myModal1").modal("show");
+
+                });
+
+            }
+            else {
+                var urltwo = "/Project/AbandonPrjNormal?ProjectID=" + projectID;
+                $("#myModal1").load(urltwo, function () {
+                    $("#myModal1").modal("show");
+
+                });
+            }
+
+        }
+    }
+        )
+}
+
+var abandonProjectAdmin = function (projectID) {
+
+    var url = "/Project/AbandonPrjAdmin?ProjectID=" + projectID;
 
     $("#myModal1").load(url, function () {
         $("#myModal1").modal("show");
+
     });
 };
 
-var AbandonProjectAjax = function (ID, UserID) {
-    var myformdata = $("#AbandonPrjForm").serialize();
-    alert(myformdata);
+
+var AbandonProjectAjax = function (projectID, UserID) {
     $.ajax({
         type: "POST",
         url: "/Project/AbandonPrj",
-        data: { id: ID, userID: UserID },
+        data: { id: projectID, userID: UserID },
         success: function(){
-            window.location.href = "/Project";
+            var linkString = "link\\" + projectID;
+            var divString = "div\\" + projectID;
+            var linkToDelete = document.getElementById(linkString);
+            var divToDelete = document.getElementById(divString);
+            linkToDelete.parentNode.removeChild(linkToDelete);
+            divToDelete.parentNode.removeChild(divToDelete);
         }
    })
 }
 
 
-var listCollaboratorsFunc = function (ID) {
-    var url = "/Project/AbandonPrj?ProjectID=" + ProjectID;
+var listCollaboratorsFunc = function (ProjectID) {
+    var url = "/Project/ListCollaborators?ProjectID=" + ProjectID;
 
     $("#myModal1").load(url, function () {
-        $("#myModal1").modal("show");
-        
+        $("#myModal1").modal("show");  
     });
+}
+
+
+var deleteUserFromProject = function (projectID, UserID) {
+    $.ajax({
+        type: "POST",
+        url: "/Project/AbandonPrj",
+        data: { id: projectID, userID: UserID },
+        success: function(){
+            var removedUserID = "collaboratorListID" + UserID;
+            $("#" + removedUserID).remove();
+        }
+    })
 }

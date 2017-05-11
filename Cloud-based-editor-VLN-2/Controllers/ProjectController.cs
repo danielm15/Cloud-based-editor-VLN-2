@@ -9,6 +9,7 @@ using Cloud_based_editor_VLN_2.Models.Entities;
 using Cloud_based_editor_VLN_2.Models.ViewModels;
 using System.IO;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
     public class ProjectController : Controller {
@@ -288,15 +289,21 @@ echo ""Hello World!"";
             Project prj = _service.GetProjectByID(ProjectID ?? default(int));
             int userID = _service.getUserID(User.Identity.GetUserName());
             prj.AppUser.ID = userID;
-            if(prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreIntTheProject(prj.ID) > 1) {
+            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreIntTheProject(prj.ID) > 1) {
+                return Json(new { message = "Admin++" }, JsonRequestBehavior.AllowGet);
+
                 /// TODO:: Tell him he cannot remove him self from the project || make someone else admin and remove him from the project
             }
-            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreIntTheProject(prj.ID) == 1){
-                /// TODO: Delete the project
+            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreIntTheProject(prj.ID) == 1) {
+                int something = _service.HowManyUsersAreIntTheProject(prj.ID);
+                return Json(new { message = "Admin-" }, JsonRequestBehavior.AllowGet);
             }
-            return PartialView("_AbandonPrjConfirm", prj);
-
+            else {
+                return Json(new { message = "notAdmin" }, JsonRequestBehavior.AllowGet);
+            }
         }
+        
+
 
         [HttpPost]
         public ActionResult AbandonPrj(int id, int userID) {
@@ -306,33 +313,35 @@ echo ""Hello World!"";
             }
             return View();
         }
+
+        public ActionResult AbandonPrjAdmin(int? ProjectID) {
+            Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+            return PartialView("_AdminAbandonProject", prj);
+        }
+
+        public ActionResult AbandonPrjNormal(int? ProjectID) {
+            Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+            return PartialView("_AbandonPrjConfirm", prj);
+        }
         #endregion
 
         #region ListCollaborators
         public ActionResult ListCollaborators(int? ProjectID) {
 
             if (ProjectID.HasValue) {
-                Project prj = _service.GetProjectByID(ProjectID ?? default(int));
+                Project userProject = _service.GetProjectByID(ProjectID ?? default(int));
+                List<AppUser> allUsers = _userService.getAllUsersInProject(userProject);
 
-                return PartialView("_Listcollaborators", prj);
+                ViewBag.projectName = userProject.Name;
+                ViewBag.Owner = userProject.AppUser.UserName;
+                ViewBag.User = User.Identity.GetUserName();
+                ViewBag.ProjectID = userProject.ID;
+
+                return PartialView("_Listcollaborators", allUsers);
             }
 
             return View();
         }
         #endregion
-
-        public ActionResult GetAllUsersInProject(int? ProjectID) {
-
-            if (ProjectID.HasValue) {
-                Project userProject = _service.GetProjectByID(ProjectID ?? default(int));
-                List<AppUser> allUsers = _userService.getAllUsersInProject(userProject);
-                var jsonSerialiser = new JavaScriptSerializer();
-                var json = jsonSerialiser.Serialize(allUsers);
-                return Json(new { success = true, usersInProject = json });
-            }
-
-            return Json(new { success = false });
-        }
-
     }
 }

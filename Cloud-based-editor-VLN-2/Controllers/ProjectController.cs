@@ -432,5 +432,15 @@ echo ""Hello World!"";
             return View();
         }
         #endregion
+
+        [HttpPost]
+        public ActionResult MakeAdmin(int? id, int? userID) {
+            if (id.HasValue && userID.HasValue) {
+                int currentUserID = _service.getUserID(User.Identity.GetUserName());
+                _service.changeOwner(id?? default(int), userID?? default(int));
+            }
+            return RedirectToAction("Index");
+        }
+
     }
 }

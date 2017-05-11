@@ -276,3 +276,24 @@ var AbandonProjectAjax = function (projectID, UserID) {
     });
 }
 
+
+var listCollaboratorsFunc = function (ProjectID) {
+    var url = "/Project/ListCollaborators?ProjectID=" + ProjectID;
+
+    $("#myModal1").load(url, function () {
+        $("#myModal1").modal("show");  
+    });
+}
+
+
+var deleteUserFromProject = function (projectID, UserID) {
+    $.ajax({
+        type: "POST",
+        url: "/Project/AbandonPrj",
+        data: { id: projectID, userID: UserID },
+        success: function(){
+            var removedUserID = "collaboratorListID" + UserID;
+            $("#" + removedUserID).remove();
+        }
+    })
+}

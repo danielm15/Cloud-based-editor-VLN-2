@@ -39,5 +39,14 @@ namespace Cloud_based_editor_VLN_2.Services {
                                                   select userProject).ToList();
             return AllUserProjects;
         }
+
+        public List<AppUser> getAllUsersInProject(Project project) {
+            List<AppUser> allUsersInProject = (from users in Db.AppUsers
+                                               join up in Db.UserProjects on users.ID equals up.AppUserID
+                                               join au in Db.Projects on up.ProjectID equals au.ID
+                                               where project.ID == up.ProjectID
+                                               select users).ToList();
+            return allUsersInProject;
+        }
     }
 }

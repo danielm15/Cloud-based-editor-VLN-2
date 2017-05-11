@@ -5,10 +5,10 @@ using System.Web.Mvc;
 using Cloud_based_editor_VLN_2.Models.Entities;
 using Cloud_based_editor_VLN_2.Models.ViewModels;
 using System.IO;
-using System.Web.Services;
-using System.Web.Script.Services;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
+using System.Web.Services;
+using System.Web.Script.Services;
 using System.Collections.Generic;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
@@ -395,10 +395,9 @@ echo ""Hello World!"";
 
 
         [HttpPost]
-        public ActionResult AbandonPrj(int id) {
-            if(ModelState.IsValid) {
-                int userID = _service.getUserID(User.Identity.GetUserName());
-                _service.AbandonProject(id, userID);
+        public ActionResult AbandonPrj(int? id, int? userID) {
+            if(id.HasValue && userID.HasValue) {
+                _service.AbandonProject(id?? default(int), userID?? default(int));
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
@@ -411,7 +410,27 @@ echo ""Hello World!"";
 
         public ActionResult AbandonPrjNormal(int? ProjectID) {
             var prj = _service.GetProjectByID(ProjectID ?? default(int));
+            ViewBag.CurrentUserID = _service.getUserID(User.Identity.GetUserName());
             return PartialView("_AbandonPrjConfirm", prj);
+        }
+        #endregion
+
+        #region ListCollaborators
+        public ActionResult ListCollaborators(int? ProjectID) {
+
+            if (ProjectID.HasValue) {
+                Project userProject = _service.GetProjectByID(ProjectID ?? default(int));
+                List<AppUser> allUsers = _userService.getAllUsersInProject(userProject);
+
+                ViewBag.projectName = userProject.Name;
+                ViewBag.Owner = userProject.AppUser.UserName;
+                ViewBag.User = User.Identity.GetUserName();
+                ViewBag.ProjectID = userProject.ID;
+
+                return PartialView("_Listcollaborators", allUsers);
+            }
+
+            return View();
         }
         #endregion
     }

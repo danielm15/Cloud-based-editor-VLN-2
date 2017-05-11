@@ -90,6 +90,13 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         #endregion
 
         #region Download Documents
+        /// <summary>
+        /// Function for downloading all items that a project contains
+        /// </summary>
+        /// <param name="projectID"></param>
+        /// <param name="userID"></param>
+        /// <param name="projectName"></param>
+        /// <returns></returns>
         public ActionResult DownloadZip(int? projectID, int? userID, string projectName) {
 
             var id = projectID ?? default(int);
@@ -121,7 +128,11 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         }
 
 
-
+        /// <summary>
+        /// Function for download a single file in a specific project
+        /// </summary>
+        /// <param name="documentID"></param>
+        /// <returns></returns>
         public ActionResult DownloadFile(int? documentID) {
             var doc = _service.GetDocumentByID(documentID ?? default(int));
 
@@ -140,9 +151,14 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         #endregion
 
         #region Delete POST
+        /// <summary>
+        /// Deletes a single file in a specific project
+        /// </summary>
+        /// <param name="documentID"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Delete(int? documentID) {
-
+            
             if (documentID.HasValue) {
                 var ID = documentID ?? default(int);
                 var documentToDelete = _service.GetDocumentByID(ID);

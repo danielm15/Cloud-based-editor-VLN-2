@@ -219,6 +219,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\DocumentHub.cs" />
+    <Compile Include="Hubs\InvitationHub.cs" />
     <Compile Include="Migrations\201705021108241_Test.cs" />
     <Compile Include="Migrations\201705021108241_Test.Designer.cs">
       <DependentUpon>201705021108241_Test.cs</DependentUpon>
@@ -243,8 +244,13 @@
     <Compile Include="Migrations\201705100938549_ProjectType.Designer.cs">
       <DependentUpon>201705100938549_ProjectType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705102212270_Invitaion.cs" />
+    <Compile Include="Migrations\201705102212270_Invitaion.Designer.cs">
+      <DependentUpon>201705102212270_Invitaion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\Document.cs" />
+    <Compile Include="Models\Entities\Invitation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Entities\Project.cs" />
@@ -313,6 +319,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\notifications.js" />
     <Content Include="Scripts\ProjectOverview.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -331,25 +338,17 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Support.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Editor\Index.cshtml" />
@@ -364,7 +363,7 @@
     <Content Include="Views\Project\_DeleteNoPermission.cshtml" />
     <Content Include="Views\Document\_RenameDocument.cshtml" />
     <Content Include="Views\Project\_AbandonPrjConfirm.cshtml" />
-    <Content Include="Views\Project\_AdminAbandonProject.cshtml" />
+    <Content Include="Views\Project\_Listcollaborators.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -398,6 +397,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705100938549_ProjectType.resx">
       <DependentUpon>201705100938549_ProjectType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705102212270_Invitaion.resx">
+      <DependentUpon>201705102212270_Invitaion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cloud_based_editor_VLN_2.Services;
 using Cloud_based_editor_VLN_2.Models.Entities;
-using Cloud_based_editor_VLN_2.Tests;
 
 namespace Cloud_based_editor_VLN_2.Tests.Services {
     [TestClass]
@@ -113,7 +112,22 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
             // Act:
             var project1 = _ProjectService.GetProjectByID(1);
             var project2 = _ProjectService.GetProjectByID(2);
-            // Assert:
+	        var date = project1.DateCreated;
+	        var type = project1.ProjectType;
+	        var AppUser = project1.AppUser;
+
+	        var user1 = new AppUser {
+		        ID = 1,
+		        UserName = "User1",
+		        Email = "Email1@Email1.com"
+	        };
+
+			// Assert:
+			Assert.IsNotNull(date);
+			Assert.AreEqual(user1.ID, AppUser.ID);
+	        Assert.AreEqual(user1.UserName, AppUser.UserName);
+	        Assert.AreEqual(user1.Email, AppUser.Email);
+			Assert.AreEqual("Javascript", project1.ProjectType);
             Assert.AreEqual(1, project1.ID);
             Assert.AreEqual("Project1", project1.Name);
             Assert.AreEqual(2, project2.ID);

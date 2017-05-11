@@ -19,7 +19,7 @@
                 </p>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" id="cancelModalBtn" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger" id="abandonModalBtn" onclick="AbandonProjectAjax(@Model.ID, @Model.AppUser.ID)" data-dismiss="modal">Abandon</button>
+                    <button type="button" class="btn btn-danger" id="abandonModalBtn" onclick="AbandonProjectAjax(@Model.ID, @ViewBag.CurrentUserID)" data-dismiss="modal">Abandon</button>
                 </div>
 </div>
     </div>

@@ -56,11 +56,11 @@
             <li id="noFilesListItem"><h4 class="noFiles">No files to display</h4></li>
         }
         @foreach (Cloud_based_editor_VLN_2.Models.Entities.Document item in Model.Documents) {
-            <li id="@("listItem" + @item.ID)">
+            <li id="@("listItem" + item.ID)">
                 <div>
                     <div class="row documentListItem">
                         <a href="@Url.Action("Index", "Editor", new { projectID = item.ProjectID, documentID = item.ID })" class="clickableDiv">
-                            <div class="col-md-3 listText" id="@("nameID" + @item.ID)">
+                            <div class="col-md-3 listText" id="@("nameID" + item.ID)">
                                 @Html.DisplayFor(modelItem => item.Name)
                             </div>
                             <div class="col-md-2 listText">
@@ -74,14 +74,14 @@
                             </div>
                         </a>
                         <div class="col-md-2 right-float">
-                            <div class="left menu right-float">
+                            <div class="left right-float">
                                 <a href="javascript:;" class="left dropdown-toggle" data-toggle="dropdown">
                                     <span class="glyphicon glyphicon-option-vertical optionsButton"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
                                     <li><a href="javascript:;" onclick="EditFileName(@item.ID)"><i class="glyphicon glyphicon-pencil"></i> Rename</a> </li>
-                                    <li>@Html.ActionLink("Download", "DownloadFile", new { documentID = item.ID }, new { @type = "a", @tabindex = "-1" })</li>
+                                    <li>@Html.ActionLink("Download", "DownloadFile", new { documentID = item.ID }, new { type = "a", tabindex = "-1" })</li>
                                     <li><a href="javascript:;" onclick="deleteDocument(@item.ID)">Delete</a></li>
                                 </ul>
                             </div>

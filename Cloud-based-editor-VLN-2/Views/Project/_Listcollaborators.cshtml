@@ -1,0 +1,35 @@
+﻿@model List<Cloud_based_editor_VLN_2.Models.Entities.AppUser> 
+
+
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Collaborators in project: <strong>@ViewBag.projectName</strong></h4>
+        </div>
+        <div class="modal-body" id="listCollaboratorsID">
+            <p>This is a list of all Collaborators in the project: @ViewBag.projectName</p>
+            <ul id="collaboratorsList">
+                @foreach (var user in Model) {
+                    <li class="displayUserLI" id="@("collaboratorListID" + user.ID)">
+
+                        @user.UserName,
+                        <span class="userEmail"> @user.Email</span>
+                        @if (ViewBag.Owner == user.UserName) {
+                            <span class="ownerLbl">Admin</span>
+                        } else if (ViewBag.Owner == ViewBag.User) {
+                            <button type="button" class="btn btn-default btn-sm" onclick="makeAdminOfProject(@ViewBag.ProjectID, @user.ID)">Make admin</button>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="deleteUserFromProject(@ViewBag.ProjectID, @user.ID)">Delete from project</button>
+                        }
+                    </li>
+                }
+            </ul>
+                       
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="cancelModalBtn" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+

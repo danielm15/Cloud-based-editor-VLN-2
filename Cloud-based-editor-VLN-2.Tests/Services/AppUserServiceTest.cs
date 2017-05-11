@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cloud_based_editor_VLN_2.Services;
 using Cloud_based_editor_VLN_2.Models.Entities;
-using Cloud_based_editor_VLN_2.Tests;
 using System.Collections.Generic;
 
 namespace Cloud_based_editor_VLN_2.Tests.Services {
@@ -11,8 +10,8 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
 
         private AppUserService _AppUserService;
 
-        static T First<T>(IEnumerable<T> items) {
-            using (IEnumerator<T> iter = items.GetEnumerator()) {
+	    private static T First<T>(IEnumerable<T> items) {
+            using (var iter = items.GetEnumerator()) {
                 iter.MoveNext();
                 return iter.Current;
             }
@@ -140,23 +139,21 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
         public void GetLimitedUserList() {
             // Arrange:
             // Act:
-            IEnumerable<AppUser> FoundUsers = _AppUserService.getLimitedUserList("User1");
+            var FoundUsers = _AppUserService.getLimitedUserList("User1");
+
+            var firstUser = First(FoundUsers);
 
             // Assert:
             Assert.IsNotNull(FoundUsers);
-            Assert.AreEqual(1, First<AppUser>(FoundUsers).ID);
-            Assert.AreEqual("User1", First<AppUser>(FoundUsers).UserName);
-            Assert.AreEqual("Email1@Email1.com", First<AppUser>(FoundUsers).Email);
+            Assert.AreEqual(1, firstUser.ID);
+            Assert.AreEqual("User1", firstUser.UserName);
+            Assert.AreEqual("Email1@Email1.com", firstUser.Email);
         }
 
         [TestMethod]
         public void GetAllUserProjects() {
             // Arrange:
-            var user1 = new AppUser {
-                ID = 1,
-                UserName = "User1",
-                Email = "Email1@Email1.com"
-            };
+
             // Act:
             var AllUserProjects = _AppUserService.getAllUserProjects();
 

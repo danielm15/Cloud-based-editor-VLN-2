@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Cloud_based_editor_VLN_2.Models.Entities {
@@ -42,9 +39,5 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
         [JsonIgnore]
         [ForeignKey("ProjectID")]
         public virtual Project Project { get; set; }
-
-
-
-        //public virtual List<User> Collaborators { get; set; }
     }
 }

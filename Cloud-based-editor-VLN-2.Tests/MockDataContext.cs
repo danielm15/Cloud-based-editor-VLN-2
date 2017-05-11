@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FakeDbSet;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+﻿using System.Data.Entity;
 using Cloud_based_editor_VLN_2.Models;
 using Cloud_based_editor_VLN_2.Models.Entities;
 
@@ -21,10 +15,10 @@ namespace Cloud_based_editor_VLN_2.Tests {
        
         public MockDataContext() {
             // We're setting our DbSets to be InMemoryDbSets rather than using SQL Server.
-            this.AppUsers = new InMemoryDbSet<AppUser>();
-            this.UserProjects = new InMemoryDbSet<UserProjects>();
-            this.Projects = new InMemoryDbSet<Project>();
-            this.Documents = new InMemoryDbSet<Document>();
+            AppUsers = new InMemoryDbSet<AppUser>();
+            UserProjects = new InMemoryDbSet<UserProjects>();
+            Projects = new InMemoryDbSet<Project>();
+            Documents = new InMemoryDbSet<Document>();
         }
 
         public IDbSet<AppUser> AppUsers { get; set; }

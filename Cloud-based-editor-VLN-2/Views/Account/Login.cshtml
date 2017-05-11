@@ -1,4 +1,4 @@
-﻿@using Cloud_based_editor_VLN_2.Models
+﻿@using Cloud_based_editor_VLN_2.Models.ViewModels
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
@@ -7,7 +7,7 @@
 <h2>@ViewBag.Title</h2>
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-defaults"  style="height:300px;">
+        <div class="panel panel-default"  style="height:300px;">
             <section id="loginForm">
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {

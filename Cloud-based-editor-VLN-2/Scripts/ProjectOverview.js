@@ -304,8 +304,8 @@ var makeAdminOfProject = function (projectID, UserID) {
         type: "POST",
         url: "/Project/MakeAdmin",
         data: { id: projectID, userID: UserID },
-        sucess: function (response) {
-          
+        success: function (response) {
+            listCollaboratorsFunc(projectID);
         }
     })
 }

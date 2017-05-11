@@ -94,6 +94,7 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
         [TestMethod]
         public void TestGetProjectsByUserID() {
             // Arrange:
+
             // Act:
             var projects = _ProjectService.GetProjectsByUserID(1);
 

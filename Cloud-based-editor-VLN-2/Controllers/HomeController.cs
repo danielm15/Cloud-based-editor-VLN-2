@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Cloud_based_editor_VLN_2.Services;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
     public class HomeController : Controller {
 
         public ActionResult Index() {
+
             return View();
         }
 

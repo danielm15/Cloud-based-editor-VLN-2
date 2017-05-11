@@ -31,7 +31,7 @@ namespace Cloud_based_editor_VLN_2.Tests.Controllers {
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.IsNotNull(result);
         }
     }
 }

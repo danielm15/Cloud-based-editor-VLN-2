@@ -71,7 +71,7 @@
                        + "<div>"
                            + "<div class=\"row documentListItem\">"
                             + "<a href=\"/Editor?projectID=" + response.ProjectID + "&documentID=" + response.ID + "\" class=\"clickableDiv\">"
-                                   + "<div class=\"col-md-3 listText\">"
+                                   + "<div class=\"col-md-3 listText\" id=\"nameID" + response.ID + "\">"
                                         + response.Name
                                    + "</div>"
                                    + "<div class=\"col-md-2 listText\">"
@@ -90,7 +90,7 @@
                                    + "<span class=\"glyphicon glyphicon-option-vertical optionsButton\"></span>"
                                    + "</a>"
                                    + "<ul class=\"dropdown-menu\">"
-                                   + "<li><a href=\"/Document/Rename?projectID=" + response.ProjectID + "\" tabindex=\"-1\" type=\"a\">Rename</a></li>"
+                                   + "<li><a href=\"#\" onclick=\"EditFileName(" + response.ProjectID + ")\">Rename</a></li>"
                                    + "<li><a href=\"/Document/DownloadFile?documentID=" + response.ID + "\" tabindex=\"-1\" type=\"a\">Download</a></li>"
                                    + "<li><a href=\"#\" onclick=\"deleteDocument(" + response.ID + ")\">Delete</a></li>"
                                    + "</ul>"

@@ -25,6 +25,7 @@
                 <form id="AddProjectForm">
 
                     @Html.HiddenFor(model => model.OwnerID)
+                    @*@Html.HiddenFor(model => model.AppUser.UserName)*@
                     @Html.LabelFor(model => model.Name)
                     @Html.TextBoxFor(model => model.Name, new {@id="AddProjectTextBox" })
                     @*@Html.TextBox("InviteTxtBox", "", new { placeholder = "Please enter username" })*@

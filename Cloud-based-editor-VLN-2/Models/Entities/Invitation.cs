@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,18 +9,20 @@ using System.Web;
 namespace Cloud_based_editor_VLN_2.Models.Entities {
     public class Invitation {
         [Key]
+        [JsonProperty("ID")]
         public int ID { get; set; }
 
-        [ForeignKey("AppUser")]
-        public int FromID { get; set; }
+        [JsonProperty("AppUserID")]
+        public int AppUserID { get; set; }
 
-        [ForeignKey("AppUser")]
-        public int ToID { get; set; }
-
+        [JsonProperty("ProjectID")]
         public int ProjectID { get; set; }
 
+        [JsonIgnore]
+        [ForeignKey("AppUserID")]
         public virtual AppUser AppUser { get; set; }
 
+        [JsonIgnore]
         [ForeignKey("ProjectID")]
         public virtual Project Project { get; set; }
     }

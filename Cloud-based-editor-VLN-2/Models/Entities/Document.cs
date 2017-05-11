@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Cloud_based_editor_VLN_2.Models.Entities {
     public class Document {
@@ -28,6 +29,7 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
         
         [JsonProperty("content")]
         [Column(TypeName = "ntext")]
+        [AllowHtml]
         public string Content { get; set; }
 
         [JsonIgnore]

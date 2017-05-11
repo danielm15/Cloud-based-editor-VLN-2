@@ -4,9 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Cloud_based_editor_VLN_2.Models;
 
 namespace Cloud_based_editor_VLN_2.Services {
     public class ProjectService : BaseService {
+
+        public ProjectService(IAppDataContext context) : base(context) {
+
+        }
 
         // Fetch all projects owned by a particular User
         public List<Project> GetProjectsByUserID(int UserID) {
@@ -40,6 +45,17 @@ namespace Cloud_based_editor_VLN_2.Services {
             return true;
         }
 
+        public bool UpdateProject(Project projectToUpdate) {
+            _db.Entry(projectToUpdate).State = System.Data.Entity.EntityState.Modified;
+            try {
+                _db.SaveChanges();
+            }
+            catch {
+                return false;
+            }
+            return true;
+        }
+
         public bool DeleteProject(int projectID) {
 
             var documents = _db.Documents.Where(item => item.ProjectID == projectID);
@@ -59,5 +75,60 @@ namespace Cloud_based_editor_VLN_2.Services {
             _db.SaveChanges();
             return true;
         }
-     }
+
+        public bool AddInvitation(Invitation newInvitaion) {
+            _db.Invitations.Add(newInvitaion);
+
+            return _db.SaveChanges() == 1;
+        }
+
+        public List<Invitation> GetUserInvitations(int userID) {
+            var invitaions = (from inv in _db.Invitations
+                              where inv.AppUserID == userID
+                              select inv).ToList();
+
+            return invitaions;
+        }
+
+        /*public bool DeleteInvitaion(Invitation invitation) {
+            _db.Invitations.Remove(invitation);
+
+            return _db.SaveChanges() == 1;
+        }*/
+
+        public bool ContainsInvitation(Invitation invitation) {
+            var result = (from inv in _db.Invitations
+                          where inv.AppUserID == invitation.AppUserID
+                          && inv.ProjectID == invitation.ProjectID
+                          select inv).SingleOrDefault();
+
+            return !(result == null);
+        }
+
+        public bool HasUserProject(UserProjects userProject) {
+            var result = (from up in _db.UserProjects
+                          where up.AppUserID == userProject.AppUserID
+                          && up.ProjectID == userProject.ProjectID
+                          select up).SingleOrDefault();
+
+            return !(result == null);
+        }
+
+        public bool AddUserToProject(UserProjects newUserProject) {
+            _db.UserProjects.Add(newUserProject);
+
+            return _db.SaveChanges() == 1;
+        }
+
+        public bool RemoveInvite(Invitation invite) {
+            var invToRemove = (from inv in _db.Invitations
+                               where inv.AppUserID == invite.AppUserID
+                               && inv.ProjectID == invite.ProjectID
+                               select inv).SingleOrDefault();
+
+            _db.Invitations.Remove(invToRemove);
+
+            return _db.SaveChanges() == 1;
+        }
+    }
 }

@@ -39,11 +39,17 @@
                     @if (Request.IsAuthenticated) {
                         <li class="projectButton">@Html.ActionLink("My Projects", "Index", "Project")</li>
 
-                        <li> <a href="@Url.Action("Index" , "Projects" )" class="projectButton">Invitations<span class="badge" id="NotifyCount"></span></a></li>
-                        
-                        @*<li class="projectButton">@Html.ActionLink("Invitations", "Index", "Projects", null, new { id = "NotificationsID" })"<span class="badge" id="NotifyCount"></span>"</li>*@
+                        @*<li><a href="@Url.Action("Index" , "Projects" )" class="projectButton">Invitations<span class="badge" id="NotifyCount"></span></a></li>*@
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle projectButton" data-toggle="dropdown" role="button" id="notifyButton">Notifications<span class="badge" id="NotifyCount"></span></a>
+                            
+                            <ul class="dropdown-menu" role="menu" id="inviteDropDown">
+                                <li></li>
+                            </ul>
+                            
+                        </li>
                     }
-                </ul>
+                    </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

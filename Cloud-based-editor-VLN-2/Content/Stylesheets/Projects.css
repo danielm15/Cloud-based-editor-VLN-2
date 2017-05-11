@@ -85,7 +85,7 @@
 }
 
 .project-panel-box {
-    height:200px;
+    height:240px;
 }
 
 .project-panel-box:hover {
@@ -124,10 +124,15 @@
     margin-top: -15px;
 }
 
-.creatorClass, .dateCreatedClass {
+.projectType {
+    margin-top: -15px;
+}
+
+.creatorClass, .dateCreatedClass, .projectType {
     color:gray;
 }
 
 .hideInput {
     display: none;
 }
+

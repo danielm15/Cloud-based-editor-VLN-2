@@ -21,6 +21,13 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
             };
             mockContext.AppUsers.Add(user1);
 
+            var user2 = new AppUser {
+                ID = 2,
+                UserName = "User2",
+                Email = "Email2@Email2.com"
+            };
+            mockContext.AppUsers.Add(user2);
+
             var project1 = new Project {
                 ID = 1,
                 OwnerID = 1,
@@ -58,6 +65,15 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
                 Project = project2
             };
             mockContext.UserProjects.Add(userProject2);
+
+            var userProject3 = new UserProjects {
+                ID = 3,
+                AppUserID = 2,
+                ProjectID = 2,
+                AppUser = user2,
+                Project = project2
+            };
+            mockContext.UserProjects.Add(userProject3);
 
             var document1 = new Document {
                 ID = 1,
@@ -159,6 +175,39 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
             Assert.IsTrue(deleted);
             Assert.AreEqual(1, projects.Count);
             Assert.IsNull(deletedProject);
+        }
+
+        [TestMethod]
+        public void TestAbandonProject() {
+            // Arrange:
+            var project2ID = 2;
+            var user2ID = 2;
+            // Act:
+            var usersBefore = _ProjectService.HowManyUsersAreInTheProject(project2ID);
+            var abandoned = _ProjectService.AbandonProject(project2ID, user2ID);
+            var usersAfter = _ProjectService.HowManyUsersAreInTheProject(project2ID);
+
+            // Assert:
+            Assert.IsTrue(abandoned);
+            Assert.AreEqual(2, usersBefore);
+            Assert.AreEqual(1, usersAfter);
+            
+        }
+
+        [TestMethod]
+        public void TestHowManyUsersAreInTheProject() {
+            // Arrange:
+
+            // Act:
+            int numberBefore = _ProjectService.HowManyUsersAreInTheProject(2);
+            var abandoned = _ProjectService.AbandonProject(2, 2);
+            var numberAfter = _ProjectService.HowManyUsersAreInTheProject(2);
+
+            // Assert:
+            Assert.AreEqual(2, numberBefore);
+            Assert.IsTrue(abandoned);
+            Assert.AreEqual(1, numberAfter);
+
         }
     }
 }

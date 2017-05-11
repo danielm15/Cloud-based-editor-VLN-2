@@ -54,8 +54,8 @@
     padding-top: 10px;
 }
 /* Slideshow container */
-.carousel {
-
+.carousel-control.left, .carousel-control.right {
+    background-image: none
 }
 
 /* On hover, add a black background color with a little bit see-through */

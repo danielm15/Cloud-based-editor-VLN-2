@@ -111,14 +111,14 @@ $(function () {
         window.hubReady.done(function () {
             invhub.server.joinUserGroup(userID);
             $(document).on('click', '#InviteUserSubmitBtn', function () {
-                var projectID = $('#CurrentProjectToInvite').serialize().substring(3);
-                var toUserName = $('#userListInput').serialize().substring(10);
+                var projectID = $('#CurrentProjectToInvite').val();
+                var userName = $('#userListInput').val();
                 console.log(projectID);
-                console.log(toUserName);
+                console.log(userName);
                 $.ajax({
                     type: "POST",
                     url: "/Project/Invite",
-                    data: { projectID, toUserName },
+                    data: { projectID: projectID, userName: userName },
                     success: function (response) {
                         if (response.success === "hasProject") {
                             //document.getElementById("userListInput").classList.toggle("hideInput");

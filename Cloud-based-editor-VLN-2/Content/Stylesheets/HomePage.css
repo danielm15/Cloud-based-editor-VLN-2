@@ -42,7 +42,6 @@
 
 .imageDiv img {
     height: 400px;
-    width: 100%;
 }
 /* Slideshow container */
 .slideshow-container {
@@ -98,12 +97,29 @@
   background-color: #717171;
 }
 
+.frontPageText {
+    font-weight: bold;
+}
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade;
   -webkit-animation-duration: 4s;
   animation-name: fade;
   animation-duration: 4s;
+}
+
+.mainFeatures {
+    padding-top: 50px;
+    display:flex;
+    justify-content:space-between;
+}
+.mainFeaturesBox {
+    flex-basis: 30%;
+    border: 1px solid gray;
+}
+
+.boxText {
+    padding-top: 10px;
 }
 
 /*////////// Animations //////////*/

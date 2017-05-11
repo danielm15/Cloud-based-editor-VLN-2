@@ -280,9 +280,12 @@ echo ""Hello World!"";
             var userID = _service.getUserID(User.Identity.GetUserName());
             prj.AppUser.ID = userID;
 
-            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreInTheProject(prj.ID) > 1) return Json(new { message = "Admin++" }, JsonRequestBehavior.AllowGet);
-	        if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreInTheProject(prj.ID) == 1) {
-                var something = _service.HowManyUsersAreInTheProject(prj.ID);
+            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreInTheProject(prj.ID) > 1) {
+                return Json(new { message = "Admin++" }, JsonRequestBehavior.AllowGet);
+
+                /// TODO:: Tell him he cannot remove him self from the project || make someone else admin and remove him from the project
+            }
+            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreInTheProject(prj.ID) == 1) {
                 return Json(new { message = "Admin-" }, JsonRequestBehavior.AllowGet);
             }
             else {

@@ -85,8 +85,8 @@ namespace Cloud_based_editor_VLN_2.Services {
 
         public int HowManyUsersAreInTheProject(int prjID) {
             IEnumerable<UserProjects> userList = (from item in Db.UserProjects
-                                               where item.ProjectID == prjID
-                                               select item).ToList();
+													where item.ProjectID == prjID
+													select item).ToList();
             return userList.Count();
             //int number = _db.UserProjects.Where(item => item.ProjectID == prjID).All
             //return number;

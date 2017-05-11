@@ -269,6 +269,7 @@
     <Content Include="Content\Img\clouds-in-shades-of-blue.jpg" />
     <Content Include="Content\Img\dropDownArrow.png" />
     <Content Include="Content\Img\FileView.png" />
+    <Content Include="Content\Img\indridi.jpg" />
     <Content Include="Content\Img\logo2.png" />
     <Content Include="Content\Img\logoBanner.png" />
     <Content Include="Content\bootstrap.css" />

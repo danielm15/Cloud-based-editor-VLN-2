@@ -234,9 +234,9 @@ echo ""Hello World!"";
             projectToUpdate.Name = item.Name.Replace(' ', '_');
 
             if (projectToUpdate.AppUser.UserName != User.Identity.GetUserName()) return Json(new { success = false, message = "noPermission", name = projectToUpdate.Name, projectID = projectToUpdate.ID });
-	        if (_service.UpdateProject(projectToUpdate)) return Json(new { success = true, name = projectToUpdate.Name, projectID = projectToUpdate.ID });
+            if (_service.UpdateProject(projectToUpdate)) return Json(new { success = true, name = projectToUpdate.Name, projectID = projectToUpdate.ID });
 
-	        return Json(new { success = false });
+            return Json(new { success = false });
 
         }
         #endregion
@@ -280,11 +280,11 @@ echo ""Hello World!"";
 
         [HttpPost]
         public ActionResult Invite(int projectID, string userName) {
- 
+
 
             int userID = _service.getUserID(userName);
 
-            if(userID == 0) {
+            if (userID == 0) {
                 return Json(new { success = "userNotFound", name = userName, projectID = projectID });
             }
 
@@ -299,7 +299,7 @@ echo ""Hello World!"";
             if (_service.ContainsInvitation(inv)) {
                 return Json(new { success = "hasInvite", name = userName, projectID = projectID });
             }
-            else if(_service.HasUserProject(project)) {
+            else if (_service.HasUserProject(project)) {
                 return Json(new { success = "hasProject", name = userName, projectID = projectID });
             }
             else {
@@ -316,8 +316,8 @@ echo ""Hello World!"";
             var invites = _service.GetUserInvitations(userID);
 
             var projects = new List<Project>();
-            
-            foreach(Invitation item in invites) {
+
+            foreach (Invitation item in invites) {
                 projects.Add(_service.GetProjectByID(item.ProjectID));
             }
 
@@ -391,13 +391,13 @@ echo ""Hello World!"";
                 return Json(new { message = "notAdmin" }, JsonRequestBehavior.AllowGet);
             }
         }
-        
+
 
 
         [HttpPost]
         public ActionResult AbandonPrj(int? id, int? userID) {
-            if(id.HasValue && userID.HasValue) {
-                _service.AbandonProject(id?? default(int), userID?? default(int));
+            if (id.HasValue && userID.HasValue) {
+                _service.AbandonProject(id ?? default(int), userID ?? default(int));
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
@@ -434,14 +434,16 @@ echo ""Hello World!"";
         }
         #endregion
 
+        #region makeAdmin
         [HttpPost]
         public ActionResult MakeAdmin(int? id, int? userID) {
             if (id.HasValue && userID.HasValue) {
                 int currentUserID = _service.getUserID(User.Identity.GetUserName());
-                _service.changeOwner(id?? default(int), userID?? default(int));
+                _service.changeOwner(id ?? default(int), userID ?? default(int));
+                return Json(new { sucess = true });
             }
-            return RedirectToAction("Index");
+            return Json(new { sucess = false });
         }
-
+        #endregion
     }
 }

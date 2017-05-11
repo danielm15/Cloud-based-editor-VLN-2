@@ -164,7 +164,7 @@ $(function () {
                             document.getElementById("InviteUserError").style.color = "green";
                             $('#InviteUserError').fadeIn().delay(3500).fadeOut();
 
-                            invhub.server.sendInvitation(userID, toUserName, parseInt(projectID));
+                            invhub.server.sendInvitation(userID, userName, parseInt(projectID));
                         }
                     }
                 });

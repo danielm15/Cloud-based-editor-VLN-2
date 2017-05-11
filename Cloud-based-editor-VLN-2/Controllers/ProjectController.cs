@@ -10,7 +10,9 @@ using Cloud_based_editor_VLN_2.Models.ViewModels;
 using System.IO;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
+
     public class ProjectController : Controller {
+
         private string _currentUserEmail;
         private int _currentUserID;
 
@@ -117,6 +119,7 @@ echo ""Hello World!"";
 
         // GET: ProjectsOverview
         public ActionResult Index() {
+
             _currentUserEmail = User.Identity.GetUserName();
             _currentUserID = _service.getUserID(_currentUserEmail);
             ProjectViewModel model = new ProjectViewModel() {

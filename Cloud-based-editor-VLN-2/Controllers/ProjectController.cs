@@ -4,6 +4,12 @@ using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 using Cloud_based_editor_VLN_2.Models.Entities;
 using Cloud_based_editor_VLN_2.Models.ViewModels;
+using System.IO;
+using System.Web.Services;
+using System.Web.Script.Services;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
 
@@ -270,6 +276,99 @@ echo ""Hello World!"";
                 }
             }
         }
+
+        [HttpPost]
+        public ActionResult Invite(FormCollection collection) {
+            string userName = collection["toUserName"];
+            int projectID = int.Parse(collection["projectID"]);
+
+            int userID = _service.getUserID(userName);
+
+            if(userID == 0) {
+                return Json(new { success = "userNotFound", name = userName, projectID = projectID });
+            }
+
+            Invitation inv = new Invitation();
+            inv.AppUserID = userID;
+            inv.ProjectID = projectID;
+
+            UserProjects project = new UserProjects();
+            project.AppUserID = userID;
+            project.ProjectID = projectID;
+
+            if (_service.ContainsInvitation(inv)) {
+                return Json(new { success = "hasInvite", name = userName, projectID = projectID });
+            }
+            else if(_service.HasUserProject(project)) {
+                return Json(new { success = "hasProject", name = userName, projectID = projectID });
+            }
+            else {
+                _service.AddInvitation(inv);
+                return Json(new { success = true, name = userName, projectID = projectID });
+            }
+
+        }
+
+        [HttpGet]
+        public ActionResult GetInvites() {
+            int userID = _service.getUserID(User.Identity.GetUserName());
+
+            var invites = _service.GetUserInvitations(userID);
+
+            var projects = new List<Project>();
+            
+            foreach(Invitation item in invites) {
+                projects.Add(_service.GetProjectByID(item.ProjectID));
+            }
+
+            /*var jsonSerialiser = new JavaScriptSerializer();
+            var json = jsonSerialiser.Serialize(invites);*/
+            //var result = new JavaScriptSerializer().Serialize(projects);
+
+            JsonSerializerSettings settings = new JsonSerializerSettings {
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects
+            };
+            var serializer = JsonSerializer.Create(settings);
+            var result = JsonConvert.SerializeObject(projects);
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [HttpPost]
+        public ActionResult AcceptProject(int projectID) {
+
+            int userID = _service.getUserID(User.Identity.GetUserName());
+
+            var newUserProject = new UserProjects();
+            newUserProject.AppUserID = userID;
+            newUserProject.ProjectID = projectID;
+
+            var invite = new Invitation();
+            invite.AppUserID = userID;
+            invite.ProjectID = projectID;
+
+            if (_service.AddUserToProject(newUserProject) && _service.RemoveInvite(invite)) {
+                return Json(new { success = true });
+
+            }
+            return Json(new { success = false });
+        }
+
+        [HttpPost]
+        public ActionResult DeclineProject(int projectID) {
+
+            int userID = _service.getUserID(User.Identity.GetUserName());
+
+            var invite = new Invitation();
+            invite.AppUserID = userID;
+            invite.ProjectID = projectID;
+
+            if (_service.RemoveInvite(invite)) {
+                return Json(new { success = true });
+
+            }
+            return Json(new { success = false });
+        }
         #endregion
 
         #region AbandonProject
@@ -315,6 +414,5 @@ echo ""Hello World!"";
             return PartialView("_AbandonPrjConfirm", prj);
         }
         #endregion
-
     }
 }

@@ -73,6 +73,61 @@ namespace Cloud_based_editor_VLN_2.Services {
             return true;
         }
 
+        public bool AddInvitation(Invitation newInvitaion) {
+            Db.Invitations.Add(newInvitaion);
+
+            return Db.SaveChanges() == 1;
+        }
+
+        public List<Invitation> GetUserInvitations(int userID) {
+            var invitaions = (from inv in Db.Invitations
+                              where inv.AppUserID == userID
+                              select inv).ToList();
+
+            return invitaions;
+        }
+
+        /*public bool DeleteInvitaion(Invitation invitation) {
+            _db.Invitations.Remove(invitation);
+
+            return _db.SaveChanges() == 1;
+        }*/
+
+        public bool ContainsInvitation(Invitation invitation) {
+            var result = (from inv in Db.Invitations
+                          where inv.AppUserID == invitation.AppUserID
+                          && inv.ProjectID == invitation.ProjectID
+                          select inv).SingleOrDefault();
+
+            return !(result == null);
+        }
+
+        public bool HasUserProject(UserProjects userProject) {
+            var result = (from up in Db.UserProjects
+                          where up.AppUserID == userProject.AppUserID
+                          && up.ProjectID == userProject.ProjectID
+                          select up).SingleOrDefault();
+
+            return !(result == null);
+        }
+
+        public bool AddUserToProject(UserProjects newUserProject) {
+            Db.UserProjects.Add(newUserProject);
+
+            return Db.SaveChanges() == 1;
+        }
+
+        public bool RemoveInvite(Invitation invite) {
+            var invToRemove = (from inv in Db.Invitations
+                               where inv.AppUserID == invite.AppUserID
+                               && inv.ProjectID == invite.ProjectID
+                               select inv).SingleOrDefault();
+
+            Db.Invitations.Remove(invToRemove);
+
+            return Db.SaveChanges() == 1;
+        }
+
         public bool AbandonProject(int prjID, int usrID) {
             //var project = _db.UserProjects.Where(item => item.ProjectID == prjID && item.AppUser.ID == usrID).SingleOrDefault();
             var project = (from item in Db.UserProjects

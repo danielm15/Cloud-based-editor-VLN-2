@@ -105,7 +105,7 @@ var InviteToProject = function (ProjectID) {
     });
 };
 
-var submitInviteName = function () {
+/*var submitInviteName = function () {
     var myformdata = $("#InviteUserForm").serialize();
     $.ajax({
         type: "POST",
@@ -143,8 +143,9 @@ var submitInviteName = function () {
             }
 
         }
-    });
-}
+<<<<<<< HEAD
+    })
+}*/
 
 var populateList = function (searchStringInput) {
 
@@ -204,6 +205,7 @@ var AddnewProjectFunc = function () {
         div.style.display = "block";
     }
 };
+
 
 //var abandonPrj = function (ProjectID) {
 //    var url = "/Project/AbandonPrj?ProjectID=" + ProjectID;

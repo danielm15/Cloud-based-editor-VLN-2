@@ -25,6 +25,8 @@ namespace Cloud_based_editor_VLN_2.Models {
 
         IDbSet<Document> Documents { get; set; }
 
+        IDbSet<Invitation> Invitations { get; set; }
+
         int SaveChanges();
 
         void SetModified(object entity);
@@ -38,6 +40,8 @@ namespace Cloud_based_editor_VLN_2.Models {
         public IDbSet<Project> Projects { get; set; }
 
         public IDbSet<Document> Documents { get; set; }
+
+        public IDbSet<Invitation> Invitations { get; set; }
 
         public void SetModified(object entity) {
             Entry(entity).State = EntityState.Modified;

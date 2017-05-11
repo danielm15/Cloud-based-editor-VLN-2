@@ -11,5 +11,6 @@ namespace Cloud_based_editor_VLN_2.Hubs {
         public void JoinDocument(int documentID) {
             Groups.Add(Context.ConnectionId, Convert.ToString(documentID));
         }
+
     }
 }

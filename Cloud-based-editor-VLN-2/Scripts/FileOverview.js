@@ -46,7 +46,6 @@ var submitUpdatedFileName = function (projectID) {
                     }
                 }
             }
-
         });
     } else {
         var div = document.getElementById("RenameDocumentErrorDiv");

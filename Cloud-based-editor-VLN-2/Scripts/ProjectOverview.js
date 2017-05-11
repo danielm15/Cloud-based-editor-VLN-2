@@ -197,3 +197,25 @@ var AddnewProjectFunc = function () {
         div.style.display = "block";
     }
 };
+
+var abandonPrj = function (ProjectID) {
+    var url = "/Project/AbandonPrj?ProjectID=" + ProjectID;
+
+    $("#myModal1").load(url, function () {
+        $("#myModal1").modal("show");
+    });
+};
+
+var AbandonProjectAjax = function (ID, UserID) {
+    var myformdata = $("#AbandonPrjForm").serialize();
+    alert(myformdata);
+    $.ajax({
+        type: "POST",
+        url: "/Project/AbandonPrj",
+        data: { id: ID, userID: UserID },
+        success: function(){
+            window.location.href = "/Project";
+        }
+   })
+}
+

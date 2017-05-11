@@ -7,6 +7,7 @@
 
 var submitUpdatedFileName = function (projectID) {
     var nameField = document.getElementById("RenameDocumentTextBox").value;
+    alert(nameField);
     if (nameField != "") {
         var myformdata = $("#myFormFile").serialize();
         $.ajax({

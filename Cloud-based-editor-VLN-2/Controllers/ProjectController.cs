@@ -145,6 +145,7 @@ echo ""Hello World!"";
             string name = "", type = "", content = "";
             if (ModelState.IsValid) {
                 item.DateCreated = DateTime.Now;
+                item.Name = item.Name.Replace(' ', '_');
                 _service.AddProject(item);
 
                 var doc = new Document();
@@ -230,7 +231,7 @@ echo ""Hello World!"";
 
 
             var projectToUpdate = _service.GetProjectByID(item.ID);
-            projectToUpdate.Name = item.Name;
+            projectToUpdate.Name = item.Name.Replace(' ', '_');
 
             if (projectToUpdate.AppUser.UserName != User.Identity.GetUserName()) return Json(new { success = false, message = "noPermission", name = projectToUpdate.Name, projectID = projectToUpdate.ID });
 	        if (_service.UpdateProject(projectToUpdate)) return Json(new { success = true, name = projectToUpdate.Name, projectID = projectToUpdate.ID });

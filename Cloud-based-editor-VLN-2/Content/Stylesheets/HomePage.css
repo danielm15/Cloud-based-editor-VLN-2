@@ -40,19 +40,25 @@
     text-align: center;
 }
 
-.imageDiv img {
-    height: 400px;
-}
-/* Slideshow container */
-.slideshow-container {
-  height: 400px;
-  width: 100%;
-  position: relative;
-  margin: auto;
+.imageDiv {
+   width: 60%;
+   margin: 0 auto;
 }
 
-.mySlides {
-    display: none;
+.mainFeaturesBox {
+    flex-basis: 30%;
+    border: 1px solid gray;
+}
+
+.boxText {
+    padding-top: 10px;
+}
+/* Slideshow container */
+.carousel {
+  width: 640px;
+  height: 360px;
+
+  overflow: hidden;
 }
 
 /* On hover, add a black background color with a little bit see-through */
@@ -113,14 +119,7 @@
     display:flex;
     justify-content:space-between;
 }
-.mainFeaturesBox {
-    flex-basis: 30%;
-    border: 1px solid gray;
-}
 
-.boxText {
-    padding-top: 10px;
-}
 
 /*////////// Animations //////////*/
 

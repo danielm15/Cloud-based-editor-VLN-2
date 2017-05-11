@@ -15,7 +15,9 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         private ProjectService _projectService = new ProjectService(null);
 
         #region Get Documents(Index)
-        // GET: Document
+        // Calls the Index view in the Document folder that lists all the documents in 
+        // the current project, if a user tries to access the documents and is not a part of the 
+        // project he is redirected to an error page
         public ActionResult Index(int? projectID) {
 
             if (projectID.HasValue) {
@@ -31,6 +33,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         }
         #endregion
 
+        ///////////////** THIS IS NOT COMMENTED STILL NEEDS TO BE COMMENTED */////////////
         #region CreateDocument POST
         [HttpPost]
         public ActionResult Create(FormCollection formCollection) {
@@ -68,6 +71,11 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         #endregion
 
         #region RenameDocument GET and POST
+        /// <summary>
+        /// Gets the document and sends it to the _renameDocument view.
+        /// </summary>
+        /// <param name="documentID"></param>
+        /// <returns>PartialView</returns>
         public ActionResult _RenameDocument(int? documentID) {
 
             var doc = _service.GetDocumentByID(documentID ?? default(int));
@@ -75,6 +83,13 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return PartialView("_RenameDocument", doc);
         }
 
+        /// <summary>
+        /// This document is called when user pressess the rename button on the document
+        /// Gets the document we need to rename sends a Json object with some value
+        /// which tells us which case we need to use in the javascript.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>Json object</returns>
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult _RenameDocument(Document item) {

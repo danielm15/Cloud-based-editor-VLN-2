@@ -287,6 +287,7 @@ echo ""Hello World!"";
             Project prj = _service.GetProjectByID(ProjectID ?? default(int));
             int userID = _service.getUserID(User.Identity.GetUserName());
             prj.AppUser.ID = userID;
+
             if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreIntTheProject(prj.ID) > 1) {
                 return Json(new { message = "Admin++" }, JsonRequestBehavior.AllowGet);
 

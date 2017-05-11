@@ -26,7 +26,7 @@ namespace Cloud_based_editor_VLN_2.Services {
 
         public List<AppUser> getAllUsers() {
             List<AppUser> AllUsers = (from user in _db.AppUsers
-                                             select user).ToList();
+                                      select user).ToList();
             return AllUsers;
         }
 

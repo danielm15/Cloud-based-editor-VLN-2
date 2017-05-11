@@ -32,21 +32,20 @@ namespace Cloud_based_editor_VLN_2.Services {
         }
 
         public bool AddDocument(Document newDocument) {
-            var v = _db.Documents.Add(newDocument);
-            //_db.SaveChanges();
+            _db.Documents.Add(newDocument);
+
             try {
                 _db.SaveChanges();
-                //return true;
             }
-            catch(DbUpdateException e) {
-                
+            catch {
                 return false;
             }
             return true;
         }
 
         public bool UpdateDocument(Document documentToUpdate) {
-            _db.Entry(documentToUpdate).State = System.Data.Entity.EntityState.Modified;
+            _db.SetModified(documentToUpdate);
+
             try {
                 _db.SaveChanges();
             }

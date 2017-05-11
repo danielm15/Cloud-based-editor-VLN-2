@@ -287,6 +287,12 @@ echo ""Hello World!"";
             Project prj = _service.GetProjectByID(ProjectID ?? default(int));
             int userID = _service.getUserID(User.Identity.GetUserName());
             prj.AppUser.ID = userID;
+            if(prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreIntTheProject(prj.ID) > 1) {
+                /// TODO:: Tell him he cannot remove him self from the project || make someone else admin and remove him from the project
+            }
+            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreIntTheProject(prj.ID) == 1){
+                /// TODO: Delete the project
+            }
             return PartialView("_AbandonPrjConfirm", prj);
 
         }

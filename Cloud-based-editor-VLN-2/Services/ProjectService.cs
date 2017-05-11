@@ -82,5 +82,10 @@ namespace Cloud_based_editor_VLN_2.Services {
             _db.SaveChanges();
             return true;
         }
+
+        public int HowManyUsersAreIntTheProject(int prjID) {
+            int number = _db.UserProjects.Where(item => item.ProjectID == prjID).Count();
+            return number;
+        }
      }
 }

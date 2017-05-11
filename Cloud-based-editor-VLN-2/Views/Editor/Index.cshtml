@@ -35,7 +35,7 @@
     }
     @Html.HiddenFor(model => model.Doc.ID, new { id = "activeDocID" })
     <div class="btn-group">
-        @Html.ActionLink("Back to project files", "Index", "Document", new { projectID = Model.Doc.ProjectID }, new { @type = "button", @class = "btn btn-default" })
+        @Html.ActionLink("Back to project files", "Index", "Document", new { projectID = Model.Doc.ProjectID }, new { type = "button", @class = "btn btn-default" })
         <button type="button" class="btn btn-default" id="saveFileBtn">Save</button>
     </div>
 </div>

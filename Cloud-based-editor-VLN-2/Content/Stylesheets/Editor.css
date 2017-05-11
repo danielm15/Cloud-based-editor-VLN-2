@@ -76,7 +76,7 @@
 .changeWidth {
     width: 100%;
     padding-left: 10px;
-    padding-right: 0px;
+    padding-right: 0;
 }
 
 .editorContent {
@@ -128,7 +128,7 @@
 
 .editorHeader {
     float: left;
-    padding: 0px 14px 0px 25px;
+    padding: 0 14px 0 25px;
     font-size: 25px;
     font-weight: bold;
 }

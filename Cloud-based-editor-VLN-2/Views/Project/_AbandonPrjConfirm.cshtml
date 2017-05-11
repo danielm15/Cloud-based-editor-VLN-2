@@ -1,0 +1,28 @@
+﻿@model Cloud_based_editor_VLN_2.Models.Entities.Project
+@{
+    ViewBag.Title = "_AbandonPrjConfirm";
+}
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"><strong>Abandon Project</strong></h4>
+        </div>
+        <div class="modal-body" id="deleteProjectModal">
+                <p> Are you sure you want to abandon this project? </p>
+            <p>@User.Identity.Name</p>
+
+            <p>@Model.AppUser.ID</p>
+                <p>
+                    Project name: <strong>@Model.Name</strong>
+                </p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="cancelModalBtn" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="abandonModalBtn" onclick="AbandonProjectAjax(@Model.ID, @Model.AppUser.ID)" data-dismiss="modal">Abandon</button>
+                </div>
+</div>
+    </div>
+
+</div>
+

@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace Cloud_based_editor_VLN_2.Models.Entities {
     public class Project {
@@ -26,8 +24,6 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
         [JsonIgnore]
         public virtual AppUser AppUser { get; set; }
 
-        [JsonIgnore]
-        IEnumerable<AppUser> Users { get; set; }
         //[ForeignKey("StartUpFileID")]
         //public virtual Document Document { get; set; }
 

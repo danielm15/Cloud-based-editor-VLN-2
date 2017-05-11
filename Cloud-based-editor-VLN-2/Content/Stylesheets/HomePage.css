@@ -2,7 +2,7 @@
 
 /*////////// ID Selectors //////////*/
 
-#imgrow img {
+.imgrow img {
     padding-left: 40px;
     padding-bottom: 20px;
 }
@@ -42,7 +42,6 @@
 
 .imageDiv img {
     height: 400px;
-    width: 100%;
 }
 /* Slideshow container */
 .slideshow-container {
@@ -58,7 +57,8 @@
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+    background-color: #000000;
+    background-color: rgba(0,0,0,0.8);
 }
 
 /* Caption text */
@@ -97,12 +97,29 @@
   background-color: #717171;
 }
 
+.frontPageText {
+    font-weight: bold;
+}
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade;
   -webkit-animation-duration: 4s;
   animation-name: fade;
   animation-duration: 4s;
+}
+
+.mainFeatures {
+    padding-top: 50px;
+    display:flex;
+    justify-content:space-between;
+}
+.mainFeaturesBox {
+    flex-basis: 30%;
+    border: 1px solid gray;
+}
+
+.boxText {
+    padding-top: 10px;
 }
 
 /*////////// Animations //////////*/

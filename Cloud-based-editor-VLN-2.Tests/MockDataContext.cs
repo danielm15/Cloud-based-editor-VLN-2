@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FakeDbSet;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using Cloud_based_editor_VLN_2.Models;
 using Cloud_based_editor_VLN_2.Models.Entities;
 
@@ -17,11 +18,8 @@ namespace Cloud_based_editor_VLN_2.Tests {
         /// Sets up the fake database.
         /// </summary>
         /// 
-        public System.Data.Entity.Infrastructure.DbEntityEntry Entry(object entity) {
-            throw new NotImplementedException();
-        }
-
-         public MockDataContext() {
+       
+        public MockDataContext() {
             // We're setting our DbSets to be InMemoryDbSets rather than using SQL Server.
             this.AppUsers = new InMemoryDbSet<AppUser>();
             this.UserProjects = new InMemoryDbSet<UserProjects>();
@@ -36,6 +34,8 @@ namespace Cloud_based_editor_VLN_2.Tests {
         public IDbSet<Project> Projects { get; set; }
 
         public IDbSet<Document> Documents { get; set; }
+
+        public void SetModified(object entity) { }
 
         public int SaveChanges() {
             // Pretend that each entity gets a database id when we hit save.

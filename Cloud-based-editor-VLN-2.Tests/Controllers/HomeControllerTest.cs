@@ -33,5 +33,17 @@ namespace Cloud_based_editor_VLN_2.Tests.Controllers {
             // Assert
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void Support() {
+            // Arrange
+            HomeController controller = new HomeController();
+
+            // Act
+            ViewResult result = controller.Support() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }

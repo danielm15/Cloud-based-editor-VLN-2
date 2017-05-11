@@ -46,7 +46,7 @@ namespace Cloud_based_editor_VLN_2.Services {
         }
 
         public bool UpdateProject(Project projectToUpdate) {
-            _db.Entry(projectToUpdate).State = System.Data.Entity.EntityState.Modified;
+            _db.SetModified(projectToUpdate);
             try {
                 _db.SaveChanges();
             }
@@ -60,13 +60,13 @@ namespace Cloud_based_editor_VLN_2.Services {
 
             var documents = _db.Documents.Where(item => item.ProjectID == projectID);
             
-            foreach (var document in documents) {
+            foreach (var document in documents.ToList()) {
                 _db.Documents.Remove(document);
             }
 
             var userProjectConnections = _db.UserProjects.Where(item => item.ProjectID == projectID);
 
-            foreach (var userProjectConnection in userProjectConnections) {
+            foreach (var userProjectConnection in userProjectConnections.ToList()) {
                 _db.UserProjects.Remove(userProjectConnection);
             }
 

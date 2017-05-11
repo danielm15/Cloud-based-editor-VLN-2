@@ -35,7 +35,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 int documentByID = documentID ?? default(int);
 
                 if (!checkAuthorization(projectByID)) {
-                    return RedirectToAction("AccessDenied", "Error");
+                    return RedirectToAction("Error", "Home");
                 }
                 DocumentViewModel model = new DocumentViewModel();
                 model.CurrProjectID = projectByID;
@@ -58,7 +58,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 return Json(content, JsonRequestBehavior.AllowGet);
             }
 
-            return View();
+	        return Json(new { success = false });
         }
         #endregion
 

@@ -92,6 +92,8 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
 		        ID = 1,
 				AppUserID = 2,
 				ProjectID = 1,
+				AppUser = user2,
+				Project = project1
 	        };
 	        mockContext.Invitations.Add(invitation1);
 
@@ -165,7 +167,7 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
         }
 
         [TestMethod]
-        public void TestUpdateProject() {
+        public void TestUpdateProjectSuccess() {
             // Arrange:
             var project2 = _ProjectService.GetProjectByID(2);
             var originalName = project2.Name;
@@ -182,7 +184,48 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
             Assert.AreEqual("New name", updatedProject.Name);
         }
 
-        [TestMethod]
+	    [TestMethod]
+	    public void TestUpdateProjectFail() {
+			// Arrange:
+		    var mockContext = new MockDataContext();
+
+			var user1 = new AppUser {
+			    ID = 1,
+			    UserName = "User1",
+			    Email = "Email1@Email1.com"
+		    };
+		    mockContext.AppUsers.Add(user1);
+
+		    var user2 = new AppUser {
+			    ID = 2,
+			    UserName = "User2",
+			    Email = "Email2@Email2.com"
+		    };
+		    mockContext.AppUsers.Add(user2);
+
+		    var project1 = new Project {
+			    ID = 1,
+			    OwnerID = 1,
+			    Name = "Project1",
+			    DateCreated = new DateTime(2017, 1, 1),
+			    AppUser = user1,
+			    ProjectType = "Javascript"
+		    };
+		    mockContext.Projects.Add(project1);
+
+		    _ProjectService = new ProjectService(mockContext);
+		    mockContext.SaveSuccess = false;
+
+			// Act:
+		    project1.OwnerID = 2;
+		    var updated = _ProjectService.UpdateProject(project1);
+
+		    // Assert:
+			Assert.IsFalse(updated);
+
+	    }
+
+		[TestMethod]
         public void TestDeleteProject() {
             // Arrange:
             var project1 = _ProjectService.GetProjectByID(1);
@@ -234,16 +277,16 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
         }
 
 	    [TestMethod]
-	    public void TestAddInvitation() { 
+	    public void TestAddInvitation() {
 			// Arrange:
-			var invitation2 = new Invitation {
+		    var invitation2 = new Invitation {
 			    ID = 2,
 			    AppUserID = 2,
 			    ProjectID = 2
 		    };
 
 			// Act:
-		    var added = _ProjectService.AddInvitation(invitation2);
+			var added = _ProjectService.AddInvitation(invitation2);
 
 		    // Assert:
 			Assert.AreEqual(true, added);
@@ -251,15 +294,25 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
 
 	    [TestMethod]
 	    public void TestGetUserInvitations() {
-		    // Arrange:
+			// Arrange:
+		    var invitation2 = new Invitation {
+			    ID = 2,
+			    AppUserID = 2,
+			    ProjectID = 2
+		    };
 
-		    // Act:
-		    var invitations = _ProjectService.GetUserInvitations(2);
+			// Act:
+			var invitations = _ProjectService.GetUserInvitations(2);
+		    invitation2.AppUser = invitations[0].AppUser;
+		    invitation2.Project = invitations[0].Project;
 
-		    // Assert:
+			// Assert:
 			Assert.AreEqual(1, invitations.Count);
+			Assert.AreEqual(1, invitations[0].ID);
 			Assert.AreEqual(2, invitations[0].AppUserID);
 		    Assert.AreEqual(1, invitations[0].ProjectID);
+			Assert.AreEqual(invitation2.AppUser.ID, invitations[0].AppUserID);
+		    Assert.AreEqual(invitation2.Project.ID, invitations[0].ProjectID);
 		}
 
 	    [TestMethod]
@@ -335,7 +388,7 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
 	    }
 
 	    [TestMethod]
-	    public void TestchangeOwner() {
+	    public void TestchangeOwnerSuccess() {
 		    // Arrange:
 		    var project1ID = 1;
 		    var user2ID = 2;
@@ -350,6 +403,46 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
 			Assert.IsTrue(changed);
 			Assert.AreEqual(1, beforeID);
 			Assert.AreEqual(2, afterID);
+	    }
+
+	    [TestMethod]
+	    public void TestchangeOwnerFail() {
+			// Arrange:
+		    var mockContext = new MockDataContext();
+
+		    var user1 = new AppUser {
+			    ID = 1,
+			    UserName = "User1",
+			    Email = "Email1@Email1.com"
+		    };
+		    mockContext.AppUsers.Add(user1);
+
+		    var user2 = new AppUser {
+			    ID = 2,
+			    UserName = "User2",
+			    Email = "Email2@Email2.com"
+		    };
+		    mockContext.AppUsers.Add(user2);
+
+		    var project1 = new Project {
+			    ID = 1,
+			    OwnerID = 1,
+			    Name = "Project1",
+			    DateCreated = new DateTime(2017, 1, 1),
+			    AppUser = user1,
+			    ProjectType = "Javascript"
+		    };
+		    mockContext.Projects.Add(project1);
+
+		    _ProjectService = new ProjectService(mockContext);
+		    mockContext.SaveSuccess = false;
+
+			// Act:
+		    var changed = _ProjectService.changeOwner(project1.ID, user2.ID);
+
+		    // Assert:
+			Assert.IsFalse(changed);
+
 	    }
 	}
 }

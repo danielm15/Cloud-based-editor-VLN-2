@@ -50,6 +50,7 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
                 AppUser = user1,
                 ProjectType = "HTML"
             };
+	        mockContext.Projects.Add(project1);
 
             var userProject1 = new UserProjects {
                 ID = 1,
@@ -165,5 +166,25 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
             Assert.AreEqual(1, AllUserProjects[0].ProjectID);
             Assert.AreEqual("User1", AllUserProjects[0].AppUser.UserName);
         }
+
+	    [TestMethod]
+	    public void TestGetAllUsersInProject() {
+			// Arrange:
+		    var project1 = new Project {
+			    ID = 1,
+			    OwnerID = 1,
+			    Name = "Project1",
+			    DateCreated = new DateTime(2017, 1, 1),
+			    ProjectType = "HTML"
+		    };
+
+			// Act:
+		    var usersInProject = _AppUserService.getAllUsersInProject(project1);
+
+		    // Assert:
+			Assert.IsNotNull(usersInProject);
+			Assert.AreEqual(1, usersInProject.Count);
+			Assert.AreEqual(1, usersInProject[0].ID);
+	    }
     }
 }

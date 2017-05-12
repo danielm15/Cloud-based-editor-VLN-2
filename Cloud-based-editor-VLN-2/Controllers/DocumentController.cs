@@ -56,7 +56,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             else {
                 if (fileType[0] != '.') fileType = "." + fileType;
 	            var newDocument = new Document();
-                newDocument.Name = fileName;
+                newDocument.Name = fileName.Replace(' ', '_');
                 newDocument.Type = fileType;
                 newDocument.ProjectID = projectID;
                 newDocument.LastUpdatedBy = creator;
@@ -98,7 +98,8 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         public ActionResult _RenameDocument(Document item) {
 
             var documentToUpdate = _service.GetDocumentByID(item.ID);
-            documentToUpdate.Name = item.Name;
+            documentToUpdate.Name = item.Name.Replace(' ','_');
+
             var projectForOwner = _projectService.GetProjectByID(documentToUpdate.ProjectID);
 
             if (documentToUpdate.CreatedBy != User.Identity.GetUserName() && projectForOwner.AppUser.UserName != User.Identity.GetUserName()) return Json(new { success = false, message = "noPermission", name = documentToUpdate.Name, type = documentToUpdate.Type, docID = documentToUpdate.ID });

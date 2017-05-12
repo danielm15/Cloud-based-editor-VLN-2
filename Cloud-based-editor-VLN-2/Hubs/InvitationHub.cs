@@ -5,16 +5,11 @@ using Cloud_based_editor_VLN_2.Services;
 namespace Cloud_based_editor_VLN_2.Hubs {
     public class InvitationHub : Hub {
         ProjectService _service = new ProjectService(null);
+
         public void SendInvitation(int fromID, string userName, int projectID) {
             int toID = _service.getUserID(userName);
-            //Invitation inv = new Invitation();
-            //inv.AppUserID = toID;
-            //inv.ProjectID = projectID;
 
-            //_service.AddInvitation(inv);
-            //Clients.Group(Convert.ToString(toID), Context.ConnectionId).sendInvite(fromID, toID, projectID);
             Clients.Group(Convert.ToString(toID)).sendInvite(fromID, toID, projectID);
-            //Clients.All.sendInvite(fromID, toID, projectID);
         }
 
         public void JoinUserGroup(int userID) {

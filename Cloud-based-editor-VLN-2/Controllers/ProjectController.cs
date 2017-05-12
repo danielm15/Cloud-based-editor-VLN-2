@@ -244,18 +244,16 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         public ActionResult Invite(int projectID, string userName) {
 
             var fromUserName = _service.GetProjectByID(projectID).AppUser.UserName;
-            int userID = _service.getUserID(userName);
+            var userID = _service.getUserID(userName);
 
-            if (userID == 0) {
-                return Json(new { success = "userNotFound", name = userName, projectID = projectID });
-            }
+            if (userID == 0) return Json(new { success = "userNotFound", name = userName, projectID = projectID });
 
-            Invitation inv = new Invitation();
+	        var inv = new Invitation();
             inv.fromUserName = fromUserName;
             inv.AppUserID = userID;
             inv.ProjectID = projectID;
 
-            UserProjects project = new UserProjects();
+            var project = new UserProjects();
             project.AppUserID = userID;
             project.ProjectID = projectID;
 
@@ -274,21 +272,16 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
         [HttpGet]
         public ActionResult GetInvites() {
-            int userID = _service.getUserID(User.Identity.GetUserName());
+            var userID = _service.getUserID(User.Identity.GetUserName());
 
             var invites = _service.GetUserInvitations(userID);
 
             var projects = new List<Project>();
 
-            foreach (Invitation item in invites) {
-                projects.Add(_service.GetProjectByID(item.ProjectID));
-                
-            }
-            if (projects.Count == 0) {
-                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
-            }
-            
-            JsonSerializerSettings settings = new JsonSerializerSettings {
+            foreach (var item in invites) projects.Add(_service.GetProjectByID(item.ProjectID));
+	        if (projects.Count == 0) return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+
+	        var settings = new JsonSerializerSettings {
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects
             };
             var serializer = JsonSerializer.Create(settings);
@@ -301,7 +294,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         [HttpPost]
         public ActionResult AcceptProject(int projectID) {
 
-            int userID = _service.getUserID(User.Identity.GetUserName());
+            var userID = _service.getUserID(User.Identity.GetUserName());
 
             var newUserProject = new UserProjects();
             newUserProject.AppUserID = userID;
@@ -311,27 +304,21 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             invite.AppUserID = userID;
             invite.ProjectID = projectID;
 
-            if (_service.AddUserToProject(newUserProject) && _service.RemoveInvite(invite)) {
-                return Json(new { success = true });
-
-            }
-            return Json(new { success = false });
+            if (_service.AddUserToProject(newUserProject) && _service.RemoveInvite(invite)) return Json(new { success = true });
+	        return Json(new { success = false });
         }
 
         [HttpPost]
         public ActionResult DeclineProject(int projectID) {
 
-            int userID = _service.getUserID(User.Identity.GetUserName());
+            var userID = _service.getUserID(User.Identity.GetUserName());
 
             var invite = new Invitation();
             invite.AppUserID = userID;
             invite.ProjectID = projectID;
 
-            if (_service.RemoveInvite(invite)) {
-                return Json(new { success = true });
-
-            }
-            return Json(new { success = false });
+            if (_service.RemoveInvite(invite)) return Json(new { success = true });
+	        return Json(new { success = false });
         }
 
         public ActionResult AddInvitedProject(int projectID) {
@@ -360,15 +347,9 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             var userID = _service.getUserID(User.Identity.GetUserName());
             prj.AppUser.ID = userID;
 
-            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreInTheProject(prj.ID) > 1) {
-                return Json(new { message = "Admin++" }, JsonRequestBehavior.AllowGet);
-            }
-            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreInTheProject(prj.ID) == 1) {
-                return Json(new { message = "Admin-" }, JsonRequestBehavior.AllowGet);
-            }
-            else {
-                return Json(new { message = "notAdmin" }, JsonRequestBehavior.AllowGet);
-            }
+            if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreInTheProject(prj.ID) > 1) return Json(new { message = "Admin++" }, JsonRequestBehavior.AllowGet);
+	        if (prj.AppUser.ID == prj.OwnerID && _service.HowManyUsersAreInTheProject(prj.ID) == 1) return Json(new { message = "Admin-" }, JsonRequestBehavior.AllowGet);
+	        else return Json(new { message = "notAdmin" }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -421,8 +402,8 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         public ActionResult ListCollaborators(int? ProjectID) {
 
             if (ProjectID.HasValue) {
-                Project userProject = _service.GetProjectByID(ProjectID ?? default(int));
-                List<AppUser> allUsers = _userService.getAllUsersInProject(userProject);
+                var userProject = _service.GetProjectByID(ProjectID ?? default(int));
+                var allUsers = _userService.getAllUsersInProject(userProject);
 
                 ViewBag.projectName = userProject.Name;
                 ViewBag.Owner = userProject.AppUser.UserName;
@@ -448,7 +429,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         [HttpPost]
         public ActionResult MakeAdmin(int? id, int? userID) {
             if (id.HasValue && userID.HasValue) {
-                int currentUserID = _service.getUserID(User.Identity.GetUserName());
+                var currentUserID = _service.getUserID(User.Identity.GetUserName());
                 _service.changeOwner(id ?? default(int), userID ?? default(int));
                 return Json(new { sucess = true });
             }

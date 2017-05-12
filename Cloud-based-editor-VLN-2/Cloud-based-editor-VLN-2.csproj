@@ -208,7 +208,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AjaxAuthorizeAttribute.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EditorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -280,14 +279,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Img\1.png" />
-    <Content Include="Content\Img\2.png" />
-    <Content Include="Content\Img\3.png" />
     <Content Include="Content\Img\cloud-icon.png" />
     <Content Include="Content\Img\clouds-in-shades-of-blue.jpg" />
     <Content Include="Content\Img\dropDownArrow.png" />
-    <Content Include="Content\Img\FileView.png" />
-    <Content Include="Content\Img\indridi.jpg" />
     <Content Include="Content\Img\logo2.png" />
     <Content Include="Content\Img\logoBanner.png" />
     <Content Include="Content\bootstrap.css" />
@@ -388,7 +382,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bin\" />
-    <Folder Include="Databases\" />
     <Folder Include="Views\Parent\" />
     <Folder Include="Views\ProjectsOverview\" />
   </ItemGroup>

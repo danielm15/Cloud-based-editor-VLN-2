@@ -90,6 +90,7 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
 
 	        var invitation1 = new Invitation {
 		        ID = 1,
+				fromUserName = "User1",
 				AppUserID = 2,
 				ProjectID = 1,
 				AppUser = user2,
@@ -325,6 +326,7 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
 		    };
 		    var invitations = _ProjectService.GetUserInvitations(2);
 		    var invitation1 = invitations[0];
+		    var sentFrom = invitation1.fromUserName;
 
 		    // Act:
 		    var contains = _ProjectService.ContainsInvitation(invitation1);
@@ -332,6 +334,7 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
 
 		    // Assert:
 			Assert.IsTrue(contains);
+			Assert.AreEqual("User1", sentFrom);
 			Assert.IsFalse(containsNot);
 	    }
 

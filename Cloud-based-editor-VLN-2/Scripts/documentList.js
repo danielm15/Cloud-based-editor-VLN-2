@@ -51,7 +51,7 @@
 
                 }
                 else {
-                    $("#documentUlListID").append(response);
+                    $("#documentUlListID").append(response.html);
                     document.getElementById("createFileForm").reset();
                     document.getElementById("createFileBtn").classList.toggle("open");
 

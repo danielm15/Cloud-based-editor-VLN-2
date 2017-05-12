@@ -20,8 +20,6 @@
             $(document).on('click', '#InviteUserSubmitBtn', function () {
                 var projectID = $('#CurrentProjectToInvite').val();
                 var userName = $('#userListInput').val();
-                console.log(projectID);
-                console.log(userName);
                 $.ajax({
                     type: "POST",
                     url: "/Project/Invite",

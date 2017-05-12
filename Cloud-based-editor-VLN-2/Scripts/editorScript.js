@@ -6,7 +6,7 @@
             changed = false,
             markerID = null;
 
-        dochub.client.updateText = function (obj, cursorScreenPos) {
+        dochub.client.updateText = function (obj, cursorScreenPos, userName) {
 
             $('#currentUser').stop(true);
 
@@ -22,7 +22,7 @@
             markerID = $editor.getSession().addMarker(myRange, 'mymarker', 'text', false);
 
             var message = document.getElementById("currentUser");
-            message.innerHTML = "User";
+            message.innerHTML = userName;
             message.style.position = "absolute";
 
             var offset = $('#editorID').position();

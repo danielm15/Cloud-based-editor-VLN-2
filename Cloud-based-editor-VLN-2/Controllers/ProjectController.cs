@@ -247,7 +247,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         [HttpPost]
         public ActionResult Invite(int projectID, string userName) {
 
-
+            var fromUserName = _service.GetProjectByID(projectID).AppUser.UserName;
             int userID = _service.getUserID(userName);
 
             if (userID == 0) {
@@ -255,6 +255,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             }
 
             Invitation inv = new Invitation();
+            inv.fromUserName = fromUserName;
             inv.AppUserID = userID;
             inv.ProjectID = projectID;
 
@@ -285,11 +286,12 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
             foreach (Invitation item in invites) {
                 projects.Add(_service.GetProjectByID(item.ProjectID));
+                
             }
             if (projects.Count == 0) {
                 return Json(new { success = false }, JsonRequestBehavior.AllowGet);
             }
-
+            
             JsonSerializerSettings settings = new JsonSerializerSettings {
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects
             };

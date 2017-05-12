@@ -32,7 +32,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         /// </summary>
         /// <param name="projectID"></param>
         /// <param name="documentID"></param>
-        /// <returns>string</returns>
+        /// <returns>Index view with the documents in the prj</returns>
         public ActionResult Index(int? projectID, int? documentID) {
 
             if (projectID.HasValue && documentID.HasValue) {

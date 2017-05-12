@@ -6,20 +6,20 @@
         success: function (response) {
             if (response.success === false) {
                 $('#inviteDropDown').empty();
-                var html = '<div>You have no new notifications</div>';
+                var html = '<div id="noNotifactions">You have no new notifications</div>';
                 $('#inviteDropDown').append(html);
             }
             else {
-                alert('her');
                 $('#inviteDropDown').empty();
                 var html;
                 var arr = $.parseJSON('[' + response + ']');
 
                 for (i = 0; i < arr[0].length; i++) {
-                    html = '<li id="inviteItem' + arr[0][i].ID + '">Invitaion to project: ' + arr[0][i].Name
-                         + '<button class="btn btn-primary" onclick="acceptProject(' + arr[0][i].ID + ')">Accept</button>'
-                         + '<button class="btn btn-default" onclick="declineProject(' + arr[0][i].ID + ')">Decline</button>'
-                         + '</li>';
+                    html = '<li id="inviteItem' + arr[0][i].ID + '"> <div class="notfiyListitem">'
+                         + '<p>Invitaion to project: <strong> ' + arr[0][i].Name + '</strong> </p>'
+                         + '<button type="button" class="btn btn-primary btn-sm" onclick="acceptProject(' + arr[0][i].ID + ')">Accept</button>'
+                         + '<button type="button" class="btn btn-default btn-sm" onclick="declineProject(' + arr[0][i].ID + ')">Decline</button>'
+                         + '</div></li>';
                     $('#inviteDropDown').append(html);
                 }
             }

@@ -193,9 +193,10 @@ var AddnewProjectFunc = function () {
             type: "POST",
             url: "/Project/AddProject",
             data: myformdata,
-            success: function () {
-                $("#myModal").modal("hide");
-                window.location.href = "/Project/";
+            success: function (response) {
+                $("#myModal1").modal("hide");
+                $("#acceptedProject").append(response);
+                
             }
         });
     }

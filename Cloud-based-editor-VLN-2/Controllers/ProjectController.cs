@@ -161,10 +161,14 @@ echo ""Hello World!"";
                 //doc.CreatedBy = _service._db.AppUsers.
                 _documentService.AddDocument(doc);
 
-                return RedirectToAction("Index");
+                ViewBag.UserName = User.Identity.GetUserName();
+
+                var html = RenderRazorViewToString("AddProjectContainerForAdd", item);
+
+                return Json(html);
             }
 
-            return View();
+            return Json( new { success = false});
         }
         #endregion
 

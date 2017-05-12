@@ -15,7 +15,7 @@
  This project is a cloud based code editor which uses the SignalR API where multiple programmers
  can work simultaneously in the same project and see each other changes
  in real-time.
- The project was developed in Visual Studio 2015 Community.
+ The project was developed using Visual Studio 2015 Community.
 
  Please beware of the following features in our project:
  

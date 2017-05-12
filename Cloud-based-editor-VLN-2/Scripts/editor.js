@@ -63,6 +63,11 @@ function showNavBar() {
 }
 
 function showHeader(id) {
+
+    if ($("#" + id).hasClass("selectedNav")) {
+        return;
+    }
+
     var classElementsNav = document.getElementsByClassName("navigationLink");
 
     for (var i = 0; i < classElementsNav.length; i++) {

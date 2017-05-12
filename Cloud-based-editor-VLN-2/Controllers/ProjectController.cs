@@ -321,11 +321,12 @@ echo ""Hello World!"";
 
             foreach (Invitation item in invites) {
                 projects.Add(_service.GetProjectByID(item.ProjectID));
+                
             }
             if(projects.Count == 0) {
                 return Json(new { success = false }, JsonRequestBehavior.AllowGet);
             }
-
+            
             JsonSerializerSettings settings = new JsonSerializerSettings {
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects
             };

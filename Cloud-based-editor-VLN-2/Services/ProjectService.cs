@@ -79,7 +79,6 @@ namespace Cloud_based_editor_VLN_2.Services {
         }
 
 	    public bool AbandonProject(int prjID, int usrID) {
-		    //var project = _db.UserProjects.Where(item => item.ProjectID == prjID && item.AppUser.ID == usrID).SingleOrDefault();
 		    var project = (from item in Db.UserProjects
 			    where item.ProjectID == prjID && item.AppUserID == usrID
 			    select item).SingleOrDefault();
@@ -93,8 +92,6 @@ namespace Cloud_based_editor_VLN_2.Services {
 			    where item.ProjectID == prjID
 			    select item).ToList();
 		    return userList.Count();
-		    //int number = _db.UserProjects.Where(item => item.ProjectID == prjID).All
-		    //return number;
 	    }
 
 		public bool AddInvitation(Invitation newInvitation) {

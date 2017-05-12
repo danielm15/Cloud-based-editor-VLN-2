@@ -81,6 +81,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         /// <param name="contentData"></param>
         /// <returns>Json</returns>
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SaveFile(int? updateDocumentID, string contentData) {
 
             if (updateDocumentID.HasValue) {

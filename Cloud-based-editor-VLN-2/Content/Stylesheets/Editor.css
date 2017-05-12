@@ -37,6 +37,21 @@
     overflow-x: hidden;
 }
 
+.documentNav {
+    list-style-type: none;
+}
+
+.documentNavItem:before {
+    content: "\e022";
+    font-family: 'Glyphicons Halflings';
+    font-size: 12px;
+    float: left;
+    margin-top: 50px;
+    margin-left: -25px;
+    color: #8ddefc;
+    color: rgba(142, 222, 253, 0.55);
+}
+
 .projectNav {
     padding-top: 20px;
     position:fixed;
@@ -56,8 +71,11 @@
 
 .projectNav div {
     list-style: none;
-    margin-top: 50px;
-    padding: 20px 0 0 0;
+    text-align: center;
+    top: 50px;
+    position: relative;
+    margin-top: 7px;
+    padding: 0 0 0 0;
 }
 
 
@@ -119,6 +137,8 @@
 }
 
 .selectedNav {
+    width: 100%;
+    border-radius: 10px 0 0 10px;
     background-color: lightgray;
 }
 

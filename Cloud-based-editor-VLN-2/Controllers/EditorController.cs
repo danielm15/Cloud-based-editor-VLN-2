@@ -27,6 +27,12 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         #endregion
 
         #region Index
+        /// <summary>
+        /// Opens up the chosen document in the code editor
+        /// </summary>
+        /// <param name="projectID"></param>
+        /// <param name="documentID"></param>
+        /// <returns>string</returns>
         public ActionResult Index(int? projectID, int? documentID) {
 
             if (projectID.HasValue && documentID.HasValue) {
@@ -35,7 +41,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 int documentByID = documentID ?? default(int);
 
                 if (!checkAuthorization(projectByID)) {
-                    return RedirectToAction("AccessDenied", "Error");
+                    return RedirectToAction("Error", "Home");
                 }
                 DocumentViewModel model = new DocumentViewModel();
                 model.CurrProjectID = projectByID;
@@ -50,6 +56,11 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         #endregion
 
         #region GetContent
+        /// <summary>
+        /// Gets document by ID from database
+        /// </summary>
+        /// <param name="documentID"></param>
+        /// <returns>string</returns>
         public ActionResult GetContent(int? documentID) {
 
             if (documentID.HasValue) {
@@ -58,12 +69,19 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 return Json(content, JsonRequestBehavior.AllowGet);
             }
 
-            return View();
+	        return Json(new { success = false });
         }
         #endregion
 
-        #region saveFile
+        #region Save currently opened file
+        /// <summary>
+        /// Saves and updates currently opened file in the database.
+        /// </summary>
+        /// <param name="updateDocumentID"></param>
+        /// <param name="contentData"></param>
+        /// <returns>Json</returns>
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SaveFile(int? updateDocumentID, string contentData) {
 
             if (updateDocumentID.HasValue) {

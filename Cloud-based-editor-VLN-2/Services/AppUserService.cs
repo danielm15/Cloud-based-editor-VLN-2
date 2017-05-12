@@ -3,7 +3,6 @@ using Cloud_based_editor_VLN_2.Models.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace Cloud_based_editor_VLN_2.Services {
     public class AppUserService : BaseService   {
 
@@ -38,6 +37,15 @@ namespace Cloud_based_editor_VLN_2.Services {
             List<UserProjects> AllUserProjects = (from userProject in Db.UserProjects
                                                   select userProject).ToList();
             return AllUserProjects;
+        }
+
+        public List<AppUser> getAllUsersInProject(Project project) {
+            List<AppUser> allUsersInProject = (from users in Db.AppUsers
+                                               join up in Db.UserProjects on users.ID equals up.AppUserID
+                                               join au in Db.Projects on up.ProjectID equals au.ID
+                                               where project.ID == up.ProjectID
+                                               select users).ToList();
+            return allUsersInProject;
         }
     }
 }

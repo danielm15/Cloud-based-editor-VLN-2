@@ -282,6 +282,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\Img\pic1final.png" />
+    <Content Include="Content\Img\pic2final.png" />
+    <Content Include="Content\Img\pic3final.png" />
     <Content Include="Content\Img\userIcon.png" />
     <Content Include="Content\Stylesheets\GlobalStyles.css" />
     <Content Include="Content\Stylesheets\Documents.css" />
@@ -310,6 +313,7 @@
     <Content Include="Scripts\FileOverview.js" />
     <Content Include="Scripts\IndexSliderScript.js" />
     <Content Include="Scripts\dropDownScript.js" />
+    <Content Include="Scripts\invitationScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -350,7 +354,6 @@
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Editor\Index.cshtml" />
@@ -368,6 +371,7 @@
     <Content Include="Views\Project\_AdminAbandonProject.cshtml" />
     <Content Include="Views\Project\AddProjectContainer.cshtml" />
     <Content Include="Views\Document\AddDocumentContainer.cshtml" />
+    <Content Include="Views\Project\_Listcollaborators.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

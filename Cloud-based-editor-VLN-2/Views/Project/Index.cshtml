@@ -5,7 +5,7 @@
     ViewBag.UserID = Model.CurrUserID;
 }
 
-<script>
+<script type="text/javascript" src="~/Scripts/invitationScript.js">
     var userID = @ViewBag.userID;
 </script>
 
@@ -54,16 +54,22 @@
                                     </div>
                                     <ul class="dropdown-menu optionsMenu">
                                         <li>
+                                            <a href="javascript:;" onclick="listCollaboratorsFunc(@item.ID)">
+                                                <i class="glyphicon glyphicon-list"> Collaborators</i>
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="javascript:;" onclick="EditProjectName(@item.ID)">
                                                 <i class="glyphicon glyphicon-pencil"> Rename</i>
                                             </a>
                                         </li>
                                         <li>
                                             @Html.ActionLink(" Download", "DownloadZip", "Document", new { projectID = item.ID, userID = item.ID, projectName = item.Name }, new {
-                                      type = "a",
-                                      tabindex = "-1",
-                                      @class = "glyphicon glyphicon-download"
-                                  })
+
+                                           @type = "a",
+                                           @tabindex = "-1",
+                                           @class = "glyphicon glyphicon-download"
+                                             })
                                         </li>
                                         <li>
                                             <a href="javascript:;" onclick="deleteProject(@item.ID)">
@@ -72,7 +78,7 @@
                                         </li>
                                         <li>
                                             <a href="javascript:;" onclick="abandonPrj(@item.ID)">
-                                                <i class="glyphicon glyphicon-minus"> Abandon project</i>
+                                                <i class="glyphicon glyphicon-minus"> Abandon </i>
                                             </a>
                                         </li>
                                     </ul>

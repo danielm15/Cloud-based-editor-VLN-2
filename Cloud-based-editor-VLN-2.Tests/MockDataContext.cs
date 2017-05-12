@@ -19,6 +19,7 @@ namespace Cloud_based_editor_VLN_2.Tests {
             UserProjects = new InMemoryDbSet<UserProjects>();
             Projects = new InMemoryDbSet<Project>();
             Documents = new InMemoryDbSet<Document>();
+			Invitations = new InMemoryDbSet<Invitation>();
         }
 
         public IDbSet<AppUser> AppUsers { get; set; }
@@ -29,7 +30,9 @@ namespace Cloud_based_editor_VLN_2.Tests {
 
         public IDbSet<Document> Documents { get; set; }
 
-        public void SetModified(object entity) { }
+	    public IDbSet<Invitation> Invitations { get; set; }
+
+		public void SetModified(object entity) { }
 
         public int SaveChanges() {
             // Pretend that each entity gets a database id when we hit save.

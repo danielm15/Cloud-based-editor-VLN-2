@@ -296,9 +296,10 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects
             };
             var serializer = JsonSerializer.Create(settings);
-            var result = JsonConvert.SerializeObject(projects);
+            var projectsResult = JsonConvert.SerializeObject(projects);
+            var invitesResult = JsonConvert.SerializeObject(invites);
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(new { projectsResult, invitesResult }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

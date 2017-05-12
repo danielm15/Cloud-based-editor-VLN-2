@@ -6,7 +6,7 @@
             data: { updateDocumentID: "1", documentContent: "ABC" },
             cache: false,
             success: function (response) {
-                alert("Changes Saved.");
+
             }
         });
     });

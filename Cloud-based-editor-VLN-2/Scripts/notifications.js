@@ -12,11 +12,13 @@
             else {
                 $('#inviteDropDown').empty();
                 var html;
-                var arr = $.parseJSON('[' + response + ']');
+                var arr = $.parseJSON('[' + response.projectsResult + ']');
+                var fromUserNames = $.parseJSON('[' + response.invitesResult + ']');
 
                 for (i = 0; i < arr[0].length; i++) {
                     html = '<li id="inviteItem' + arr[0][i].ID + '"> <div class="notfiyListitem">'
-                         + '<p>Invitaion to project: <strong> ' + arr[0][i].Name + '</strong> </p>'
+                         + '<p>Invitation to project: <strong> ' + arr[0][i].Name + '</strong> </p>'
+                         + '<p>From user: <strong> ' + fromUserNames[0][i].fromUserName + '</strong> </p>'
                          + '<button type="button" class="btn btn-primary btn-sm" onclick="acceptProject(' + arr[0][i].ID + ')">Accept</button>'
                          + '<button type="button" class="btn btn-default btn-sm" onclick="declineProject(' + arr[0][i].ID + ')">Decline</button>'
                          + '</div></li>';

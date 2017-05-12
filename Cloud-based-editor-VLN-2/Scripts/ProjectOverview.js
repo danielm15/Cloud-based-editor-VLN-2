@@ -1,4 +1,5 @@
-﻿var EditProjectName = function (ProjectID) {
+﻿// Makes a modal window of _RenameProject view.
+var EditProjectName = function (ProjectID) {
     var url = "/Project/_RenameProject?ProjectID=" + ProjectID;
 
     $("#myModal1").load(url, function () {
@@ -6,7 +7,11 @@
     });
 };
 
-
+// Gets the input data from the _rename partial view
+// sends it to the renameproject actionresult and gets a Json answer back
+// if the answer is false there comes an errormessage and the modal does not close
+// if the answer is true then we hide the modal and do some work.
+// if the answer is noPermission comes an errormessage saying you dont have permission
 var submitUpdatedName = function () {
     var newNameString = document.getElementById("projectTextBoxID").value;
     if (newNameString !== "") {
@@ -79,6 +84,8 @@ var deleteNoPermission = function (projectID) {
     });
 };
 
+// We post the projectID to deleteProject in projectcontroller
+// and then remove it using ajax
 var deleteProjectAjax = function (projectID) {
     $.ajax({
 
@@ -105,48 +112,7 @@ var InviteToProject = function (ProjectID) {
     });
 };
 
-/*var submitInviteName = function () {
-    var myformdata = $("#InviteUserForm").serialize();
-    $.ajax({
-        type: "POST",
-        url: "/Project/InviteUser",
-        data: myformdata,
-        success: function(response) {
-            if (response.success === true) {
-                document.getElementById("userListInput").classList.toggle("hideInput");
-                document.getElementById("myHeaderMessage").innerHTML = "Invite successful user <strong> " +
-                    response.name +
-                    " </strong> added to project <strong> " +
-                    response.project +
-                    "</strong>";
-                document.getElementById("InviteUserSubmitBtn").innerHTML = "Invite another user";
-                var functionName = "InviteToProject(" + response.projectID + " )";
-                $("#InviteUserSubmitBtn").attr("onclick", functionName);
-            } else {
-                if (response.message === "userNotFound") {
-                    document.getElementById("userListInput").classList.toggle("hideInput");
-                    document.getElementById("myHeaderMessage").innerHTML = "User <strong> " +
-                        response.name +
-                        " </strong> not found in database ";
-                    document.getElementById("InviteUserSubmitBtn").innerHTML = "Try again";
-                    var functionName = "InviteToProject(" + response.projectID + " )";
-                    $("#InviteUserSubmitBtn").attr("onclick", functionName);
-                } else if (response.message === "userAlreadyInProject") {
-                    document.getElementById("userListInput").classList.toggle("hideInput");
-                    document.getElementById("myHeaderMessage").innerHTML = "User <strong> " +
-                        response.name +
-                        " </strong> is already collaborator in this project";
-                    document.getElementById("InviteUserSubmitBtn").innerHTML = "Try again";
-                    var functionName = "InviteToProject(" + response.projectID + " )";
-                    $("#InviteUserSubmitBtn").attr("onclick", functionName);
-                }
-            }
-
-        }
-<<<<<<< HEAD
-    })
-}*/
-
+// Compares the searchstringInput to the users in the database
 var populateList = function (searchStringInput) {
 
     var searchString = $(searchStringInput).val().toString();
@@ -183,6 +149,9 @@ var AddProject = function (currUserID) {
     });
 };
 
+// Get the element from the textbox and the dropdown, if the textbox value
+// is null we display an error message, otherwise we send a post request to
+// Addproject in projectcontroller
 var AddnewProjectFunc = function () {
     var test = document.getElementById("AddProjectTextBox").value;
     var test1 = document.getElementById("AddProjectDropDown").value;
@@ -207,15 +176,10 @@ var AddnewProjectFunc = function () {
     }
 };
 
-
-//var abandonPrj = function (ProjectID) {
-//    var url = "/Project/AbandonPrj?ProjectID=" + ProjectID;
-
-//    $("#myModal1").load(url, function () {
-//        $("#myModal1").modal("show");
-//    });
-//};
-
+// We send a get request to AbandonPrj in projectcontroller and recieve a 
+// Json object back, if the admin is alone in the project we offer the ability to delete the project
+// if the admin is not alone he must choose someone to become admin before he abandons
+// if he is not admin he can abandon without a problem
 var abandonPrj = function (projectID) {
     $.ajax({
             type: "GET",
@@ -223,9 +187,6 @@ var abandonPrj = function (projectID) {
             data: { projectID: projectID },
             success: function(response) {
                 if (response.message === "Admin++") {
-                    // abandonProjectAdmin(projectID);
-                    //listCollaboratorsFunc(projectID);
-
                     var url = "/Project/ListCollaborators?ProjectID=" + projectID;
 
                     $("#myModal1").load(url, function () {
@@ -270,6 +231,7 @@ var abandonProjectAdmin = function (projectID) {
     });
 };
 
+// post to AbandonPrj in projectcontroller and on success we remove the project on constant time
 var AbandonProjectAjax = function (projectID, UserID) {
     $.ajax({
         type: "POST",
@@ -293,7 +255,6 @@ var listCollaboratorsFunc = function (ProjectID) {
         $("#myModal1").modal("show");  
     });
 }
-
 
 var deleteUserFromProject = function (projectID, UserID) {
     $.ajax({

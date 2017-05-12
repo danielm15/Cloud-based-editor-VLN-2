@@ -195,7 +195,6 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         }
         #endregion
 
-        /*************+ STILL NEEDS TO BE COMMENTED *******************************/
         #region Invite Get and Post
         /// <summary>
         /// Is called when the user presses the invite button
@@ -211,35 +210,13 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return PartialView("_InviteUser", prj);
         }
 
-        [HttpPost]
-        public ActionResult InviteUser(FormCollection collection) {
-
-            var projectID = int.Parse(collection["ID"]);
-            var userName = collection["inputUser"];
-
-            var userID = _service.getUserID(userName);
-
-            if (userID == 0) {
-                return Json(new { sucess = false, message = "userNotFound", name = userName, projectID = projectID });
-            }
-            else {
-                var projectToAddTo = _service.GetProjectByID(projectID);
-                var userProjects = _service.GetProjectsByUserID(userID);
-
-                if (userProjects.Contains(projectToAddTo)) {
-                    return Json(new { sucess = false, message = "userAlreadyInProject", name = userName, project = projectToAddTo.Name, projectID = projectID });
-                }
-                else {
-                    var userProject = new UserProjects();
-                    userProject.ProjectID = projectToAddTo.ID;
-                    userProject.AppUserID = userID;
-
-                    _userService.addUserToProject(userProject);
-                    return Json(new { success = true, name = userName, project = projectToAddTo.Name, projectID = projectID });
-                }
-            }
-        }
-
+        /// <summary>
+        /// Adds invitation to a project from a user to the database if
+        /// he has not already received an invite or is already a collaborator,
+        /// </summary>
+        /// <param name="projectID"></param>
+        /// <param name="userName"></param>
+        /// <returns>Json object</returns>
         [HttpPost]
         public ActionResult Invite(int projectID, string userName) {
 
@@ -269,7 +246,10 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             }
 
         }
-
+        /// <summary>
+        /// Gets all the invites the user has not responded to (accepted or declined)
+        /// </summary>
+        /// <returns>Json object</returns>
         [HttpGet]
         public ActionResult GetInvites() {
             var userID = _service.getUserID(User.Identity.GetUserName());
@@ -291,6 +271,11 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             return Json(new { projectsResult, invitesResult }, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Adds the project to the users project list if he accepts an invite
+        /// </summary>
+        /// <param name="projectID"></param>
+        /// <returns>Json object</returns>
         [HttpPost]
         public ActionResult AcceptProject(int projectID) {
 
@@ -304,10 +289,17 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             invite.AppUserID = userID;
             invite.ProjectID = projectID;
 
-            if (_service.AddUserToProject(newUserProject) && _service.RemoveInvite(invite)) return Json(new { success = true });
+            if (_service.AddUserToProject(newUserProject) && _service.RemoveInvite(invite)) {
+                return Json(new { success = true });
+            }
 	        return Json(new { success = false });
         }
 
+        /// <summary>
+        /// Removes the invite from users invites if declines it
+        /// </summary>
+        /// <param name="projectID"></param>
+        /// <returns>Json object</returns>
         [HttpPost]
         public ActionResult DeclineProject(int projectID) {
 
@@ -321,6 +313,12 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 	        return Json(new { success = false });
         }
 
+        /// <summary>
+        /// Gets the html for the project container so the the accepted project
+        /// can be added to the project page without refreshing the whole site
+        /// </summary>
+        /// <param name="projectID"></param>
+        /// <returns>Json object</returns>
         public ActionResult AddInvitedProject(int projectID) {
 
             var project = _service.GetProjectByID(projectID);

@@ -1,72 +1,72 @@
-﻿$(function () {
-    $("#createFileForm").on("submit", function () {
-        $('#noFilesListItem').empty();
-        var form = $(this);
-        $.ajax({
-            method: "post",
-            url: "Document/Create",
-            data: form.serialize(),
-            success: function (response) {
-                var html;
-                var error;
-                if (response.success === false) {
-                    $('#duplicateErrorMsg').empty();
-                    html = "  Duplicate file name";
-                    $('#duplicateErrorMsg').append(html);
-                    error = document.getElementById('duplicateErrorMsg');
-                    error.style.color = "red";
-                    $('#duplicateErrorMsg').fadeIn().delay(2000).fadeOut();
-   
-                }
-                else if (response.success === "bothempty") {
-                    $('#duplicateErrorMsg').empty();
-                    html = "  File name empty";
-                    $('#duplicateErrorMsg').append(html);
-                    error = document.getElementById('duplicateErrorMsg');
-                    error.style.color = "red";
-                    $('#duplicateErrorMsg').fadeIn().delay(2000).fadeOut();
+﻿var createFileJQFunc = function () {
+    $('#noFilesListItem').empty();
+    var fileName = $('#fileNameInput').val();
+    var fileType = $('#fileTypeInput').val();
+    var projectID = $('#currentProject').val();
 
-                    $('#typeErrorMsg').empty();
-                    html = "  File type empty";
-                    $('#typeErrorMsg').append(html);
-                    error = document.getElementById('typeErrorMsg');
-                    error.style.color = "red";
-                    $('#typeErrorMsg').fadeIn().delay(2000).fadeOut();
-                }
-                else if (response.success === "nameempty") {
-                    $('#duplicateErrorMsg').empty();
-                    html = "  File name empty";
-                    $('#duplicateErrorMsg').append(html);
-                    error = document.getElementById('duplicateErrorMsg');
-                    error.style.color = "red";
-                    $('#duplicateErrorMsg').fadeIn().delay(2000).fadeOut();
-                }
-                else if (response.success === "filetypeempty") {
-                    $('#typeErrorMsg').empty();
-                    html = "  File type empty";
-                    $('#typeErrorMsg').append(html);
-                    error = document.getElementById('typeErrorMsg');
-                    error.style.color = "red";
-                    $('#typeErrorMsg').fadeIn().delay(2000).fadeOut();
+    $.ajax({
+        method: "post",
+        url: "Document/Create",
+        data: { fileName: fileName, fileType: fileType, projectID: projectID },
+        success: function (response) {
+            console.log(response);
+            var html;
+            var error;
+            if (response.success === false) {
+                $('#duplicateErrorMsg').empty();
+                html = "  Duplicate file name";
+                $('#duplicateErrorMsg').append(html);
+                error = document.getElementById('duplicateErrorMsg');
+                error.style.color = "red";
+                $('#duplicateErrorMsg').fadeIn().delay(2000).fadeOut();
 
-                }
-                else {
-                    $("#documentUlListID").append(response.html);
-                    document.getElementById("createFileForm").reset();
-                    document.getElementById("createFileBtn").classList.toggle("open");
-
-                    $("#documentMsg").empty();
-                    html = "File: <strong>" + response.Name + response.Type + "</strong> Created";
-                    $("#documentMsg").append(html);
-                    document.getElementById("documentMsg").style.color = "gray";
-                    $('#documentMsg').fadeIn().delay(3500).fadeOut();
-                }
             }
-        });
-        
-        return false;
+            else if (response.success === "bothempty") {
+                $('#duplicateErrorMsg').empty();
+                html = "  File name empty";
+                $('#duplicateErrorMsg').append(html);
+                error = document.getElementById('duplicateErrorMsg');
+                error.style.color = "red";
+                $('#duplicateErrorMsg').fadeIn().delay(2000).fadeOut();
+
+                $('#typeErrorMsg').empty();
+                html = "  File type empty";
+                $('#typeErrorMsg').append(html);
+                error = document.getElementById('typeErrorMsg');
+                error.style.color = "red";
+                $('#typeErrorMsg').fadeIn().delay(2000).fadeOut();
+            }
+            else if (response.success === "nameempty") {
+                $('#duplicateErrorMsg').empty();
+                html = "  File name empty";
+                $('#duplicateErrorMsg').append(html);
+                error = document.getElementById('duplicateErrorMsg');
+                error.style.color = "red";
+                $('#duplicateErrorMsg').fadeIn().delay(2000).fadeOut();
+            }
+            else if (response.success === "filetypeempty") {
+                $('#typeErrorMsg').empty();
+                html = "  File type empty";
+                $('#typeErrorMsg').append(html);
+                error = document.getElementById('typeErrorMsg');
+                error.style.color = "red";
+                $('#typeErrorMsg').fadeIn().delay(2000).fadeOut();
+
+            }
+            else {
+                $("#documentUlListID").append(response.html);
+                document.getElementById("createFileForm").reset();
+                document.getElementById("createFileBtn").classList.toggle("open");
+
+                $("#documentMsg").empty();
+                html = "File: <strong>" + response.Name + response.Type + "</strong> Created";
+                $("#documentMsg").append(html);
+                document.getElementById("documentMsg").style.color = "gray";
+                $('#documentMsg').fadeIn().delay(3500).fadeOut();
+            }
+        }
     });
-});
+}
 
 var deleteDocument = function (documentID) {
 

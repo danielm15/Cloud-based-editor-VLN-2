@@ -19,7 +19,7 @@
             <li id="createFileHeader">Create file</li>
             <li>
                 @using (Html.BeginForm("Create", "Document", FormMethod.Post, new { id = "createFileForm" })) {
-                    <input type="hidden" name="projectID" value="@Model.CurrProjectID">
+                    <input type="hidden" name="projectID" value="@Model.CurrProjectID" id="currentProject">
                     <label for="fileName" class="inputLablel" id="inputFileNameText">File name<em id="duplicateErrorMsg"></em></label> <br />
                     <input type="text" name="fileName" id="fileNameInput" /> <br />
                     <label for="fileType" class="inputLablel">File type<em id="typeErrorMsg"></em></label> <br />
@@ -39,7 +39,7 @@
                         <option value="rb" />
                         <option value="node" />
                     </datalist>
-                    <input type="submit" value="Create file" id="createFileSubmitBtn" class="btn btn-success" />
+                    <button type="button" value="Create file" id="createFileSubmitBtn" onclick="createFileJQFunc()" class="btn btn-success" >Create File</button>
                     @Html.ValidationSummary(false)
                 }
 

@@ -36,11 +36,8 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         ///////////////** THIS IS NOT COMMENTED STILL NEEDS TO BE COMMENTED */////////////
         #region CreateDocument POST
         [HttpPost]
-        public ActionResult Create(FormCollection formCollection) {
+        public ActionResult Create(string fileName, string fileType, int projectID) {
 
-            var fileName = formCollection["fileName"];
-            var fileType = formCollection["fileType"];
-            var projectID = int.Parse(formCollection["projectID"]);
             var creator = User.Identity.Name;
 
 

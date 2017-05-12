@@ -76,7 +76,10 @@
 
 .mainFeaturesBox {
     flex-basis: 30%;
-    border: 1px solid gray;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0 0 20pt -3pt rgb(87, 164, 230);
+    padding: 20px;
 }
 
 .boxText {

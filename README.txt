@@ -12,7 +12,7 @@
  
  -- Summary --
  
- This project is a cloud based code editor which uses the SignalR API where multiple programmers
+ This project is acloud based code editor written with the ASP .NET framework which uses the SignalR API where multiple programmers
  can work simultaneously in the same project and see each other changes
  in real-time.
  The project was developed using Visual Studio 2015 Community.

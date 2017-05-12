@@ -40,6 +40,7 @@
 
 .documentNav {
     list-style-type: none;
+    margin-top: 15px;
 }
 
 .documentNavItem:before {

@@ -78,25 +78,38 @@ namespace Cloud_based_editor_VLN_2.Services {
             return true;
         }
 
-        public bool AddInvitation(Invitation newInvitaion) {
-            Db.Invitations.Add(newInvitaion);
+	    public bool AbandonProject(int prjID, int usrID) {
+		    //var project = _db.UserProjects.Where(item => item.ProjectID == prjID && item.AppUser.ID == usrID).SingleOrDefault();
+		    var project = (from item in Db.UserProjects
+			    where item.ProjectID == prjID && item.AppUserID == usrID
+			    select item).SingleOrDefault();
+		    Db.UserProjects.Remove(project);
+		    Db.SaveChanges();
+		    return true;
+	    }
+
+	    public int HowManyUsersAreInTheProject(int prjID) {
+		    IEnumerable<UserProjects> userList = (from item in Db.UserProjects
+			    where item.ProjectID == prjID
+			    select item).ToList();
+		    return userList.Count();
+		    //int number = _db.UserProjects.Where(item => item.ProjectID == prjID).All
+		    //return number;
+	    }
+
+		public bool AddInvitation(Invitation newInvitation) {
+            Db.Invitations.Add(newInvitation);
 
             return Db.SaveChanges() == 1;
         }
 
         public List<Invitation> GetUserInvitations(int userID) {
-            var invitaions = (from inv in Db.Invitations
+            var invitations = (from inv in Db.Invitations
                               where inv.AppUserID == userID
                               select inv).ToList();
 
-            return invitaions;
+            return invitations;
         }
-
-        /*public bool DeleteInvitaion(Invitation invitation) {
-            _db.Invitations.Remove(invitation);
-
-            return _db.SaveChanges() == 1;
-        }*/
 
         public bool ContainsInvitation(Invitation invitation) {
             var result = (from inv in Db.Invitations
@@ -131,25 +144,6 @@ namespace Cloud_based_editor_VLN_2.Services {
             Db.Invitations.Remove(invToRemove);
 
             return Db.SaveChanges() == 1;
-        }
-
-        public bool AbandonProject(int prjID, int usrID) {
-            //var project = _db.UserProjects.Where(item => item.ProjectID == prjID && item.AppUser.ID == usrID).SingleOrDefault();
-            var project = (from item in Db.UserProjects
-                           where item.ProjectID == prjID && item.AppUserID == usrID
-                           select item).SingleOrDefault();
-            Db.UserProjects.Remove(project);
-            Db.SaveChanges();
-            return true;
-        }
-
-        public int HowManyUsersAreInTheProject(int prjID) {
-            IEnumerable<UserProjects> userList = (from item in Db.UserProjects
-													where item.ProjectID == prjID
-													select item).ToList();
-            return userList.Count();
-            //int number = _db.UserProjects.Where(item => item.ProjectID == prjID).All
-            //return number;
         }
 
         public bool changeOwner(int prjID, int usrID) {

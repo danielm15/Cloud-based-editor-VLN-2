@@ -22,7 +22,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
             if (projectID.HasValue) {
 	            var id = projectID ?? default(int);
-                if (!checkAuthorization(id)) return RedirectToAction("AccessDenied", "Error");
+                if (!checkAuthorization(id)) return RedirectToAction("Error", "Home");
 	            var model = new DocumentViewModel();
                 model.CurrProjectID = id;
                 model.Documents = _service.GetDocumentsByProjectID(id);
@@ -118,7 +118,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             var count = 0;
             var documents = _service.GetDocumentsByProjectID(id);
 
-            if (!checkAuthorization(id)) return RedirectToAction("AccessDenied", "Error");
+            if (!checkAuthorization(id)) return RedirectToAction("Error", "Home");
 
 	        using (var zip = new ZipFile()) {
                 zip.AlternateEncodingUsage = ZipOption.AsNecessary;

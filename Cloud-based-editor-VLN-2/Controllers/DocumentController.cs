@@ -33,13 +33,20 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         }
         #endregion
 
-        ///////////////** THIS IS NOT COMMENTED STILL NEEDS TO BE COMMENTED */////////////
         #region CreateDocument POST
+        /// <summary>
+        /// Is used when the user has entered filename and filetype
+        /// if the name/type is empty we return a Json object containing some error text
+        /// if the name/type is valid we add it to the database and render the box on constant time
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="fileType"></param>
+        /// <param name="projectID"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Create(string fileName, string fileType, int projectID) {
 
             var creator = User.Identity.Name;
-
 
             if (string.IsNullOrEmpty(fileName) && string.IsNullOrEmpty(fileType)) {
                 return Json(new { success = "bothempty" });
@@ -91,7 +98,6 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         /// <param name="item"></param>
         /// <returns>Json object</returns>
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public ActionResult _RenameDocument(Document item) {
 
             var documentToUpdate = _service.GetDocumentByID(item.ID);

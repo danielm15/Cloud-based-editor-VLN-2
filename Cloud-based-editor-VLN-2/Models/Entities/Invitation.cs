@@ -12,7 +12,7 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
         [JsonProperty("ID")]
         public int ID { get; set; }
 
-        [JsonProperty("AppUserID")]
+        [JsonProperty("fromUserName")]
         public string fromUserName { get; set; }
 
         [JsonProperty("AppUserID")]

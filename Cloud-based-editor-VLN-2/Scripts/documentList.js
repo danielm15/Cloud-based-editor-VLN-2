@@ -1,3 +1,4 @@
+
 ﻿var createFileJQFunc = function () {
     $('#noFilesListItem').empty();
     var fileName = $('#fileNameInput').val();
@@ -19,7 +20,6 @@
                 error = document.getElementById('duplicateErrorMsg');
                 error.style.color = "red";
                 $('#duplicateErrorMsg').fadeIn().delay(2000).fadeOut();
-
             }
             else if (response.success === "bothempty") {
                 $('#duplicateErrorMsg').empty();

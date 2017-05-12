@@ -46,7 +46,6 @@ var submitUpdatedName = function () {
 };
     
 var deleteProject = function (projectID) {
-
     $.ajax({
         type: "GET",
         url: "/Project/DeleteProjectVal",

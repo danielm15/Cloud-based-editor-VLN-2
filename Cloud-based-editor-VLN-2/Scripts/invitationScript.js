@@ -1,10 +1,11 @@
-﻿
+﻿// The function connects the user to the invitationHub through signalR and sends notification to the user he sends an invite to a project
 (function ($) {
     'use strict';
     $(function () {
         var invhub = $.connection.invitationHub;
-        invhub.client.sendInvite = function (fromID, toID, projectID) {
 
+        // Function that displays the notification to the user receiving it
+        invhub.client.sendInvite = function (fromID, toID, projectID) {
             var notifyCount = document.getElementById("NotifyCount");
 
             if (notifyCount.innerHTML == "") {
@@ -15,6 +16,7 @@
             }
         };
 
+        // When the hub connects the invite is sent if no errors occur, errors are displayed based on the Json success response
         window.hubReady.done(function () {
             invhub.server.joinUserGroup(userID);
             $(document).on('click', '#InviteUserSubmitBtn', function () {

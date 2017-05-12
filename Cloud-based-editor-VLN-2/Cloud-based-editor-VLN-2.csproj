@@ -320,11 +320,9 @@
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\documentList.js" />
-    <Content Include="Scripts\editorJquery.js" />
     <Content Include="Scripts\editor.js" />
     <Content Include="Scripts\editorScript.js" />
     <Content Include="Scripts\FileOverview.js" />
-    <Content Include="Scripts\dropDownScript.js" />
     <Content Include="Scripts\invitationScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

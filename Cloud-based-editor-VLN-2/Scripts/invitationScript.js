@@ -47,6 +47,7 @@
                         }
                         else {
                             $("#InviteUserError").empty();
+                            document.getElementById("userListInput").value = "";
                             document.getElementById("InviteUserError").innerHTML = "   Invite sent";
                             document.getElementById("InviteUserError").style.color = "green";
                             $('#InviteUserError').fadeIn().delay(3500).fadeOut();

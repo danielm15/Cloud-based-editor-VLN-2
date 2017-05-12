@@ -53,7 +53,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl) {
             if (!ModelState.IsValid) {
-                return View(model);
+                return RedirectToAction("Index", "Project");
             }
 
             // This doesn't count login failures towards account lockout
@@ -61,7 +61,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result) {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Project");
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);

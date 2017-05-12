@@ -9,7 +9,8 @@
             <h4 class="modal-title">Collaborators in project: <strong>@ViewBag.projectName</strong></h4>
         </div>
         <div class="modal-body" id="listCollaboratorsID">
-            <p>This is a list of all Collaborators in the project: @ViewBag.projectName</p>
+            <p id="CollaboratorsID">This is a list of all Collaborators in the project: @ViewBag.projectName</p>
+            <p id="hiddenCollaborators" class="text-danger"></p>
             <ul id="collaboratorsList">
                 @foreach (var user in Model) {
                     <li class="displayUserLI" id="@("collaboratorListID" + user.ID)">

@@ -5,7 +5,7 @@
     ViewBag.UserID = Model.CurrUserID;
 }
 
-<script>
+<script type="text/javascript" src="~/Scripts/invitationScript.js">
     var userID = @ViewBag.userID;
 </script>
 
@@ -15,7 +15,7 @@
     <i class="btn btn-success"> Add Project</i>
 </a>
 
-    <div class="row">
+    <div class="row" id="projectListID">
 @if (Model.Projects.Count() == 0) {
     <h4 class="no-files">You have no projects</h4>
 }
@@ -33,7 +33,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <p class="creatorClass">Created by: @item.AppUser.UserName</p>
+                                <p class="creatorClass">Project admin: @item.AppUser.UserName</p>
                                 <p class="dateCreatedClass">Date created: @item.DateCreated.ToString("dd.MM.yyyy")</p>
                                 <p class="projectType">Project type: @item.ProjectType</p>
                         </div>
@@ -89,6 +89,9 @@
                 </div>
             </a>
         }
+        <div class="row" id="acceptedProject">
+
+        </div>
     </div>
 
     @* This will load the modal window for Rename *@

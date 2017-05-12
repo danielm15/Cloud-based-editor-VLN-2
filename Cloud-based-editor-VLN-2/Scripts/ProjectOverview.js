@@ -223,10 +223,18 @@ var abandonPrj = function (projectID) {
             success: function(response) {
                 if (response.message === "Admin++") {
                     // abandonProjectAdmin(projectID);
+                    //listCollaboratorsFunc(projectID);
 
-                    alert("Owner is not alone");
+                    var url = "/Project/ListCollaborators?ProjectID=" + projectID;
+
+                    $("#myModal1").load(url, function () {
+                        document.getElementById("CollaboratorsID").style.display = "none";
+                        document.getElementById("hiddenCollaborators").innerHTML = "You have to choose one collaberator to be admin of the project before you can abandon the project";
+                        $("#myModal1").modal("show");
+                    });
+
                 }
-                if (response.message === "Admin-") {
+               else if (response.message === "Admin-") {
                     var urltwo = "/Project/AbandonPrjAdmin?ProjectID=" + projectID;
 
                     $("#myModal1").load(urltwo,
@@ -236,6 +244,8 @@ var abandonPrj = function (projectID) {
                         });
 
                 } else {
+                  
+                
                     var urltwo = "/Project/AbandonPrjNormal?ProjectID=" + projectID;
                     $("#myModal1").load(urltwo,
                         function() {

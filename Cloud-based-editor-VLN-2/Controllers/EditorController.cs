@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
 
-    public class EditorController : Controller {
+    public class EditorController : ParentController {
 
         private DocumentService _service = new DocumentService(null);
         private ProjectService _projectService = new ProjectService(null);
@@ -81,6 +81,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         /// <param name="contentData"></param>
         /// <returns>Json</returns>
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SaveFile(int? updateDocumentID, string contentData) {
 
             if (updateDocumentID.HasValue) {

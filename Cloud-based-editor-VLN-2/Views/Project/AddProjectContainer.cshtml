@@ -1,0 +1,62 @@
+﻿@model Cloud_based_editor_VLN_2.Models.Entities.Project
+
+<a href="@Url.Action("Index","Document", new { projectID = Model.ID})" id="link\@Model.ID">
+    <div class="col-md-4 projectContainer grow" id="div\@Model.ID">
+        <div class="panel panel-default project-panel-box">
+
+            <div class="row top-column-header">
+                <div class="col-md-12" id="top-column-area">
+                    <h3 class="hideOverFlow" id="@("projectNameHeaderID" + Model.ID)">@Html.DisplayFor(modelItem => Model.Name)</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="creatorClass">Created by: @Model.AppUser.UserName</p>
+                    <p class="dateCreatedClass">Date created: @Model.DateCreated.ToString("dd.MM.yyyy")</p>
+                    <p class="projectType">Project type: @Model.ProjectType</p>
+                </div>
+            </div>
+            <div class="row lastRow">
+                <div class="col-md-4 col-md-offset-2">
+                    <a href="javascript:;" class="btn" onclick="InviteToProject(@Model.ID)">
+                        <i class="glyphicon glyphicon-user"></i> Invite
+                    </a>
+                </div>
+
+                <div class="col-md-4 dropup">
+                    <div class="btn-default btn-block dropDownOptions">
+                        <div class="btn btn-default dropup-toggle" data-toggle="dropdown">
+                            Options
+                            <span class="caret"></span>
+                        </div>
+                        <ul class="dropdown-menu optionsMenu">
+                            <li>
+                                <a href="javascript:;" onclick="EditProjectName(@Model.ID)">
+                                    <i class="glyphicon glyphicon-pencil"> Rename</i>
+                                </a>
+                            </li>
+                            <li>
+                                @Html.ActionLink(" Download", "DownloadZip", "Document", new { projectID = Model.ID, userID = Model.ID, projectName = Model.Name }, new {
+                                           type = "a",
+                                           tabindex = "-1",
+                                           @class = "glyphicon glyphicon-download"
+                                       })
+                            </li>
+                            <li>
+                                <a href="javascript:;" onclick="deleteProject(@Model.ID)">
+                                    <i class="glyphicon glyphicon-remove"> Delete</i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" onclick="abandonPrj(@Model.ID)">
+                                    <i class="glyphicon glyphicon-minus"> Abandon project</i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+

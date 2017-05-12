@@ -5,7 +5,8 @@
     ViewBag.UserID = Model.CurrUserID;
 }
 
-<script type="text/javascript" src="~/Scripts/invitationScript.js">
+<script type="text/javascript" src="@Url.Content("~/Scripts/invitationScript.js")"></script>
+<script>   
     var userID = @ViewBag.userID;
 </script>
 

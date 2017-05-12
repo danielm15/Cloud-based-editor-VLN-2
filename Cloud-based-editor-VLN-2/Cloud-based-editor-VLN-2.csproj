@@ -310,6 +310,7 @@
     <Content Include="Scripts\documentList.js" />
     <Content Include="Scripts\editorJquery.js" />
     <Content Include="Scripts\editor.js" />
+    <Content Include="Scripts\editorScript.js" />
     <Content Include="Scripts\FileOverview.js" />
     <Content Include="Scripts\IndexSliderScript.js" />
     <Content Include="Scripts\dropDownScript.js" />

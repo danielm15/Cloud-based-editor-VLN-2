@@ -3,6 +3,8 @@
 @{ 
     ViewBag.DocumentID = Model.Doc.ID;
 }
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/editorScript.js")"></script>
 <script type="text/javascript">
     bodyMargin();
     var documentID = @ViewBag.documentID;

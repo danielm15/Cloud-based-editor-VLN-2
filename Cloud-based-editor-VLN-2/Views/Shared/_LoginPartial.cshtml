@@ -7,6 +7,14 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle projectButton" data-toggle="dropdown" role="button" id="notifyButton"><i class="glyphicon glyphicon-bell grow"></i><span class="badge" id="NotifyCount"></span></a>
+
+            <ul class="dropdown-menu" role="menu" id="inviteDropDown">
+                <li></li>
+            </ul>
+
+        </li>
         <li>
             <div class="userDropdown" >
                 <button type="button" class="dropdownBtnDiv">

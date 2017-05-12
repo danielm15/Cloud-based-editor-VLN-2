@@ -9,8 +9,8 @@ using Cloud_based_editor_VLN_2.Models.Entities;
 namespace Cloud_based_editor_VLN_2.Hubs {
     public class InvitationHub : Hub {
         ProjectService _service = new ProjectService(null);
-        public void SendInvitation(int fromID, string toUserName, int projectID) {
-            int toID = _service.getUserID(toUserName);
+        public void SendInvitation(int fromID, string userName, int projectID) {
+            int toID = _service.getUserID(userName);
             //Invitation inv = new Invitation();
             //inv.AppUserID = toID;
             //inv.ProjectID = projectID;

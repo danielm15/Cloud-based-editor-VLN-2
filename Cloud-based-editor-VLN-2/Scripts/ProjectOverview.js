@@ -272,7 +272,6 @@ var abandonProjectAdmin = function (projectID) {
     });
 };
 
-
 var AbandonProjectAjax = function (projectID, UserID) {
     $.ajax({
         type: "POST",
@@ -288,7 +287,6 @@ var AbandonProjectAjax = function (projectID, UserID) {
         }
     });
 }
-
 
 var listCollaboratorsFunc = function (ProjectID) {
     var url = "/Project/ListCollaborators?ProjectID=" + ProjectID;

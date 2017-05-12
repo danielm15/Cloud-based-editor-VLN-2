@@ -13,6 +13,9 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
         public int ID { get; set; }
 
         [JsonProperty("AppUserID")]
+        public string fromUserName { get; set; }
+
+        [JsonProperty("AppUserID")]
         public int AppUserID { get; set; }
 
         [JsonProperty("ProjectID")]

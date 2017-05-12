@@ -24,7 +24,8 @@
 }
 #currentUser {
     display: none;
-    border: 2px solid grey;
+    color: green;
+    border: 2px solid green;
 }
 
 /*////////// Class Selectors //////////*/
@@ -155,5 +156,5 @@
 
 .mymarker {
     position: absolute;
-    border: 2px solid gold;
+    border: 2px solid green;
 }

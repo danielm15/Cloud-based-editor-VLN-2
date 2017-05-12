@@ -247,7 +247,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         [HttpPost]
         public ActionResult Invite(int projectID, string userName) {
 
-
+            var fromUserName = _service.GetProjectByID(projectID).AppUser.UserName;
             int userID = _service.getUserID(userName);
 
             if (userID == 0) {
@@ -255,6 +255,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
             }
 
             Invitation inv = new Invitation();
+            inv.fromUserName = fromUserName;
             inv.AppUserID = userID;
             inv.ProjectID = projectID;
 

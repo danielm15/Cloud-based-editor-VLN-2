@@ -26,6 +26,7 @@ namespace Cloud_based_editor_VLN_2.Services {
             return AllUsers;
         }
 
+        // Gets users according to the searchString
         public IEnumerable<AppUser> getLimitedUserList(string searchString) {
             IEnumerable<AppUser> users = (from user in Db.AppUsers
                                           where user.UserName.Contains(searchString) || user.Email.Contains(searchString)

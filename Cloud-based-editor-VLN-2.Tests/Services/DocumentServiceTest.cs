@@ -76,17 +76,26 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
 
         [TestMethod]
         public void TestGetDocumentByID() {
-            // Arrange:
-            // Act:
-            var document = _DocumentService.GetDocumentByID(1);
+			// Arrange:
+	        
+			// Act:
+			var document = _DocumentService.GetDocumentByID(1);
+	        var project = document.Project;
+	        var datetime = document.DateCreated;
+
             // Assert:
             Assert.IsNotNull(document);
+			Assert.IsNotNull(datetime);
             Assert.AreEqual(1, document.ID);
             Assert.AreEqual("Document1", document.Name);
-        }
+	        Assert.AreEqual("Javascript", document.Type);
+			Assert.AreEqual(project.ID, document.ProjectID);
+	        Assert.AreEqual("User1", document.CreatedBy);
+	        Assert.AreEqual("User1", document.LastUpdatedBy);
+		}
 
         [TestMethod]
-        public void TestAddDocument() {
+        public void TestAddDocumentSuccess() {
             // Arrange:
             var document3 = new Document {
                 ID = 3,
@@ -110,8 +119,34 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
             Assert.AreEqual("Some Content", document.Content);
         }
 
-        [TestMethod]
-        public void TestUpdateDocument() {
+	    [TestMethod]
+	    public void TestAddDocumentFail() {
+			// Arrange:
+		    var document3 = new Document {
+			    ID = 3,
+			    Name = "Document3",
+			    Type = "CSS",
+			    CreatedBy = "User1",
+			    DateCreated = new DateTime(2017, 1, 1),
+			    Content = "Some Content",
+			    LastUpdatedBy = null,
+			    ProjectID = 1
+		    };
+
+			var mockContext = new MockDataContext();
+			_DocumentService = new DocumentService(mockContext);
+			mockContext.SaveSuccess = false;
+
+		    // Act:
+		    var added = _DocumentService.AddDocument(document3);
+
+		    // Assert:
+			Assert.IsFalse(added);
+
+	    }
+
+		[TestMethod]
+        public void TestUpdateDocumentSuccess() {
             // Arrange:
             var document2 = _DocumentService.GetDocumentByID(2);
             document2.Content = "Updated Content";
@@ -126,8 +161,54 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
             Assert.AreEqual("HTML", document2.Type);
             Assert.AreEqual("Updated Content", document2.Content);
         }
+		
+	    [TestMethod]
+	    public void TestUpdateDocumentFail() {
+			// Arrange:
+		    var mockContext = new MockDataContext();
 
-        [TestMethod]
+			var user1 = new AppUser {
+			    ID = 1,
+			    UserName = "User1",
+			    Email = "Email1@Email1.com"
+		    };
+		    mockContext.AppUsers.Add(user1);
+
+		    var project1 = new Project {
+			    ID = 1,
+			    OwnerID = 1,
+			    Name = "Project1",
+			    AppUser = user1,
+			    ProjectType = "Javascript"
+		    };
+		    mockContext.Projects.Add(project1);
+
+		    var document1 = new Document {
+			    ID = 1,
+			    Name = "Document1",
+			    Type = "Javascript",
+			    CreatedBy = "User1",
+			    DateCreated = new DateTime(2017, 1, 1),
+			    Content = "Hello World!",
+			    LastUpdatedBy = "User1",
+			    ProjectID = 1,
+			    Project = project1
+		    };
+		    mockContext.Documents.Add(document1);
+		    _DocumentService = new DocumentService(mockContext);
+		    mockContext.SaveSuccess = false;
+
+		    document1.Content = "Updated Content";
+
+		    // Act:
+		    var updated = _DocumentService.UpdateDocument(document1);
+
+		    // Assert:
+		    Assert.IsFalse(updated);
+	    }
+		
+
+		[TestMethod]
         public void TestDeleteDocument() {
             // Arrange:
             var document1 = _DocumentService.GetDocumentByID(1);

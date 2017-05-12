@@ -1,26 +1,29 @@
 ﻿using System.Data.Entity;
 using Cloud_based_editor_VLN_2.Models;
 using Cloud_based_editor_VLN_2.Models.Entities;
+using System.Data.Entity.Infrastructure;
+using System.Data.Common;
 
 namespace Cloud_based_editor_VLN_2.Tests {
+	
     /// <summary>
     /// This is an example of how we'd create a fake database by implementing the 
     /// same interface that the BookeStoreEntities class implements.
     /// </summary>
     public class MockDataContext : IAppDataContext {
-        /// <summary>
-        /// Sets up the fake database.
-        /// </summary>
-        /// 
-       
-        public MockDataContext() {
+	    /// <summary>
+	    /// Sets up the fake database.
+	    /// </summary>
+	    ///
+		public MockDataContext() {
             // We're setting our DbSets to be InMemoryDbSets rather than using SQL Server.
             AppUsers = new InMemoryDbSet<AppUser>();
             UserProjects = new InMemoryDbSet<UserProjects>();
             Projects = new InMemoryDbSet<Project>();
             Documents = new InMemoryDbSet<Document>();
 			Invitations = new InMemoryDbSet<Invitation>();
-        }
+		    SaveSuccess = true;
+		}
 
         public IDbSet<AppUser> AppUsers { get; set; }
 
@@ -32,14 +35,16 @@ namespace Cloud_based_editor_VLN_2.Tests {
 
 	    public IDbSet<Invitation> Invitations { get; set; }
 
+	    public bool SaveSuccess { get; set; }
+
 		public void SetModified(object entity) { }
 
         public int SaveChanges() {
-            // Pretend that each entity gets a database id when we hit save.
-            //changes += DbSetHelper.IncrementPrimaryKey<Author>(x => x.AuthorId, this.Authors);
-            //changes += DbSetHelper.IncrementPrimaryKey<Book>(x => x.BookId, this.Books);
 
-            return 1;
+	        if (!SaveSuccess) {
+		        throw new DbUpdateException();
+	        }
+	        return 1;
         }
     }
 }

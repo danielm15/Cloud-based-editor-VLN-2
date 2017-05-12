@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
 
-    public class ProjectController : Controller {
+    public class ProjectController : ParentController {
 
         private string _currentUserEmail;
         private int _currentUserID;
@@ -320,18 +320,17 @@ echo ""Hello World!"";
             foreach (Invitation item in invites) {
                 projects.Add(_service.GetProjectByID(item.ProjectID));
             }
-
-            /*var jsonSerialiser = new JavaScriptSerializer();
-            var json = jsonSerialiser.Serialize(invites);*/
-            //var result = new JavaScriptSerializer().Serialize(projects);
+            if(projects.Count == 0) {
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            }
 
             JsonSerializerSettings settings = new JsonSerializerSettings {
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects
             };
             var serializer = JsonSerializer.Create(settings);
             var result = JsonConvert.SerializeObject(projects);
-            return Json(result, JsonRequestBehavior.AllowGet);
 
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -415,6 +414,14 @@ echo ""Hello World!"";
         }
         #endregion
 
+        public ActionResult AddInvitedProject(int projectID) {
+
+            var project = _service.GetProjectByID(projectID);
+            var html = RenderRazorViewToString("AddProjectContainer", project);
+
+            return Json(html, JsonRequestBehavior.AllowGet);
+        }
+    } 
         #region ListCollaborators
         public ActionResult ListCollaborators(int? ProjectID) {
 

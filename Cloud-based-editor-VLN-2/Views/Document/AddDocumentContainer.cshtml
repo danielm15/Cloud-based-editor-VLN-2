@@ -1,0 +1,38 @@
+﻿@model Cloud_based_editor_VLN_2.Models.Entities.Document
+
+<li id="@("listItem" + Model.ID)">
+    <div>
+        <div class="row documentListItem">
+            <a href="@Url.Action("Index", "Editor", new { projectID = Model.ProjectID, documentID = Model.ID })" class="clickableDiv">
+                <div class="col-md-3 listText" id="@("nameID" + Model.ID)">
+                    @Html.DisplayFor(modelItem => Model.Name)
+                </div>
+                <div class="col-md-2 listText">
+                    @Html.DisplayFor(modelItem => Model.CreatedBy)
+                </div>
+                <div class="col-md-3 listText">
+                    @Html.DisplayFor(modelItem => Model.DateCreated)
+                </div>
+                <div class="col-md-2 listText">
+                    @Html.DisplayFor(modelItem => Model.Type)
+                </div>
+            </a>
+            <div class="col-md-2 right-float">
+                <div class="left right-float">
+                    <a href="javascript:;" class="left dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-option-vertical optionsButton"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:;" onclick="EditFileName(@Model.ID)"><i class="glyphicon glyphicon-pencil"></i> Rename</a> </li>
+                        <li>@Html.ActionLink("Download", "DownloadFile", new { documentID = Model.ID }, new { type = "a", tabindex = "-1" })</li>
+                        <li><a href="javascript:;" onclick="deleteDocument(@Model.ID)">Delete</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
+
+
+

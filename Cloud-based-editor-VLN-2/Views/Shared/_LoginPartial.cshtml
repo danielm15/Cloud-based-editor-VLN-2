@@ -15,22 +15,13 @@
             </ul>
 
         </li>
-        <li>
-            <div class="userDropdown" >
-                <button type="button" class="dropdownBtnDiv">
-                    <div class="dropdownBtn" onclick="userDropDownFunc()">
-                        @User.Identity.GetUserName()
-                        <img src="~/Content/Img/userIcon.png" id="userIcon" class="dropdownBtn" />
-                        <img src="~/Content/Img/dropDownArrow.png" id="dropDownIcon" class="dropdownBtn" />
-                    </div>
-                </button>
-                <div id="dropdownId" class="dropdownLinks">
-                    <a href="@Url.Action("Index", "Manage")">Manage account</a>
-                    <a href="@Url.Action("Support", "Home")">Support</a>
-                    <a href="javascript:document.getElementById('logoutForm').submit()" id="logOff">Log off</a>
-                </div>
-            </div>
-            
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <i class="glyphicon glyphicon-user"></i> @User.Identity.GetUserName() <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="@Url.Action("Index", "Manage")">Manage account</a></li>
+                <li><a href="@Url.Action("Support", "Home")">Support</a></li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()" id="logOff">Log off</a></li>
+            </ul>
         </li>
     </ul>
     }

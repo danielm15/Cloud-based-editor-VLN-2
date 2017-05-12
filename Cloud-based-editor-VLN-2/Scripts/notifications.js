@@ -1,4 +1,25 @@
-﻿// Gets users notifications using ajax get request and displays them in a dropdown list
+﻿$(document).ready(function () {
+    $.ajax({
+        type: 'GET',
+        url: '/Project/GetNotificationsCount',
+        success: function (response) {
+            var notifyCount = document.getElementById("NotifyCount");
+            if (response.count > 0) {
+                if (notifyCount.innerHTML === "") {
+                    notifyCount.innerHTML = response.count.toString();
+                }
+                else {
+                    notifyCount.innerHTML = (parseInt(notifyCount.innerHTML) + response.count).toString();
+                }
+            }
+            else {
+                notifyCount.innerHTML === "";
+            }
+        }
+    })
+})
+
+// Gets users notifications using ajax get request and displays them in a dropdown list
 $(document).on('click', '#notifyButton', function () {
 
     $.ajax({

@@ -146,6 +146,9 @@
     justify-content:space-between;
 }
 
+.badge {
+    margin: 0px 0px 5px 5px;
+}
 
 /*////////// Animations //////////*/
 

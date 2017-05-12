@@ -4,11 +4,7 @@ using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 using Cloud_based_editor_VLN_2.Models.Entities;
 using Cloud_based_editor_VLN_2.Models.ViewModels;
-using System.IO;
-using System.Web.Script.Serialization;
 using Newtonsoft.Json;
-using System.Web.Services;
-using System.Web.Script.Services;
 using System.Collections.Generic;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
@@ -436,7 +432,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 return PartialView("_Listcollaborators", allUsers);
             }
 
-            return View();
+	        return Json(false);
         }
         #endregion
 

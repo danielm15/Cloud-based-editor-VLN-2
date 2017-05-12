@@ -37,6 +37,7 @@ function getContent($, ID) {
     });
 }
 
+// Changes the body so the editor can take up more space
 function bodyMargin() {
     document.getElementById("bodyId").classList.toggle("addToBody");
     document.getElementById("containerBodyId").classList.toggle("changeWidth");
@@ -45,10 +46,12 @@ function bodyMargin() {
     
 }
 
+// Hides page footer so there will be more space for editor
 function hideFooter() {
     document.getElementById("footerId").classList.toggle("hideFooter");
 }
 
+// Shows the navigation bar in editor view
 function showNavBar() {
     document.getElementById("sideNav").classList.toggle("activeNav");
     if (document.getElementById("editorContentId").style.marginLeft === "200px") {
@@ -63,6 +66,7 @@ function showNavBar() {
     
 }
 
+//Changes selected item in navigation bar
 function showHeader(id) {
 
     if ($("#" + id).hasClass("selectedNav")) {

@@ -190,8 +190,6 @@ echo ""Hello World!"";
             return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
 
-
-
         public ActionResult DeleteProjectConfirm(int? ProjectID) {
             var prj = _service.GetProjectByID(ProjectID ?? default(int));
             return PartialView("_DeleteProjectConfirm", prj);
@@ -391,8 +389,6 @@ echo ""Hello World!"";
             }
         }
 
-
-
         [HttpPost]
         public ActionResult AbandonPrj(int? id, int? userID) {
             if (id.HasValue && userID.HasValue) {
@@ -421,7 +417,7 @@ echo ""Hello World!"";
 
             return Json(html, JsonRequestBehavior.AllowGet);
         }
-     
+
         #region ListCollaborators
         public ActionResult ListCollaborators(int? ProjectID) {
 

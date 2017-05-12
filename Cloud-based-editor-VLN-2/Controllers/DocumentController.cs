@@ -193,6 +193,11 @@ namespace Cloud_based_editor_VLN_2.Controllers {
         #endregion
 
         #region checkAtuorization
+        /// <summary>
+        /// Checks if the user is authorized to change/delete projects.
+        /// </summary>
+        /// <param name="projectID"></param>
+        /// <returns>bool</returns>
         private bool checkAuthorization(int projectID) {
 
             var userID = _service.getUserID(User.Identity.GetUserName());

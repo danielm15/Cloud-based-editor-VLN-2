@@ -193,9 +193,10 @@ var AddnewProjectFunc = function () {
             type: "POST",
             url: "/Project/AddProject",
             data: myformdata,
-            success: function () {
-                $("#myModal").modal("hide");
-                window.location.href = "/Project/";
+            success: function (response) {
+                $("#myModal1").modal("hide");
+                $("#acceptedProject").append(response);
+                
             }
         });
     }
@@ -233,9 +234,6 @@ var abandonPrj = function (projectID) {
                         $("#myModal1").modal("show");
                     });
 
-                    //CollaboratorsID
-                    alert("Owner is not alone");
-                  
                 }
                else if (response.message === "Admin-") {
                     var urltwo = "/Project/AbandonPrjAdmin?ProjectID=" + projectID;

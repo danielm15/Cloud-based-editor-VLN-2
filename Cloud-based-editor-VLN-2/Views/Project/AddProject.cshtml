@@ -26,14 +26,15 @@
 
                     @Html.HiddenFor(model => model.OwnerID)
                     @*@Html.HiddenFor(model => model.AppUser.UserName)*@
-                    @Html.LabelFor(model => model.Name)
+                    @Html.LabelFor(model => model.Name, new { id = "nameLbl" })
                     @Html.TextBoxFor(model => model.Name, new { id="AddProjectTextBox" })
                     @*@Html.TextBox("InviteTxtBox", "", new { placeholder = "Please enter username" })*@
+                    @Html.DropDownListFor(m => m.ProjectType, domainsList, new { id = "AddProjectDropDown" })
                     <div class="text-danger" id="AddProjectErrorDiv">
 
                     </div>
                     
-                    @Html.DropDownListFor(m => m.ProjectType, domainsList, new { id = "AddProjectDropDown" })
+                   
 
 
                     

@@ -40,6 +40,8 @@
 
 .documentNav {
     list-style-type: none;
+    overflow: auto;
+    height: 100%;
 }
 
 .documentNavItem:before {
@@ -84,7 +86,7 @@
 .navToggle {
     display: block;
     position: fixed; 
-    top: 75px;
+    top: 71px;
     width: 40px;
     height: 100%;
     background-color: white;

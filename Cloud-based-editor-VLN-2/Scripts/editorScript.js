@@ -1,4 +1,5 @@
-﻿(function ($) {
+﻿// The function connects the user to the documentHub through signalR and sends changes made to the document to all users working on it
+(function ($) {
     'use strict';
     $(function () {
         var dochub = $.connection.documentHub,
@@ -6,6 +7,7 @@
             changed = false,
             markerID = null;
 
+        // The function that shows the changes to other users
         dochub.client.updateText = function (obj, cursorScreenPos, userName) {
 
             $('#currentUser').stop(true);
@@ -44,6 +46,7 @@
             changed = false;
         };
 
+        // When the hub connects the  document is autosaved and changes sent to other users to be updated
         window.hubReady.done(function () {
             dochub.server.joinDocument(documentID);
             $editor.on('change',

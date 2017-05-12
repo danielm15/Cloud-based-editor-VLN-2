@@ -1,4 +1,5 @@
-﻿$(document).on('click', '#notifyButton', function () {
+﻿// Gets users notifications using ajax get request and displays them in a dropdown list
+$(document).on('click', '#notifyButton', function () {
     $.ajax({
         url:'/Project/GetInvites',
         type: 'GET',
@@ -30,6 +31,7 @@
     return false;
 });
 
+// Adds project to users projects if he accepts the invite
 var acceptProject = function (projectID) {
     $.ajax({
         url: '/Project/AcceptProject',
@@ -51,6 +53,7 @@ var acceptProject = function (projectID) {
     });
 };
 
+// Removes the invitation if user declines the invite
 var declineProject = function (projectID) {
     $.ajax({
         url: '/Project/DeclineProject',
@@ -72,6 +75,7 @@ var declineProject = function (projectID) {
     });
 };
 
+// Project list is updated using ajax if user accepts the invite
 var reloadProjectList = function (projectID) {
     $.ajax({
         type: "GET",

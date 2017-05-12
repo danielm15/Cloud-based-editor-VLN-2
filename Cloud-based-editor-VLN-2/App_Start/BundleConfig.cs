@@ -23,7 +23,7 @@ namespace Cloud_based_editor_VLN_2
                     "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/customscript").Include(
-                    "~/Scripts/dropDownScript.js", "~/Scripts/src-noconflict/ace.js",
+                    "~/Scripts/src-noconflict/ace.js",
                     "~/Scripts/editor.js", "~/Scripts/ProjectOverview.js",
                     "~/Scripts/documentList.js", "~/Scripts/FileOverview.js", "~/Scripts/notifications.js"));
 

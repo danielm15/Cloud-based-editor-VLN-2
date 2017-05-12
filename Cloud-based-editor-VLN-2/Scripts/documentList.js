@@ -1,4 +1,4 @@
-
+// Creates a new file using ajaxt post and checks the Json success response and displays erros based on the value
 ﻿var createFileJQFunc = function () {
     $('#noFilesListItem').empty();
     var fileName = $('#fileNameInput').val();
@@ -51,7 +51,6 @@
                 error = document.getElementById('typeErrorMsg');
                 error.style.color = "red";
                 $('#typeErrorMsg').fadeIn().delay(2000).fadeOut();
-
             }
             else {
                 $("#documentUlListID").append(response.html);
@@ -68,6 +67,7 @@
     });
 }
 
+// Deletes a file from a project using ajax post request and checks the Json succcess response and displays errors based on the value
 var deleteDocument = function (documentID) {
 
     $.ajax({
@@ -111,7 +111,6 @@ var deleteDocument = function (documentID) {
                 }
             }
         }
-
     });
 }
 

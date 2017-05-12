@@ -24,9 +24,15 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="javascript:;" onclick="EditFileName(@Model.ID)"><i class="glyphicon glyphicon-pencil"></i> Rename</a> </li>
-                        <li>@Html.ActionLink("Download", "DownloadFile", new { documentID = Model.ID }, new { type = "a", tabindex = "-1" })</li>
-                        <li><a href="javascript:;" onclick="deleteDocument(@Model.ID)">Delete</a></li>
+                        <li><a href="javascript:;" onclick="EditFileName(@item.ID)" , class="glyphicon glyphicon-pencil"> Rename</a> </li>
+                        <li>
+                            @Html.ActionLink(" Download", "DownloadFile", new { documentID = Model.ID }, new {
+                                       @type = "a",
+                                       @tabindex = "-1",
+                                       @class = "glyphicon glyphicon-download"
+                                   })
+                        </li>
+                        <li><a href="javascript:;" onclick="deleteDocument(@Model.ID)" , class="glyphicon glyphicon-remove"> Delete</a></li>
                     </ul>
                 </div>
             </div>

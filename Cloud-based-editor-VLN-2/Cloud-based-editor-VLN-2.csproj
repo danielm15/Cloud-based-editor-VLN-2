@@ -208,7 +208,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AjaxAuthorizeAttribute.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EditorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -270,7 +269,6 @@
     <Compile Include="Models\Entities\UserProjects.cs" />
     <Compile Include="Models\Entities\AppUser.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
-    <Compile Include="Models\ViewModels\AppUserViewModel.cs" />
     <Compile Include="Models\ViewModels\DocumentViewModel.cs" />
     <Compile Include="Models\ViewModels\ProjectViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -281,14 +279,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Img\1.png" />
-    <Content Include="Content\Img\2.png" />
-    <Content Include="Content\Img\3.png" />
     <Content Include="Content\Img\cloud-icon.png" />
     <Content Include="Content\Img\clouds-in-shades-of-blue.jpg" />
     <Content Include="Content\Img\dropDownArrow.png" />
-    <Content Include="Content\Img\FileView.png" />
-    <Content Include="Content\Img\indridi.jpg" />
     <Content Include="Content\Img\logo2.png" />
     <Content Include="Content\Img\logoBanner.png" />
     <Content Include="Content\bootstrap.css" />
@@ -320,11 +313,9 @@
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\documentList.js" />
-    <Content Include="Scripts\editorJquery.js" />
     <Content Include="Scripts\editor.js" />
     <Content Include="Scripts\editorScript.js" />
     <Content Include="Scripts\FileOverview.js" />
-    <Content Include="Scripts\dropDownScript.js" />
     <Content Include="Scripts\invitationScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -389,7 +380,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bin\" />
-    <Folder Include="Databases\" />
     <Folder Include="Views\Parent\" />
     <Folder Include="Views\ProjectsOverview\" />
   </ItemGroup>

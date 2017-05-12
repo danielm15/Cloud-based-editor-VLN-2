@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cloud_based_editor_VLN_2.Services;
 using Cloud_based_editor_VLN_2.Models.Entities;
@@ -139,7 +138,7 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
 			Assert.AreEqual(user1.ID, AppUser.ID);
 	        Assert.AreEqual(user1.UserName, AppUser.UserName);
 	        Assert.AreEqual(user1.Email, AppUser.Email);
-			Assert.AreEqual("Javascript", project1.ProjectType);
+			Assert.AreEqual("Javascript", type);
             Assert.AreEqual(1, project1.ID);
             Assert.AreEqual("Project1", project1.Name);
             Assert.AreEqual(2, project2.ID);

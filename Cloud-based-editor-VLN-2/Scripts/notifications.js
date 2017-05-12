@@ -1,4 +1,6 @@
-﻿$(document).on('click', '#notifyButton', function () {
+﻿// Gets users notifications using ajax get request and displays them in a dropdown list
+$(document).on('click', '#notifyButton', function () {
+
     $.ajax({
         url:'/Project/GetInvites',
         type: 'GET',
@@ -15,7 +17,7 @@
                 var arr = $.parseJSON('[' + response.projectsResult + ']');
                 var fromUserNames = $.parseJSON('[' + response.invitesResult + ']');
 
-                for (i = 0; i < arr[0].length; i++) {
+                for (var i = 0; i < arr[0].length; i++) {
                     html = '<li id="inviteItem' + arr[0][i].ID + '"> <div class="notfiyListitem">'
                          + '<p>Invitation to project: <strong> ' + arr[0][i].Name + '</strong> </p>'
                          + '<p>From user: <strong> ' + fromUserNames[0][i].fromUserName + '</strong> </p>'
@@ -30,17 +32,20 @@
     return false;
 });
 
+// Adds project to users projects if he accepts the invite
 var acceptProject = function (projectID) {
+    
     $.ajax({
         url: '/Project/AcceptProject',
         type: 'POST',
         data: { projectID: projectID },
         success: function (response) {
             var elemID = '#inviteItem' + projectID;
-            $(elemID).empty();
+            $(elemID).parent().parent().toggleClass('open');
+            $(elemID).remove();
             var notifyCount = document.getElementById("NotifyCount");
 
-            if (notifyCount.innerHTML == "" || notifyCount.innerHTML == "1") {
+            if (notifyCount.innerHTML === "" || notifyCount.innerHTML === "1") {
                 notifyCount.innerHTML = "";
             }
             else {
@@ -51,18 +56,21 @@ var acceptProject = function (projectID) {
     });
 };
 
+// Removes the invitation if user declines the invite
 var declineProject = function (projectID) {
+    
     $.ajax({
         url: '/Project/DeclineProject',
         type: 'POST',
         data: { projectID: projectID },
         success: function (response) {
             var elemID = '#inviteItem' + projectID;
-            $(elemID).empty();
+            $(elemID).parent().parent().toggleClass('open');
+            $(elemID).remove();
 
             var notifyCount = document.getElementById("NotifyCount");
 
-            if (notifyCount.innerHTML == "" || notifyCount.innerHTML == "1") {
+            if (notifyCount.innerHTML === "" || notifyCount.innerHTML === "1") {
                 notifyCount.innerHTML = "";
             }
             else {
@@ -72,6 +80,7 @@ var declineProject = function (projectID) {
     });
 };
 
+// Project list is updated using ajax if user accepts the invite
 var reloadProjectList = function (projectID) {
     $.ajax({
         type: "GET",

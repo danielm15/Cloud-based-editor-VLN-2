@@ -10,7 +10,6 @@
         url: "Document/Create",
         data: { fileName: fileName, fileType: fileType, projectID: projectID },
         success: function (response) {
-            console.log(response);
             var html;
             var error;
             if (response.success === false) {

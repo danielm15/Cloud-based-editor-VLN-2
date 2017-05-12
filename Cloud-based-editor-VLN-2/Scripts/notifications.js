@@ -1,5 +1,27 @@
-﻿// Gets users notifications using ajax get request and displays them in a dropdown list
+﻿$(document).ready(function () {
+    $.ajax({
+        type: 'GET',
+        url: '/Project/GetNotificationsCount',
+        success: function (response) {
+            var notifyCount = document.getElementById("NotifyCount");
+            if (response.count > 0) {
+                if (notifyCount.innerHTML === "") {
+                    notifyCount.innerHTML = response.count.toString();
+                }
+                else {
+                    notifyCount.innerHTML = (parseInt(notifyCount.innerHTML) + response.count).toString();
+                }
+            }
+            else {
+                notifyCount.innerHTML === "";
+            }
+        }
+    })
+})
+
+// Gets users notifications using ajax get request and displays them in a dropdown list
 $(document).on('click', '#notifyButton', function () {
+
     $.ajax({
         url:'/Project/GetInvites',
         type: 'GET',
@@ -33,13 +55,15 @@ $(document).on('click', '#notifyButton', function () {
 
 // Adds project to users projects if he accepts the invite
 var acceptProject = function (projectID) {
+    
     $.ajax({
         url: '/Project/AcceptProject',
         type: 'POST',
         data: { projectID: projectID },
         success: function (response) {
             var elemID = '#inviteItem' + projectID;
-            $(elemID).empty();
+            $(elemID).parent().parent().toggleClass('open');
+            $(elemID).remove();
             var notifyCount = document.getElementById("NotifyCount");
 
             if (notifyCount.innerHTML === "" || notifyCount.innerHTML === "1") {
@@ -55,13 +79,15 @@ var acceptProject = function (projectID) {
 
 // Removes the invitation if user declines the invite
 var declineProject = function (projectID) {
+    
     $.ajax({
         url: '/Project/DeclineProject',
         type: 'POST',
         data: { projectID: projectID },
         success: function (response) {
             var elemID = '#inviteItem' + projectID;
-            $(elemID).empty();
+            $(elemID).parent().parent().toggleClass('open');
+            $(elemID).remove();
 
             var notifyCount = document.getElementById("NotifyCount");
 

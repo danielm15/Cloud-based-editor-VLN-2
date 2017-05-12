@@ -27,7 +27,7 @@ namespace Cloud_based_editor_VLN_2
                     "~/Scripts/editor.js", "~/Scripts/ProjectOverview.js",
                     "~/Scripts/documentList.js", "~/Scripts/FileOverview.js", "~/Scripts/notifications.js"));
 
-            bundles.Add(new StyleBundle("~/Content/Stylesheets/AllStyles").Include(
+			bundles.Add(new StyleBundle("~/Content/Stylesheets/AllStyles").Include(
                 "~/Content/Stylesheets/AllStylesConcat.min.css"
                 ));
 

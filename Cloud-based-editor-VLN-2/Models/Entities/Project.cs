@@ -28,7 +28,6 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
         //public virtual Document Document { get; set; }
 
         [Required(ErrorMessage = "Type of project is Required")]
-        [JsonIgnore]
         public string ProjectType { get; set; }
     }
 }

@@ -15,7 +15,7 @@
     <i class="btn btn-success"> Add Project</i>
 </a>
 
-    <div class="row">
+    <div class="row" id="projectListID">
 @if (Model.Projects.Count() == 0) {
     <h4 class="no-files">You have no projects</h4>
 }
@@ -83,6 +83,9 @@
                 </div>
             </a>
         }
+        <div class="row" id="acceptedProject">
+
+        </div>
     </div>
 
     @* This will load the modal window for Rename *@

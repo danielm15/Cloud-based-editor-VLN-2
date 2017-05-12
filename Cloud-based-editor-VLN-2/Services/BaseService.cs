@@ -25,6 +25,5 @@ namespace Cloud_based_editor_VLN_2.Services {
                             select users.UserName).SingleOrDefault();
             return userName;
         }
-        
     }
 }

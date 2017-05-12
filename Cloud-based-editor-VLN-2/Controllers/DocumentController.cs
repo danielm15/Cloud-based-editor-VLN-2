@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
 
-    public class DocumentController : Controller {
+    public class DocumentController : ParentController {
 
         private DocumentService _service = new DocumentService(null);
         private ProjectService _projectService = new ProjectService(null);
@@ -61,7 +61,10 @@ namespace Cloud_based_editor_VLN_2.Controllers {
                 newDocument.CreatedBy = creator;
                 newDocument.Content = "";
 
-                if (_service.AddDocument(newDocument)) return Json(newDocument);
+                if (_service.AddDocument(newDocument)) {
+                    var html = RenderRazorViewToString("AddDocumentContainer", newDocument);
+                    return Json(html);
+                }
             }
             return Json(new { success = false });
         }

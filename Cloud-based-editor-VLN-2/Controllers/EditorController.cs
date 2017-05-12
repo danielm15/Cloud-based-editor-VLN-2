@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Cloud_based_editor_VLN_2.Controllers {
 
-    public class EditorController : Controller {
+    public class EditorController : ParentController {
 
         private DocumentService _service = new DocumentService(null);
         private ProjectService _projectService = new ProjectService(null);

@@ -66,7 +66,7 @@ namespace Cloud_based_editor_VLN_2.Controllers {
 
                 if (_service.AddDocument(newDocument)) {
                     var html = RenderRazorViewToString("AddDocumentContainer", newDocument);
-                    return Json(html);
+                    return Json(new { html, newDocument.Name, newDocument.Type });
                 }
             }
             return Json(new { success = false });

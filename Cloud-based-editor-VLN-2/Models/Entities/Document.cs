@@ -12,10 +12,12 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
 
         [JsonIgnore]
         [Index("NameProject", 1, IsUnique = true)]
-        [StringLength(400)]
+        [StringLength(300)]
         public string Name { get; set; }
 
         [JsonIgnore]
+        [Index("NameProject", 2, IsUnique = true)]
+        [StringLength(100)]
         public string Type { get; set; }
 
         [JsonIgnore]
@@ -33,7 +35,7 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
         public string LastUpdatedBy { get; set; }
 
         [JsonIgnore]
-        [Index("NameProject", 2, IsUnique = true)]
+        [Index("NameProject", 3, IsUnique = true)]
         public int ProjectID { get; set; }
 
         [JsonIgnore]

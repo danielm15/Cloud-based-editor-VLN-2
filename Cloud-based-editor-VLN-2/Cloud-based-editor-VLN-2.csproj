@@ -249,6 +249,18 @@
     <Compile Include="Migrations\201705102212270_Invitaion.Designer.cs">
       <DependentUpon>201705102212270_Invitaion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705121238428_UpdateNameProject.cs" />
+    <Compile Include="Migrations\201705121238428_UpdateNameProject.Designer.cs">
+      <DependentUpon>201705121238428_UpdateNameProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705121243112_UpdateNameProject1.cs" />
+    <Compile Include="Migrations\201705121243112_UpdateNameProject1.Designer.cs">
+      <DependentUpon>201705121243112_UpdateNameProject1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705121352493_UpdateInvitaion.cs" />
+    <Compile Include="Migrations\201705121352493_UpdateInvitaion.Designer.cs">
+      <DependentUpon>201705121352493_UpdateInvitaion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\Document.cs" />
     <Compile Include="Models\Entities\Invitation.cs" />
@@ -411,6 +423,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705102212270_Invitaion.resx">
       <DependentUpon>201705102212270_Invitaion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705121238428_UpdateNameProject.resx">
+      <DependentUpon>201705121238428_UpdateNameProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705121243112_UpdateNameProject1.resx">
+      <DependentUpon>201705121243112_UpdateNameProject1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705121352493_UpdateInvitaion.resx">
+      <DependentUpon>201705121352493_UpdateInvitaion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

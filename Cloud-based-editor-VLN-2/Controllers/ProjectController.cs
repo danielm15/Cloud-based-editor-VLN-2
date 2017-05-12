@@ -283,7 +283,7 @@ echo ""Hello World!"";
         [HttpPost]
         public ActionResult Invite(int projectID, string userName) {
 
-
+            var fromUserName = _service.GetProjectByID(projectID).AppUser.UserName;
             int userID = _service.getUserID(userName);
 
             if (userID == 0) {
@@ -291,6 +291,7 @@ echo ""Hello World!"";
             }
 
             Invitation inv = new Invitation();
+            inv.fromUserName = fromUserName;
             inv.AppUserID = userID;
             inv.ProjectID = projectID;
 

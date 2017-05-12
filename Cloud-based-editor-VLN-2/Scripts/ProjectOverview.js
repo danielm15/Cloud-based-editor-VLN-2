@@ -233,9 +233,6 @@ var abandonPrj = function (projectID) {
                         $("#myModal1").modal("show");
                     });
 
-                    //CollaboratorsID
-                    alert("Owner is not alone");
-                  
                 }
                else if (response.message === "Admin-") {
                     var urltwo = "/Project/AbandonPrjAdmin?ProjectID=" + projectID;

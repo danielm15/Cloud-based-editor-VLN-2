@@ -17,7 +17,7 @@
  in real-time.
  The project was developed using Visual Studio 2015 Community.
 
- Please beware of the following features in our project:
+ Please acknowledge of the following features in our project:
  
  Start a new project from the projects page.
  When clicking the add project button, enter a project name and choose

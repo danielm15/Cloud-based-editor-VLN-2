@@ -213,6 +213,7 @@
     <Compile Include="Controllers\EditorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ParentController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -367,12 +368,16 @@
     <Content Include="Views\Project\_DeleteNoPermission.cshtml" />
     <Content Include="Views\Document\_RenameDocument.cshtml" />
     <Content Include="Views\Project\_AbandonPrjConfirm.cshtml" />
+    <Content Include="Views\Project\_AdminAbandonProject.cshtml" />
+    <Content Include="Views\Project\AddProjectContainer.cshtml" />
+    <Content Include="Views\Document\AddDocumentContainer.cshtml" />
     <Content Include="Views\Project\_Listcollaborators.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bin\" />
     <Folder Include="Databases\" />
+    <Folder Include="Views\Parent\" />
     <Folder Include="Views\ProjectsOverview\" />
   </ItemGroup>
   <ItemGroup>

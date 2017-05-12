@@ -88,18 +88,21 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li><a href="javascript:;" onclick="EditFileName(@item.ID)"><i class="glyphicon glyphicon-pencil"></i> Rename</a> </li>
-                                    <li>@Html.ActionLink("Download", "DownloadFile", new { documentID = item.ID }, new { type = "a", tabindex = "-1" })</li>
-                                    <li><a href="javascript:;" onclick="deleteDocument(@item.ID)">Delete</a></li>
+                                    <li><a href="javascript:;" onclick="EditFileName(@item.ID)", class="glyphicon glyphicon-pencil"> Rename</a> </li>
+                                    <li>@Html.ActionLink(" Download", "DownloadFile", new { documentID = item.ID }, new {
+                                       @type = "a",
+                                       @tabindex = "-1",
+                                       @class = "glyphicon glyphicon-download"
+                                   })</li>
+                                    <li><a href="javascript:;" onclick="deleteDocument(@item.ID)", class="glyphicon glyphicon-remove"> Delete</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </li>
-        }
+        }    
     </ul>
-
 </div>   
 
 @* This will load the modal window for Rename file *@

@@ -1,9 +1,5 @@
 ﻿$(function () {
     $("#createFileForm").on("submit", function () {
-        /*var noFilesHeader = document.getElementById("noFilesListItem");
-        if (noFilesHeader != null) {
-            document.getElementById("noFilesListItme").style.display = "none";
-        }*/
         $('#noFilesListItem').empty();
         var form = $(this);
         $.ajax({
@@ -55,47 +51,7 @@
 
                 }
                 else {
-                    var jsonDate = String(response.DateCreated);
-                    var re = /-?\d+/;
-                    var m = re.exec(jsonDate);
-                    var date = new Date(parseInt(m[0]));
-                    var time = date.toLocaleTimeString('en-GB');
-                    var day = date.getDate();
-                    var month = date.getMonth() + 1;
-                    var year = date.getFullYear();
-                    html = "<li id=\"listItem" + response.ID + "\">"
-                        + "<div>"
-                        + "<div class=\"row documentListItem\">"
-                        + "<a href=\"/Editor?projectID=" + response.ProjectID + "&documentID=" + response.ID + "\" class=\"clickableDiv\">"
-                        + "<div class=\"col-md-3 listText\" id=\"nameID" + response.ID + "\">"
-                        + response.Name
-                        + "</div>"
-                        + "<div class=\"col-md-2 listText\">"
-                        + response.CreatedBy
-                        + "</div>"
-                        + "<div class=\"col-md-3 listText\">"
-                        + day + "." + month + "." + year + " " + time
-                        + "</div>"
-                        + "<div class=\"col-md-2 listText\">"
-                        + response.Type
-                        + "</div>"
-                        + "</a>"
-                        + "<div class=\"col-md-2 right-float\">"
-                        + "<div class=\"dropdown right-float\">"
-                        + "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">"
-                        + "<span class=\"glyphicon glyphicon-option-vertical optionsButton\"></span>"
-                        + "</a>"
-                        + "<ul class=\"dropdown-menu\">"
-                        + "<li><a href=\"#\" onclick=\"EditFileName(" + response.ProjectID + ")\">Rename</a></li>"
-                        + "<li><a href=\"/Document/DownloadFile?documentID=" + response.ID + "\" tabindex=\"-1\" type=\"a\">Download</a></li>"
-                        + "<li><a href=\"#\" onclick=\"deleteDocument(" + response.ID + ")\">Delete</a></li>"
-                        + "</ul>"
-                        + "</div>"
-                        + "</div>"
-                        + "</div>"
-                        + "</div>"
-                        + "</li>";
-                    $("#documentUlListID").append(html);
+                    $("#documentUlListID").append(response);
                     document.getElementById("createFileForm").reset();
                     document.getElementById("createFileBtn").classList.toggle("open");
 

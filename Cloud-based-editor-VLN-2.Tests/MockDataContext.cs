@@ -36,11 +36,10 @@ namespace Cloud_based_editor_VLN_2.Tests {
 
         public int SaveChanges() {
             // Pretend that each entity gets a database id when we hit save.
-            int changes = 0;
             //changes += DbSetHelper.IncrementPrimaryKey<Author>(x => x.AuthorId, this.Authors);
             //changes += DbSetHelper.IncrementPrimaryKey<Book>(x => x.BookId, this.Books);
 
-            return changes;
+            return 1;
         }
     }
 }

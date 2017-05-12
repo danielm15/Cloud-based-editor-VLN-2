@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cloud_based_editor_VLN_2.Services;
 using Cloud_based_editor_VLN_2.Models.Entities;
@@ -86,6 +87,13 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
                 Project = project1
             };
             mockContext.Documents.Add(document1);
+
+	        var invitation1 = new Invitation {
+		        ID = 1,
+				AppUserID = 2,
+				ProjectID = 1,
+	        };
+	        mockContext.Invitations.Add(invitation1);
 
             _ProjectService = new ProjectService(mockContext);
 
@@ -224,5 +232,124 @@ namespace Cloud_based_editor_VLN_2.Tests.Services {
             Assert.AreEqual(1, numberAfter);
 
         }
-    }
+
+	    [TestMethod]
+	    public void TestAddInvitation() { 
+			// Arrange:
+			var invitation2 = new Invitation {
+			    ID = 2,
+			    AppUserID = 2,
+			    ProjectID = 2
+		    };
+
+			// Act:
+		    var added = _ProjectService.AddInvitation(invitation2);
+
+		    // Assert:
+			Assert.AreEqual(true, added);
+	    }
+
+	    [TestMethod]
+	    public void TestGetUserInvitations() {
+		    // Arrange:
+
+		    // Act:
+		    var invitations = _ProjectService.GetUserInvitations(2);
+
+		    // Assert:
+			Assert.AreEqual(1, invitations.Count);
+			Assert.AreEqual(2, invitations[0].AppUserID);
+		    Assert.AreEqual(1, invitations[0].ProjectID);
+		}
+
+	    [TestMethod]
+	    public void TestContainsInvitation() {
+			// Arrange:
+		    var invitation2 = new Invitation {
+			    ID = 2,
+			    AppUserID = 2,
+			    ProjectID = 2
+		    };
+		    var invitations = _ProjectService.GetUserInvitations(2);
+		    var invitation1 = invitations[0];
+
+		    // Act:
+		    var contains = _ProjectService.ContainsInvitation(invitation1);
+		    var containsNot = _ProjectService.ContainsInvitation(invitation2);
+
+		    // Assert:
+			Assert.IsTrue(contains);
+			Assert.IsFalse(containsNot);
+	    }
+
+	    [TestMethod]
+	    public void TestHasUserProject() {
+		    // Arrange:
+		    var userProject1 = new UserProjects {
+			    ID = 3,
+				AppUserID = 2,
+				ProjectID = 2
+		    };
+
+		    // Act:
+		    var isLinked = _ProjectService.HasUserProject(userProject1);
+
+		    // Assert:
+		    Assert.IsTrue(isLinked);
+	    }
+
+	    [TestMethod]
+	    public void TestAddUserToProject() {
+			// Arrange:
+		    var userProject4 = new UserProjects {
+			    ID = 4,
+			    AppUserID = 2,
+			    ProjectID = 1
+		    };
+
+			// Act:
+		    var added = _ProjectService.AddUserToProject(userProject4);
+		    var isLinked = _ProjectService.HasUserProject(userProject4);
+
+		    // Assert:
+			Assert.IsTrue(added);
+			Assert.IsTrue(isLinked);
+	    }
+
+	    [TestMethod]
+	    public void TestRemoveInvite() {
+			// Arrange:
+		    var invitation1 = new Invitation {
+			    ID = 1,
+			    AppUserID = 2,
+			    ProjectID = 1,
+		    };
+
+			// Act:
+		    var removed = _ProjectService.RemoveInvite(invitation1);
+		    var contains = _ProjectService.ContainsInvitation(invitation1);
+
+		    // Assert:
+			Assert.IsTrue(removed);
+			Assert.IsFalse(contains);
+	    }
+
+	    [TestMethod]
+	    public void TestchangeOwner() {
+		    // Arrange:
+		    var project1ID = 1;
+		    var user2ID = 2;
+		    var project1 = _ProjectService.GetProjectByID(project1ID);
+		    var beforeID = project1.OwnerID;
+
+		    // Act:
+		    var changed = _ProjectService.changeOwner(project1ID, user2ID);
+		    var afterID = project1.OwnerID;
+
+		    // Assert:
+			Assert.IsTrue(changed);
+			Assert.AreEqual(1, beforeID);
+			Assert.AreEqual(2, afterID);
+	    }
+	}
 }

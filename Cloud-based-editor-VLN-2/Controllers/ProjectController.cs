@@ -542,5 +542,14 @@ echo ""Hello World!"";
             }
         }
         #endregion
+
+        // Gets the number of invitations user has
+        public ActionResult GetNotificationsCount() {
+            var userID = _service.getUserID(User.Identity.GetUserName());
+
+            var count = _service.GetUserInvitations(userID).Count;
+
+            return Json(new { count = count }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

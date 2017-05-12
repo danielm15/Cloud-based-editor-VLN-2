@@ -9,7 +9,9 @@
             success: function (response) {
                 var html;
                 var error;
+                console.log(response);
                 if (response.success === false) {
+                    alert('her');
                     $('#duplicateErrorMsg').empty();
                     html = "  Duplicate file name";
                     $('#duplicateErrorMsg').append(html);
@@ -63,7 +65,6 @@
                 }
             }
         });
-        
         return false;
     });
 });

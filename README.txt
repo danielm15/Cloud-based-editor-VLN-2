@@ -1,4 +1,4 @@
-_   _   __                     _ _____ 
+ï»¿_   _   __                     _ _____ 
   _______ .______        ______    __    __  .______    ___     ___   
  /  _____||   _  \      /  __  \  |  |  |  | |   _  \  |__ \   / _ \  
 |  |  __  |  |_)  |    |  |  |  | |  |  |  | |  |_)  |    ) | | | | | 
@@ -6,21 +6,21 @@ _   _   __                     _ _____
 |  |__| | |  |\  \----.|  `--'  | |  `--'  | |  |       / /_  | |_| | 
  \______| | _| `._____| \______/   \______/  | _|      |____|  \___/  
                                                                       
- Atli Þrastarson, Benedikt Óskarsson, Daníel Örn Melstað
- Jóhann Atli Johannsson, Sölvi Baldursson	
+ Atli Ãžrastarson, Benedikt Ã“skarsson, DanÃ­el Ã–rn MelstaÃ°
+ JÃ³hann Atli Johannsson, SÃ¶lvi Baldursson	
  -----------------------------------------------------------------------
  
  -- Summary --
  
- This project is a cloud based code editor where multiple programmers
- can work simultaneously in the same project and see eachother changes
- in realtime.
+ This project is a cloud based code editor which uses the SignalR API where multiple programmers
+ can work simultaneously in the same project and see each other changes
+ in real-time.
  The project was developed in Visual Studio 2015 Community.
 
- Please beaware of the following features in our project:
+ Please beware of the following features in our project:
  
  Start a new project from the projects page.
- When chicking the add project button, enter a project name and choose
+ When clicking the add project button, enter a project name and choose
  a project type.
 
  It is possible to invite multiple user to the same project and work
@@ -45,8 +45,8 @@ _   _   __                     _ _____
 -- CONTACT --
 
 Current maintainers:
- Atli Þrastarson        - atlit06@ru.is
- Benedikt Óskarsson     - benedikto16@ru.is
- Daníel Örn Melstað     - danielm15@ru.is
- Jóhann Atli Johannsson - johannaj16@ru.is
- Sölvi Baldursson       - solvib11@ru.is
+ Atli Ãžrastarson        - atlit06@ru.is
+ Benedikt Ã“skarsson     - benedikto16@ru.is
+ DanÃ­el Ã–rn MelstaÃ°     - danielm15@ru.is
+ JÃ³hann Atli Johannsson - johannaj16@ru.is
+ SÃ¶lvi Baldursson       - solvib11@ru.is

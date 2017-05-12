@@ -9,7 +9,5 @@ namespace Cloud_based_editor_VLN_2.Models.Entities {
         public string UserName { get; set; }
 
         public string Email { get; set; }
-
-        //public virtual Project Projects[] { get; set; }
     }
 }

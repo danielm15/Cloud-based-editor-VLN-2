@@ -8,7 +8,7 @@
         invhub.client.sendInvite = function (fromID, toID, projectID) {
             var notifyCount = document.getElementById("NotifyCount");
 
-            if (notifyCount.innerHTML == "") {
+            if (notifyCount.innerHTML === "") {
                 notifyCount.innerHTML = "1";
             }
             else {

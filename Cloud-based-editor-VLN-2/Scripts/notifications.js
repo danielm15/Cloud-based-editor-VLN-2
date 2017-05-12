@@ -17,7 +17,7 @@ $(document).on('click', '#notifyButton', function () {
                 var arr = $.parseJSON('[' + response.projectsResult + ']');
                 var fromUserNames = $.parseJSON('[' + response.invitesResult + ']');
 
-                for (i = 0; i < arr[0].length; i++) {
+                for (var i = 0; i < arr[0].length; i++) {
                     html = '<li id="inviteItem' + arr[0][i].ID + '"> <div class="notfiyListitem">'
                          + '<p>Invitation to project: <strong> ' + arr[0][i].Name + '</strong> </p>'
                          + '<p>From user: <strong> ' + fromUserNames[0][i].fromUserName + '</strong> </p>'
@@ -45,7 +45,7 @@ var acceptProject = function (projectID) {
             $(elemID).remove();
             var notifyCount = document.getElementById("NotifyCount");
 
-            if (notifyCount.innerHTML == "" || notifyCount.innerHTML == "1") {
+            if (notifyCount.innerHTML === "" || notifyCount.innerHTML === "1") {
                 notifyCount.innerHTML = "";
             }
             else {
@@ -70,7 +70,7 @@ var declineProject = function (projectID) {
 
             var notifyCount = document.getElementById("NotifyCount");
 
-            if (notifyCount.innerHTML == "" || notifyCount.innerHTML == "1") {
+            if (notifyCount.innerHTML === "" || notifyCount.innerHTML === "1") {
                 notifyCount.innerHTML = "";
             }
             else {

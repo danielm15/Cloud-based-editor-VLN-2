@@ -1,5 +1,4 @@
 namespace Cloud_based_editor_VLN_2.Migrations {
-	using System;
 	using System.Data.Entity.Migrations;
 
 	public partial class Invitaion : DbMigration {

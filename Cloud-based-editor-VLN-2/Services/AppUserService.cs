@@ -26,7 +26,7 @@ namespace Cloud_based_editor_VLN_2.Services {
             return AllUsers;
         }
 
-        // Gets users according to the searchString
+        // Gets users that match the searchString
         public IEnumerable<AppUser> getLimitedUserList(string searchString) {
             IEnumerable<AppUser> users = (from user in Db.AppUsers
                                           where user.UserName.Contains(searchString) || user.Email.Contains(searchString)
@@ -40,6 +40,7 @@ namespace Cloud_based_editor_VLN_2.Services {
             return AllUserProjects;
         }
 
+		// Returns all users currently connected to a project
         public List<AppUser> getAllUsersInProject(Project project) {
             List<AppUser> allUsersInProject = (from users in Db.AppUsers
                                                join up in Db.UserProjects on users.ID equals up.AppUserID

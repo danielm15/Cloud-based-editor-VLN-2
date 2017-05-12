@@ -148,9 +148,11 @@
     font-size: 15px;
     padding-bottom: 9px;
     margin-left: 15px;
+    margin-top: 2px;
 }
 
 .projectButton:hover {
+    background-size: cover;
     background-color: gainsboro;
 }
 
